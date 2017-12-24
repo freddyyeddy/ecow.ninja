@@ -7,6 +7,12 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="inc/js/select2.js"></script>
 	<script src="inc/js/notify.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
 </head>
 <script>
   $(document).ready(function() {
@@ -14,9 +20,9 @@
 					// 		Variables
 
 		var oTable;
-		
+
 // 		Functions
-		
+
 // 		Copy Text To Clipboard
 		function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -60,30 +66,30 @@
   document.body.removeChild(textArea);
 }
 // 		end Text Copying
-		
+
 // 		Do Stuff
-		
+
 // 		Making Table  and Filter Drop Downs From Ajax Call
-		
+
 					oTable = $('#table').DataTable({
 					initComplete: function () {
 						$("#table_filter").detach().appendTo('#search');
 
         },
-					
+
         paging:   false,
         info:     false,
-				
-						
+
+
 						 ajax: {
         url: "inc/get.php",
         dataSrc: ''
     },
-					
+
         columns: [
             { "data": "source" },
             { "data": "hazard" },
-            { "data": "mitigation" },          
+            { "data": "mitigation" },
  						{ "data": "id" },
             { "data": "tags" },
             { "data": "crafts" }
@@ -92,29 +98,29 @@
             {
                 "targets": [ 3,4,5 ],
                 "visible": false,
-// 							'searchable'    : false, 
-                    
-                
+// 							'searchable'    : false,
+
+
             }
 //             {
 //                 "targets": [ 3 ],
 //                 "visible": false
 //             }
-						
+
         ],
 						language: {
         search: "_INPUT_",
         searchPlaceholder: "Search..."
     },
 						bInfo: false,
-						
-				
-					
+
+
+
 
     });
 
 // 		Making Filters and Searches For Table
-		
+
 		yadcf.init(oTable, [
         {
             column_number : 0,
@@ -131,10 +137,10 @@
 						width: 'resolve',
 
 					}
-				},  
-// 			{column_number : 1},      
-// 			{column_number : 2},      
-// 			{column_number : 3},      
+				},
+// 			{column_number : 1},
+// 			{column_number : 2},
+// 			{column_number : 3},
 			{
             column_number : 4,
     				filter_container_id: 'Tags',
@@ -147,7 +153,7 @@
 										dropdownAutoWidth: false,
 						width: 'resolve',
 
-				},     
+				},
 			{
             column_number : 5,
     				filter_container_id: 'Craft',
@@ -160,14 +166,14 @@
 										dropdownAutoWidth: false,
 						width: 'resolve',
 
-				}, 
+				},
 		]
 							);
 // End Get Table and Generate Filters
-		
-		
+
+
 // 		Copy Text To Clipboard when Clicked and Alert with a popup
-		
+
 			 $(document).on('click', 'tbody td',function(){
 				 var $this = $(this);
 				     var selectedCellIndex = this.cellIndex;
@@ -180,8 +186,8 @@
     }, 1000);
 			copyTextToClipboard($this.html());
    $.notify("Copied The "+ $th);
-		 
-	
+
+
 });
 		//       Highlights clicked row
       $('#table').on('click', 'tbody tr', function(event) {
@@ -191,7 +197,7 @@
        ths.removeClass('highlight', 2000, 'linear');
    }, 800);
 });
-		
+
 		document.getElementById("table").deleteTFoot();
 });
 
@@ -205,7 +211,7 @@
 	</div>
 
 	<div class="searchbox sbx-custom">
-		
+
 
 	<div id="search">
 </div>
