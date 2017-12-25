@@ -1,0 +1,1810 @@
+.icon-attachments,
+[class*=icon-attachments-] {
+	background-image: url(../images/sprites/attachments.png);
+	width: 95px;
+	height: 95px
+}
+https://ecowalaska.bpweb.bp.com/customer/images/sprites/attachments.png
+.icon-attachments-isolation-existing {
+	background-position: 0 -105px
+}
+
+.icon-attachments-isolation-new {
+	background-position: 0 -630px
+}
+
+.icon-attachments-isolation-template {
+	background-position: 0 -210px
+}
+
+.icon-attachments-operation-existing {
+	background-position: 0 -315px
+}
+
+.icon-attachments-operation-new {
+	background-position: 0 -420px
+}
+
+.icon-attachments-operationalriskassessment-existing {
+	background-position: 0 -525px
+}
+
+.icon-attachments-operationalriskassessment-new {
+	background-position: 0 0
+}
+
+.icon-attachments-permit-existing {
+	background-position: 0 -735px
+}
+
+.icon-attachments-permit-new {
+	background-position: 0 -840px
+}
+
+.icon-attachments-permit-template {
+	background-position: 0 -945px
+}
+
+.icon-attachments-safetyoverrideriskassessment-existing {
+	background-position: 0 -1050px
+}
+
+.icon-attachments-safetyoverrideriskassessment-template {
+	background-position: 0 -1155px
+}
+
+.icon-buttons,
+[class*=icon-buttons-] {
+	background-image: url(../images/sprites/buttons.png);
+	width: 95px;
+	height: 95px
+}
+
+.icon-buttons-Action_Completed {
+	background-position: 0 -6545px
+}
+
+.icon-buttons-Action_Draft {
+	background-position: 0 -4025px
+}
+
+.icon-buttons-Action_Live {
+	background-position: 0 -140px
+}
+
+.icon-buttons-IsolationTemplate_Active {
+	background-position: 0 -350px
+}
+
+.icon-buttons-IsolationTemplate_Approved {
+	background-position: 0 -455px
+}
+
+.icon-buttons-IsolationTemplate_Authorization {
+	background-position: 0 -560px
+}
+
+.icon-buttons-IsolationTemplate_Draft {
+	background-position: 0 -665px
+}
+
+.icon-buttons-IsolationTemplate_Endorsement {
+	background-position: 0 -770px
+}
+
+.icon-buttons-IsolationTemplate_Suspended {
+	background-position: 0 -875px
+}
+
+.icon-buttons-IsolationTemplate_WaitingForApproval {
+	background-position: 0 -980px
+}
+
+.icon-buttons-Isolation_Amendments {
+	background-position: 0 -1085px
+}
+
+.icon-buttons-Isolation_Approved {
+	background-position: 0 -1190px
+}
+
+.icon-buttons-Isolation_Authorization {
+	background-position: 0 -1295px
+}
+
+.icon-buttons-Isolation_Deisolated {
+	background-position: 0 -1400px
+}
+
+.icon-buttons-Isolation_Deisolating {
+	background-position: 0 -1505px
+}
+
+.icon-buttons-Isolation_Draft {
+	background-position: 0 -1610px
+}
+
+.icon-buttons-Isolation_Endorsement {
+	background-position: 0 -1715px
+}
+
+.icon-buttons-Isolation_Isolating {
+	background-position: 0 -1820px
+}
+
+.icon-buttons-Isolation_Live {
+	background-position: 0 -1925px
+}
+
+.icon-buttons-Leak_Draft {
+	background-position: 0 -2030px
+}
+
+.icon-buttons-Leak_Live {
+	background-position: 0 -2135px
+}
+
+.icon-buttons-LolcMovement_Authorization {
+	background-position: 0 -2240px
+}
+
+.icon-buttons-LolcMovement_DesignComplete {
+	background-position: 0 -2345px
+}
+
+.icon-buttons-LolcMovement_Draft {
+	background-position: 0 -2450px
+}
+
+.icon-buttons-LolcMovement_Endorsement {
+	background-position: 0 -2555px
+}
+
+.icon-buttons-LolcMovement_Live {
+	background-position: 0 -2660px
+}
+
+.icon-buttons-LolcMovement_MovementToNormal {
+	background-position: 0 -2765px
+}
+
+.icon-buttons-LolcOperationalInspection_Authorization {
+	background-position: 0 -2870px
+}
+
+.icon-buttons-LolcOperationalInspection_Draft {
+	background-position: 0 -2975px
+}
+
+.icon-buttons-LolcOperationalInspection_Endorsement {
+	background-position: 0 -3080px
+}
+
+.icon-buttons-LolcOperationalInspection_Movement {
+	background-position: 0 -3185px
+}
+
+.icon-buttons-LolcOperationalInspection_Record {
+	background-position: 0 -3290px
+}
+
+.icon-buttons-Operation_Draft {
+	background-position: 0 -3920px
+}
+
+.icon-buttons-Operation_Live {
+	background-position: 0 -35px
+}
+
+.icon-buttons-OperationalRiskAssessment_Endorsement {
+	background-position: 0 -3605px
+}
+
+.icon-buttons-OperationalRiskAssessment_Live {
+	background-position: 0 -3710px
+}
+
+.icon-buttons-OperationalRiskAssessment_Requested {
+	background-position: 0 -3815px
+}
+
+.icon-buttons-PermitTemplate_Approved {
+	background-position: 0 -4340px
+}
+
+.icon-buttons-PermitTemplate_Draft {
+	background-position: 0 -4445px
+}
+
+.icon-buttons-PermitTemplate_Live {
+	background-position: 0 -4550px
+}
+
+.icon-buttons-PermitTemplate_Suspended {
+	background-position: 0 -4655px
+}
+
+.icon-buttons-Permit_Approved {
+	background-position: 0 -4760px
+}
+
+.icon-buttons-Permit_Authorised {
+	background-position: 0 -4865px
+}
+
+.icon-buttons-Permit_Closing {
+	background-position: 0 -4970px
+}
+
+.icon-buttons-Permit_Draft {
+	background-position: 0 -5075px
+}
+
+.icon-buttons-Permit_Issued {
+	background-position: 0 -5180px
+}
+
+.icon-buttons-Permit_Live {
+	background-position: 0 -5285px
+}
+
+.icon-buttons-Permit_OfficePrepared {
+	background-position: 0 -5390px
+}
+
+.icon-buttons-Permit_Suspended {
+	background-position: 0 -5495px
+}
+
+.icon-buttons-Permit_Verified {
+	background-position: 0 -5600px
+}
+
+.icon-buttons-SafetyOverrideRiskAssessmentTemplate_Draft {
+	background-position: 0 -5810px
+}
+
+.icon-buttons-SafetyOverrideRiskAssessmentTemplate_Live {
+	background-position: 0 -5915px
+}
+
+.icon-buttons-SafetyOverrideRiskAssessmentTemplate_Overdue {
+	background-position: 0 -6020px
+}
+
+.icon-buttons-SafetyOverrideRiskAssessment_Draft {
+	background-position: 0 -6125px
+}
+
+.icon-buttons-SafetyOverrideRiskAssessment_Live {
+	background-position: 0 -6230px
+}
+
+.icon-buttons-SearchCertificates {
+	background-position: 0 -6440px
+}
+
+.icon-buttons-SearchCertificates_Small {
+	background-position: 0 0;
+	width: 22px;
+	height: 25px
+}
+
+.icon-buttons-ShowCcr {
+	background-position: 0 -6860px
+}
+
+.icon-buttons-ShowGasMeasurementsOverview {
+	background-position: 0 -6965px
+}
+
+.icon-buttons-ShowLockOpenLockClosedRegistry {
+	background-position: 0 -7070px
+}
+
+.icon-buttons-ShowPbuOverview {
+	background-position: 0 -7175px
+}
+
+.icon-buttons-ShowSignatureBox {
+	background-position: 0 -7280px
+}
+
+.icon-buttons-ShowTaskMonitoringOverview {
+	background-position: 0 -7385px
+}
+
+.icon-buttons-TaskRiskAssessment_Draft {
+	background-position: 0 -7490px
+}
+
+.icon-buttons-TaskRiskAssessment_Live {
+	background-position: 0 -7595px
+}
+
+.icon-buttons-WorkItemAudit_Draft {
+	background-position: 0 -7805px
+}
+
+.icon-buttons-WorkItemAudit_Reviewed {
+	background-position: 0 -7910px
+}
+
+.icon-buttons-health_overview {
+	background-position: 0 -245px
+}
+
+.icon-buttons-newaudit {
+	background-position: 0 -3395px
+}
+
+.icon-buttons-newcertificate {
+	background-position: 0 -3500px
+}
+
+.icon-buttons-overdue_lookahead {
+	background-position: 0 -4130px
+}
+
+.icon-buttons-performing_authority_feedback {
+	background-position: 0 -4235px
+}
+
+.icon-buttons-questionnaire {
+	background-position: 0 -5705px
+}
+
+.icon-buttons-scan {
+	background-position: 0 -6335px
+}
+
+.icon-buttons-self_verification_dashboard {
+	background-position: 0 -6650px
+}
+
+.icon-buttons-shifts_planning {
+	background-position: 0 -6755px
+}
+
+.icon-buttons-template {
+	background-position: 0 -7700px
+}
+
+.icon-buttons-workorder {
+	background-position: 0 -8015px
+}
+
+.icon-dashboard,
+[class*=icon-dashboard-] {
+	background-image: url(../images/sprites/dashboard.png);
+	width: 150px;
+	height: 150px
+}
+
+.icon-dashboard-Large_NotOverdue {
+	background-position: 0 -120px
+}
+
+.icon-dashboard-Large_Overdue {
+	background-position: 0 -280px
+}
+
+.icon-dashboard-Small_NotOverdue {
+	background-position: 0 0;
+	width: 50px;
+	height: 50px
+}
+
+.icon-dashboard-Small_Overdue {
+	background-position: 0 -60px;
+	width: 50px;
+	height: 50px
+}
+
+.icon-equipment-and-locations,
+[class*=icon-equipment-and-locations-] {
+	background-image: url(../images/sprites/equipment-and-locations.png);
+	width: 15px;
+	height: 14px
+}
+
+.icon-equipment-and-locations-asset {
+	background-position: 0 0
+}
+
+.icon-equipment-and-locations-equipment {
+	background-position: 0 -24px
+}
+
+.icon-equipment-and-locations-location {
+	background-position: 0 -48px;
+	height: 15px
+}
+
+.icon-equipment-and-locations-multiworklocation {
+	background-position: 0 -98px;
+	width: 25px;
+	height: 25px
+}
+
+.icon-equipment-and-locations-system {
+	background-position: 0 -73px;
+	height: 15px
+}
+
+.icon-equipment-and-locations-systemConflict {
+	background-position: 0 -133px;
+	width: 25px;
+	height: 25px
+}
+
+.icon-equipment-and-locations-zoneConflict {
+	background-position: 0 -168px;
+	width: 25px;
+	height: 25px
+}
+
+.icon-kinds,
+[class*=icon-kinds-] {
+	background-image: url(../images/sprites/kinds.png);
+	width: 95px;
+	height: 95px
+}
+
+.icon-kinds-Action {
+	background-position: 0 -105px
+}
+
+.icon-kinds-Isolation {
+	background-position: 0 -735px
+}
+
+.icon-kinds-IsolationTemplate {
+	background-position: 0 -210px
+}
+
+.icon-kinds-Leak {
+	background-position: 0 -315px
+}
+
+.icon-kinds-LolcMovement {
+	background-position: 0 -420px
+}
+
+.icon-kinds-LolcOperationalInspection {
+	background-position: 0 -525px
+}
+
+.icon-kinds-Operation {
+	background-position: 0 -630px
+}
+
+.icon-kinds-OperationalRiskAssessment {
+	background-position: 0 0
+}
+
+.icon-kinds-Permit {
+	background-position: 0 -840px
+}
+
+.icon-kinds-PermitTemplate {
+	background-position: 0 -945px
+}
+
+.icon-kinds-SafetyOverrideRiskAssessment {
+	background-position: 0 -1050px
+}
+
+.icon-kinds-SafetyOverrideRiskAssessmentTemplate {
+	background-position: 0 -1155px
+}
+
+.icon-kinds-TaskRiskAssessment {
+	background-position: 0 -1260px
+}
+
+.icon-kinds-WorkItemAudit {
+	background-position: 0 -1365px
+}
+
+.icon-modules,
+[class*=icon-modules-] {
+	background-image: url(../images/sprites/modules.png);
+	width: 95px;
+	height: 95px
+}
+
+.icon-modules-Configuration {
+	background-position: 0 0
+}
+
+.icon-modules-LockOpenLockClosed {
+	background-position: 0 -105px
+}
+
+.icon-modules-PermitToWork {
+	background-position: 0 -210px
+}
+
+.icon-modules-SelfVerification {
+	background-position: 0 -315px
+}
+
+.icon-modules-ShiftVision {
+	background-position: 0 -420px
+}
+
+.icon-modules-SmartVision {
+	background-position: 0 -525px
+}
+
+.icon-modules-Templates {
+	background-position: 0 -630px
+}
+
+.icon-pa-feedback,
+[class*=icon-pa-feedback-] {
+	background-image: url(../images/sprites/pa-feedback.png);
+	width: 32px;
+	height: 32px
+}
+
+.icon-pa-feedback-improvementssuggested-selected {
+	background-position: 0 0
+}
+
+.icon-pa-feedback-improvementssuggested {
+	background-position: 0 -42px
+}
+
+.icon-pa-feedback-interruptionsoccurred-selected {
+	background-position: 0 -84px
+}
+
+.icon-pa-feedback-interruptionsoccurred {
+	background-position: 0 -126px
+}
+
+.icon-pa-feedback-noissues-selected {
+	background-position: 0 -168px
+}
+
+.icon-pa-feedback-noissues {
+	background-position: 0 -210px
+}
+
+.icon-valveclassifications,
+[class*=icon-valveclassifications-] {
+	background-image: url(../images/sprites/valveclassifications.png);
+	width: 640px;
+	height: 480px
+}
+
+.icon-valveclassifications-LC-1 {
+	background-position: 0 -490px
+}
+
+.icon-valveclassifications-LC-2 {
+	background-position: 0 -4900px
+}
+
+.icon-valveclassifications-LC-3 {
+	background-position: 0 -980px
+}
+
+.icon-valveclassifications-LC-4 {
+	background-position: 0 -1470px
+}
+
+.icon-valveclassifications-LC-5 {
+	background-position: 0 -1960px
+}
+
+.icon-valveclassifications-LC-6 {
+	background-position: 0 -2450px
+}
+
+.icon-valveclassifications-LO-1 {
+	background-position: 0 -2940px
+}
+
+.icon-valveclassifications-LO-10 {
+	background-position: 0 -3430px
+}
+
+.icon-valveclassifications-LO-11 {
+	background-position: 0 -3920px
+}
+
+.icon-valveclassifications-LO-12 {
+	background-position: 0 -4410px
+}
+
+.icon-valveclassifications-LO-2 {
+	background-position: 0 0
+}
+
+.icon-valveclassifications-LO-3 {
+	background-position: 0 -5390px
+}
+
+.icon-valveclassifications-LO-4 {
+	background-position: 0 -5880px
+}
+
+.icon-valveclassifications-LO-5 {
+	background-position: 0 -6370px
+}
+
+.icon-valveclassifications-LO-6 {
+	background-position: 0 -6860px
+}
+
+.icon-valveclassifications-LO-6_1 {
+	background-position: 0 -7350px;
+	width: 641px
+}
+
+.icon-valveclassifications-LO-6_2 {
+	background-position: 0 -9310px;
+	width: 641px;
+	height: 481px
+}
+
+.icon-valveclassifications-LO-7 {
+	background-position: 0 -8330px
+}
+
+.icon-valveclassifications-LO-8 {
+	background-position: 0 -7840px
+}
+
+.icon-valveclassifications-LO-9 {
+	background-position: 0 -8820px;
+	width: 641px
+}
+
+.icon-visioncontrol-buttons,
+[class*=icon-visioncontrol-buttons-] {
+	background-image: url(../images/sprites/visioncontrol-buttons.png);
+	width: 95px;
+	height: 95px
+}
+
+.icon-visioncontrol-buttons-certificateQuestionnaires {
+	background-position: 0 -105px
+}
+
+.icon-visioncontrol-buttons-company {
+	background-position: 0 -735px
+}
+
+.icon-visioncontrol-buttons-configuration {
+	background-position: 0 -210px
+}
+
+.icon-visioncontrol-buttons-deployment {
+	background-position: 0 -315px
+}
+
+.icon-visioncontrol-buttons-descriptorManagement {
+	background-position: 0 -420px
+}
+
+.icon-visioncontrol-buttons-exportResources {
+	background-position: 0 -525px
+}
+
+.icon-visioncontrol-buttons-hazardsAndControls {
+	background-position: 0 -630px
+}
+
+.icon-visioncontrol-buttons-lessonsLearned {
+	background-position: 0 0
+}
+
+.icon-visioncontrol-buttons-permitVisionConfig {
+	background-position: 0 -840px
+}
+
+.icon-visioncontrol-buttons-resourceEditor {
+	background-position: 0 -945px
+}
+
+.icon-visioncontrol-buttons-resources {
+	background-position: 0 -1050px
+}
+
+.icon-visioncontrol-buttons-roleGroups {
+	background-position: 0 -1155px
+}
+
+.icon-visioncontrol-buttons-sites {
+	background-position: 0 -1260px
+}
+
+.icon-visioncontrol-buttons-transferOwnership {
+	background-position: 0 -1365px
+}
+
+.icon-visioncontrol-buttons-userManagement {
+	background-position: 0 -1470px
+}
+
+.auditAssessments-field .comments .resizable-textarea-container {
+	margin-top: 10px
+}
+
+.auditAssessments-field .comments .resizable-textarea-container textarea {
+	height: 100px
+}
+
+.is-editable {
+	cursor: pointer
+}
+
+.is-editable:hover {
+	outline: 1px solid #fae1bc;
+	background-color: #fef6ec
+}
+
+.risk-assessment-tasks-modal {
+	color: #333;
+	word-wrap: break-word
+}
+
+.risk-assessment-tasks-modal .risk-assessment-tasks {
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0
+}
+
+.risk-assessment-tasks-modal .modal-body {
+	overflow-y: hidden;
+	padding: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex
+}
+
+.risk-assessment-tasks-modal .modal-body .scrolling-container {
+	width: 100%;
+	overflow-y: scroll;
+	padding: 16px;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0)
+}
+
+@-webkit-keyframes show {
+	0%,
+	99% {
+		opacity: 0
+	}
+	100% {
+		opacity: 100%
+	}
+}
+
+@keyframes show {
+	0%,
+	99% {
+		opacity: 0
+	}
+	100% {
+		opacity: 100%
+	}
+}
+
+.risk-assessment-tasks-modal .btn-minimize-footer {
+	position: absolute;
+	right: 32px;
+	bottom: -webkit-calc(50% - 24px);
+	bottom: calc(50% - 24px);
+	z-index: 2;
+	-webkit-animation: 150ms linear show;
+	animation: 150ms linear show
+}
+
+.risk-assessment-tasks-modal .resizable-textarea-container {
+	width: 100%
+}
+
+.risk-assessment-tasks-modal .step-header-buttons {
+	margin-left: auto;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.risk-assessment-tasks-modal .step-header-buttons .step-header-button {
+	background-color: transparent;
+	border: 0;
+	font-size: 1rem
+}
+
+.risk-assessment-tasks-modal .step-header-buttons .step-header-button:hover {
+	background-color: #e1e1e1
+}
+
+.risk-assessment-tasks-modal .task-step-control,
+.risk-assessment-tasks-modal .task-step-hazard-wrapper {
+	position: relative
+}
+
+.risk-assessment-tasks-modal .task-step-control .drag-handler,
+.risk-assessment-tasks-modal .task-step-hazard-wrapper .drag-handler {
+	background-color: transparent;
+	border: 0;
+	padding-left: 4px;
+	padding-right: 4px;
+	cursor: move;
+	color: #777;
+	border-left: 1px solid #ddd;
+	opacity: 0;
+	-webkit-transition: opacity .1s linear;
+	transition: opacity .1s linear
+}
+
+.risk-assessment-tasks-modal .task-step-control .drag-handler:hover,
+.risk-assessment-tasks-modal .task-step-hazard-wrapper .drag-handler:hover {
+	color: #333;
+	background-color: rgba(230, 230, 230, .26)
+}
+
+.risk-assessment-tasks-modal .task-step-controls:hover .drag-handler {
+	opacity: 1
+}
+
+.risk-assessment-tasks-modal .task-step-body:hover .task-step-hazard-wrapper .drag-handler {
+	opacity: 1
+}
+
+.risk-assessment-tasks-modal .task-step-controls .task-step-new-control {
+	padding: 8px
+}
+
+.risk-assessment-tasks-modal .control-measure-prerequisite {
+	font-size: .85rem;
+	text-align: center;
+	width: 60px
+}
+
+.risk-assessment-tasks-modal .new-hazard-btn {
+	-webkit-align-self: flex-start;
+	-ms-flex-item-align: start;
+	align-self: flex-start
+}
+
+.risk-assessment-tasks-modal .task-step-controls .new-item-button-wrapper {
+	padding-left: 8px
+}
+
+.risk-assessment-tasks-modal .new-item-button-wrapper {
+	margin-top: auto;
+	padding: 8px
+}
+
+.risk-assessment-tasks-modal .modal-footer {
+	height: 56px;
+	-webkit-transition: height 150ms ease-out;
+	transition: height 150ms ease-out;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0)
+}
+
+.risk-assessment-tasks-modal .modal-footer.new-item-footer {
+	height: 50%;
+	overflow: hidden;
+	color: #333;
+	text-align: left;
+	background-color: #f2f2f2;
+	border-top: 3px solid #416d9f;
+	box-shadow: 0 -5px 25px 0 rgba(0, 0, 0, .2);
+	z-index: 1;
+	position: relative;
+	padding: 24px 16px 10px 16px
+}
+
+.risk-assessment-tasks-modal .modal-footer .available-controls-list,
+.risk-assessment-tasks-modal .modal-footer .available-hazards-list {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	overflow-y: auto
+}
+
+.risk-assessment-tasks-modal .modal-footer .available-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	-ms-flex-align: start;
+	align-items: flex-start
+}
+
+.risk-assessment-tasks-modal .modal-footer .available-item .btn-add {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-wrapper {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	padding-bottom: 8px;
+	overflow: hidden
+}
+
+.risk-assessment-tasks-modal .modal-footer .modal-footer-buttons {
+	text-align: right;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.risk-assessment-tasks-modal .modal-footer .pending-changes-warning {
+	display: inline-block;
+	margin-bottom: 0;
+	margin-right: 16px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 4px;
+	position: relative;
+	top: 1px
+}
+
+.risk-assessment-tasks-modal .modal-footer .pending-changes-warning .glyphicon {
+	font-size: 1.4rem;
+	top: 7px
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-title {
+	margin-top: 0
+}
+
+.risk-assessment-tasks-modal .modal-footer .filtered-items-title {
+	margin-top: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.risk-assessment-tasks-modal .modal-footer .filtered-items-title .reset-btn {
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+	font-size: 1rem
+}
+
+.risk-assessment-tasks-modal .modal-footer .filtered-items-title .reset-btn:hover {
+	color: #595959
+}
+
+.risk-assessment-tasks-modal .modal-footer .filtered-items-title .text-truncate {
+	display: inline-block;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 1 auto;
+	-ms-flex: 0 1 auto;
+	flex: 0 1 auto
+}
+
+.risk-assessment-tasks-modal .modal-footer .filtered-items-title .progress-indicator {
+	display: inline-block;
+	margin-top: 0;
+	margin-left: 8px;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-left {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 50%;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	overflow-y: auto
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-left .control-label {
+	padding-left: 0
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-left .col-modified.col-2 {
+	width: 18.66666667%
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-left .col-modified.col-10 {
+	width: 81.33333333%
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-right {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 50%;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	padding: 0 8px 8px;
+	z-index: 1;
+	width: 50%;
+	max-width: 50%
+}
+
+.risk-assessment-tasks-modal .modal-footer .suggested-items {
+	background-color: rgba(255, 255, 255, .5);
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	overflow-y: auto;
+	margin-bottom: 0;
+	border-radius: 3px
+}
+
+.risk-assessment-tasks-modal .modal-footer .suggested-items .list-group-item .hazardgroup-icon {
+	margin-right: 4px;
+	font-size: 1.2rem
+}
+
+.risk-assessment-tasks-modal .modal-footer .form-group {
+	margin: 4px 0;
+	padding: 4px 22px 4px 0;
+	position: relative
+}
+
+.risk-assessment-tasks-modal .modal-footer .form-group .resizable-textarea-container {
+	margin-bottom: 4px
+}
+
+.risk-assessment-tasks-modal .modal-footer .active-indicator {
+	position: absolute;
+	right: 8px;
+	top: 12px;
+	color: #4a7cb5;
+	font-size: 1.6rem
+}
+
+.risk-assessment-tasks-modal .modal-footer .active-indicator.animation-spin {
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite
+}
+
+.risk-assessment-tasks-modal .modal-footer .available-hazard-groups .hazardgroup-icon {
+	font-size: 1.2rem
+}
+
+.risk-assessment-tasks-modal .modal-footer .hazard-dropdown .dropdown-menu,
+.risk-assessment-tasks-modal .modal-footer .taskstep-dropdown .dropdown-menu {
+	max-height: 250px
+}
+
+.risk-assessment-tasks-modal .modal-footer .hazardgroups-dropdown .dropdown-menu {
+	max-height: 20vh
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-description-btns {
+	text-align: right
+}
+
+.risk-assessment-tasks-modal .modal-footer .new-item-description-btns .btn+.btn {
+	margin-left: 4px
+}
+
+@font-face {
+	font-family: icons-permit-hazards;
+	src: url(../fonts/icons-permit-hazards.woff) format('woff')
+}
+
+[class*=icon-permithazards-]:before {
+	font-family: icons-permit-hazards;
+	font-style: normal;
+	font-weight: 400;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	min-width: 1em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+	z-index: 1
+}
+
+.icon-permithazards-07:before {
+	content: '\e800'
+}
+
+.icon-permithazards-08:before {
+	content: '\e801'
+}
+
+.icon-permithazards-09:before {
+	content: '\e802'
+}
+
+.icon-permithazards-11:before {
+	content: '\e803'
+}
+
+.icon-permithazards-15:before {
+	content: '\e804'
+}
+
+.icon-permithazards-16:before {
+	content: '\e805'
+}
+
+.icon-permithazards-021:before {
+	content: '\e806'
+}
+
+.icon-permithazards-022:before {
+	content: '\e807'
+}
+
+.icon-permithazards-071:before {
+	content: '\e808'
+}
+
+.icon-permithazards-111:before {
+	content: '\e809'
+}
+
+.icon-permithazards-01:before {
+	content: '\e80a'
+}
+
+.icon-permithazards-05:before {
+	content: '\e80b'
+}
+
+.icon-permithazards-06:before {
+	content: '\e80c'
+}
+
+.icon-permithazards-02:before {
+	content: '\e80d'
+}
+
+.risk-assessment-tasks .item-text-wrapper {
+	position: relative;
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-flex: 1;
+	-webkit-flex-grow: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1
+}
+
+.risk-assessment-tasks .item-text-wrapper.is-editing {
+	-webkit-align-self: flex-start;
+	-ms-flex-item-align: start;
+	align-self: flex-start;
+	-webkit-box-flex: 0;
+	-webkit-flex-grow: 0;
+	-ms-flex-positive: 0;
+	flex-grow: 0
+}
+
+.risk-assessment-tasks .item-text-wrapper .resizable-textarea {
+	line-height: 1.5
+}
+
+.risk-assessment-tasks .item-text-wrapper .resizable-textarea-dragger {
+	position: absolute
+}
+
+.risk-assessment-tasks .item-text-wrapper .form-control {
+	padding: 8px;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto
+}
+
+.risk-assessment-tasks .item-text-wrapper .btn-group {
+	position: absolute;
+	top: 100%;
+	left: -webkit-calc(50% - 43px);
+	left: calc(50% - 43px);
+	margin-top: -2px;
+	z-index: 1
+}
+
+.risk-assessment-tasks .item-text-wrapper .remove-btn {
+	color: #777
+}
+
+.risk-assessment-tasks .item-text-wrapper .remove-btn:hover {
+	color: #ec733d
+}
+
+.risk-assessment-tasks .item-text {
+	display: block;
+	width: 100%;
+	white-space: pre-wrap;
+	word-break: break-word;
+	padding: 8px;
+	-webkit-align-self: stretch;
+	-ms-flex-item-align: stretch;
+	-ms-grid-row-align: stretch;
+	align-self: stretch
+}
+
+a.list-group-item.disabled:focus,
+a.list-group-item.disabled:hover,
+button.list-group-item.disabled:focus,
+button.list-group-item.disabled:hover {
+	background-color: #fcfcfc
+}
+
+a.list-group-item.disabled.bg-alt:focus,
+a.list-group-item.disabled.bg-alt:hover,
+button.list-group-item.disabled.bg-alt:focus,
+button.list-group-item.disabled.bg-alt:hover {
+	background-color: #f9f9f9
+}
+
+.risk-assessment-tasks {
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	color: #333;
+	background-color: #fcfcfc;
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 8px;
+	word-wrap: break-word
+}
+
+.risk-assessment-tasks+.task-steps-modal-btn {
+	margin-top: 8px
+}
+
+.risk-assessment-tasks .tasks-header {
+	background-color: #eee
+}
+
+.risk-assessment-tasks .tasks-header .tasks-header-inner {
+	width: 50%;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex
+}
+
+.risk-assessment-tasks .tasks-header .tasks-header-inner+.tasks-header-inner {
+	border-left: 1px solid #ddd
+}
+
+.risk-assessment-tasks .tasks-header .tasks-header-inner-label {
+	padding: 8px 8px 4px
+}
+
+.risk-assessment-tasks .task-step {
+	position: relative
+}
+
+.risk-assessment-tasks .task-step.is-active {
+	outline: 2px solid #f4b75d;
+	z-index: 1
+}
+
+.risk-assessment-tasks .task-step.is-dragging {
+	background-color: #fef6ec
+}
+
+.risk-assessment-tasks .task-step.is-dragging .task-step-header {
+	background-color: #fdf0de
+}
+
+.risk-assessment-tasks .task-step-header {
+	background-color: #eee;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+	padding: 4px 8px;
+	border-bottom: 1px solid #d5d5d5;
+	border-top: 1px solid #d5d5d5
+}
+
+.risk-assessment-tasks .task-step-header .step-header-number {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	margin-right: 4px;
+	padding-top: 4px;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	line-height: 1.8
+}
+
+.risk-assessment-tasks .task-step-header .step-header-number.form-control {
+	width: 4rem
+}
+
+.risk-assessment-tasks .task-step-header .step-header-description {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	line-height: 1.8;
+	font-weight: 700
+}
+
+.risk-assessment-tasks .task-step-body {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	min-height: 32px
+}
+
+.risk-assessment-tasks .task-step-body .btn-add {
+	margin-left: 8px;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.risk-assessment-tasks .task-step-hazard-row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex
+}
+
+.risk-assessment-tasks .task-step-hazard-row .hazardgroup-icon {
+	padding-top: 3px;
+	font-size: 1.6rem;
+	padding-left: 6px;
+	padding-right: 3px
+}
+
+.risk-assessment-tasks .task-step-hazard-row .hazardgroup-icon.text-icon-orahazards {
+	font-size: 1.4rem
+}
+
+.risk-assessment-tasks .task-step-hazard-row+.task-step-hazard-row {
+	border-top: 1px solid #ddd
+}
+
+.risk-assessment-tasks .task-step-hazard-row:nth-child(2n) {
+	background-color: rgba(230, 230, 230, .25)
+}
+
+.risk-assessment-tasks .task-step-hazard-row:nth-child(2n) .task-step-control:nth-child(2n+1) {
+	background-color: rgba(222, 222, 222, .25)
+}
+
+.risk-assessment-tasks .task-step-hazard-row.is-active {
+	background-color: #fdf2e2
+}
+
+.risk-assessment-tasks .task-step-hazard-row.is-dragging {
+	background-color: #fef6ec
+}
+
+.risk-assessment-tasks .task-step-controls-wrapper,
+.risk-assessment-tasks .task-step-hazard-wrapper {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	vertical-align: top;
+	max-width: 50%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative
+}
+
+.risk-assessment-tasks .task-step-controls-wrapper .type-text,
+.risk-assessment-tasks .task-step-hazard-wrapper .type-text {
+	font-weight: 700;
+	display: block;
+	font-size: .85rem;
+	padding-top: 4px
+}
+
+.risk-assessment-tasks .task-step-controls-inner {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 0 auto;
+	-ms-flex: 1 0 auto;
+	flex: 1 0 auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column
+}
+
+.risk-assessment-tasks .task-step-controls,
+.risk-assessment-tasks .task-step-hazard {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column
+}
+
+.risk-assessment-tasks .task-step-hazard-content {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto
+}
+
+.risk-assessment-tasks .task-step-controls-wrapper {
+	border-left: 1px solid #ddd
+}
+
+.risk-assessment-tasks .task-step-control {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 0 auto;
+	-ms-flex: 1 0 auto;
+	flex: 1 0 auto;
+	padding: 0
+}
+
+.risk-assessment-tasks .task-step-control:nth-child(2n) {
+	background-color: rgba(230, 230, 230, .25)
+}
+
+.risk-assessment-tasks .task-step-control+.task-step-control {
+	border-top: 1px solid #ddd
+}
+
+.risk-assessment-tasks .task-step-control.is-dragging {
+	background-color: #fef6ec!important
+}
+
+.risk-assessment-tasks .task-step-control .task-step-control-wrapper {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column
+}
+
+.risk-assessment-tasks .control-measure-prerequisite {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	font-weight: 400;
+	padding: 8px;
+	border-left: 1px solid #ddd;
+	margin-bottom: 0
+}
+
+.risk-box.risk-box-for-task-steps {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	padding: 8px 8px 4px;
+	border-left: 1px solid #ddd;
+	text-align: center;
+	margin-left: auto;
+	font-size: .85rem;
+	position: relative;
+	width: 70px;
+	font-weight: 700
+}
+
+.risk-box.risk-box-for-task-steps .rating {
+	display: block;
+	font-weight: 700;
+	font-size: 1.25rem
+}
+
+.risk-box.risk-box-for-task-steps .severityandlikelihood {
+	font-size: .85rem
+}
+
+.risk-box.risk-box-for-task-steps.editable {
+	cursor: pointer
+}
+
+.risk-box.risk-box-for-task-steps.editable:after {
+	content: '';
+	background-color: rgba(0, 0, 0, .07);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: none
+}
+
+.risk-box.risk-box-for-task-steps.editable:hover:after {
+	display: block
+}
+
+.risk-box.risk-box-for-task-steps.not-set {
+	background-color: #f7f7f7
+}
+
+.E1,
+.E2,
+.F1,
+.F2,
+.F3,
+.G1,
+.G2,
+.G3,
+.G4,
+.H1,
+.H2,
+.H3,
+.H4,
+.H5,
+.H6,
+.H7,
+.H8 {
+	background-color: #fff;
+	color: #000
+}
+
+.D1,
+.D2,
+.E3,
+.F4,
+.G5,
+.G6,
+.G7,
+.G8 {
+	background-color: #ddd;
+	color: red
+}
+
+.F5,
+.F6,
+.F7,
+.F8 {
+	background-color: #31849b;
+	color: #fff
+}
+
+.A1,
+.B1,
+.B2,
+.C1,
+.C2,
+.C3,
+.D3,
+.D4,
+.D5,
+.E4,
+.E5,
+.E6,
+.E7,
+.E8 {
+	background-color: #0070c0;
+	color: #fff
+}
+
+.A2,
+.A3,
+.A4,
+.A5,
+.A6,
+.A7,
+.A8,
+.B3,
+.B4,
+.B5,
+.B6,
+.B7,
+.B8,
+.C4,
+.C5,
+.C6,
+.C7,
+.C8,
+.D6,
+.D7,
+.D8 {
+	background-color: #7030a0;
+	color: #fff
+}
+
+.riskMatrixModal .modal-dialog .hazard-header label {
+	white-space: nowrap;
+	margin-right: 4px
+}
+
+.riskMatrixModal .modal-dialog table td.area {
+	width: 200px;
+	padding-left: 16px;
+	padding-right: 16px
+}
+
+.riskMatrixModal .modal-dialog table td.area:hover {
+	outline: 0
+}
+
+.riskMatrixModal .modal-dialog th.likelihood {
+	padding: 0;
+	width: 11.25%
+}
+
+.riskMatrixModal .modal-dialog th.likelihood .likelihoodTitle {
+	text-align: center;
+	border-bottom: solid 1px #000;
+	padding: 8px
+}
+
+.riskMatrixModal .modal-dialog th.likelihood .likelihoodSubTitle {
+	font-weight: 400;
+	padding: 8px
+}
+
+.riskMatrixModal .modal-dialog .probabilityHeader {
+	font-size: 1.1rem
+}
+
+.riskMatrixModal .modal-dialog th.probability {
+	text-align: center
+}
+
+.riskMatrixModal .modal-dialog .severityHeader {
+	font-weight: 700;
+	font-size: 1.25rem;
+	text-align: center
+}
+
+.riskMatrixModal .modal-dialog .severityHeader .wrapper {
+	width: 10px;
+	display: inline-block;
+	text-align: center
+}
+
+.riskMatrixModal .modal-dialog .severityHeader .wrapper .innerWrapper {
+	-webkit-transform: rotate(-90deg) translate(-50px, 0);
+	transform: rotate(-90deg) translate(-50px, 0);
+	white-space: nowrap
+}
+
+.riskMatrixModal .modal-dialog .levelHeader {
+	text-align: center
+}
+
+body {
+	background-image: url(../images/backgroundBP.png)
+}
+
+.logo-customer {
+	background-image: url(../images/LogoBP.png);
+	width: 154px;
+	height: 196px
+}
+
+.site-graphics-controls .site-graphics-cert-filter.open .dropdown-menu {
+	max-height: 75vh;
+	width: 1470px;
+	max-width: 95vw;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	overflow-x: auto
+}
+
+.site-graphics-controls .site-graphics-cert-filter.open .dropdown-menu>li {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	border-left: 1px solid #ccc;
+	margin-right: 4px
+}
+
+.site-graphics-controls .site-graphics-cert-filter.open .dropdown-menu .dropdown-menu-header {
+	white-space: nowrap
+}
+
+.isolationCertificateRequirementField .checkbox-inline {
+	margin-left: 16px
+}
+
+.workorders-results table .number {
+	width: 20%
+}
+
+.workorders-results table .title {
+	width: 15%
+}
+
+.workorders-results table .description {
+	width: 25%
+}
+
+.workorders-results table .plannedstartdate {
+	width: 10%
+}
+
+.workorders-results table .plannedenddate {
+	width: 10%
+}
+
+.workorders-results table .site {
+	width: 20%
+}

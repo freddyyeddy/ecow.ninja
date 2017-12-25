@@ -1,3 +1,6 @@
+<?php
+require("var.php");
+?>
 <head>
 <!--   	<link rel="stylesheet" type="text/css" href="main.css"> -->
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -7,8 +10,29 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="js/select2.js"></script>
 	<script src="js/notify.js"></script>
+	  	<script src="js/radio.js"></script>
 </head>
 <script>
+	// // 		Peer Review Submit Via Ajax
+		function submitF(e) {
+		e.preventDefault();
+       console.log($('#peerreview'));
+			var radioValue = $("input[class='radio']:checked").val();
+            if(radioValue){
+                alert("Your are a - " + radioValue);
+            }
+    $.ajax({
+        url:'review.php',
+        type:'post',
+        data:$('#peerreview').serialize(),
+        success:function(){
+            alert($('#peerreview').serialize());
+					$('.modal').toggleClass('is-visible');
+        }
+    });
+			 return false;
+	
+	};
   $(document).ready(function() {
 
 					// 		Variables
@@ -16,6 +40,8 @@
 		var oTable;
 		
 // 		Functions
+		
+
 		
 // 		Copy Text To Clipboard
 		function copyTextToClipboard(text) {
@@ -63,6 +89,12 @@
 		
 // 		Do Stuff
 		
+// 		beautify radio buttons
+		$(":radio").labelauty({
+			minimum_width: "10em", 
+													
+													});
+		
 // 		Making Table  and Filter Drop Downs From Ajax Call
 		
 					oTable = $('#table').DataTable({
@@ -80,26 +112,31 @@
         dataSrc: ''
     },
 					
-        columns: [
+      columns: [
             { "data": "source" },
             { "data": "hazard" },
             { "data": "mitigation" },          
  						{ "data": "id" },
             { "data": "tags" },
-            { "data": "crafts" }
+            { "data": "crafts" },
+            { "data": "review" },
+            { "data": "bad" },
         ],
 					"columnDefs": [
             {
-                "targets": [ 3,4,5 ],
+                "targets": [ 4,5 ],
                 "visible": false,
 // 							'searchable'    : false, 
                     
                 
+            },
+            {
+                "targets": [ 3,6,7 ],
+                "visible": false,
+													'searchable'    : false, 
+
             }
-//             {
-//                 "targets": [ 3 ],
-//                 "visible": false
-//             }
+						
 						
         ],
 						language: {
@@ -165,10 +202,12 @@
 							);
 // End Get Table and Generate Filters
 		
+
+
 		
 // 		Copy Text To Clipboard when Clicked and Alert with a popup
 		
-			 $(document).on('click', 'tbody td',function(){
+			 $(document).on('click', '#table tbody td:gt(1)',function(){
 				 var $this = $(this);
 				     var selectedCellIndex = this.cellIndex;
     var correspondingHeader = $("table thead tr th")[selectedCellIndex];
@@ -191,13 +230,41 @@
        ths.removeClass('highlight', 2000, 'linear');
    }, 800);
 });
+		<?php
+		$query = "SELECT * FROM `hazmit` WHERE `review` < 2 and `bad` < 2  ORDER BY RAND() LIMIT 3";
+	$rows = db_select($query);
+if($rows === false) {
+    $error = db_error();
+    // Handle error - inform administrator, log to file, show error page, etc.
+}
+
+if(!empty($rows)){
+	// 		Inject Modal JS
+		echo <<<Poop
+				$('.modal').toggleClass('is-visible');
+
+				$('.modal-toggle').on('click', function(e) {
+ 						e.preventDefault();
+					  $('.modal').toggleClass('is-visible');
+				});
+Poop;
+// 		End Modal JS
+}
+
+					
 		
+		
+		?>
 		document.getElementById("table").deleteTFoot();
+
 });
 
 </script>
+<body>
+	  <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="768" height="800" viewBox="0 0 768 800"><defs><g id="icon-close"><path class="path1" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path></g></defs></svg>
 
-<div class="wrapper">
+	
+	<div class="wrapper">
 	<div class="grid">
 	<div class="col-1-3" id="Source"></div>
 	<div class="col-1-3" id="Craft"></div>
@@ -219,6 +286,8 @@
 				<th>id</th>
 				<th>tags</th>
 				<th>crafts</th>
+				<th>review</th>
+				<th>bad</th>
 			</tr>
 		</thead>
 		 <tfoot>
@@ -229,9 +298,50 @@
 							<th>id</th>
 				<th>tags</th>
 				<th>crafts</th>
+				<th>review</th>
+				<th>bad</th>
             </tr>
         </tfoot>
 		<tbody>
 		</tbody>
 	</table>
 </div>
+	<?php
+// 	$reviewtbl =  var_dump($rows);
+	// 	generating table for peer review
+	
+$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th width='15%'>Good or Bad?</th></tr></thead><tbody> <form id='peerreview'>";
+
+foreach ($rows as $row){
+	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . $row['hazard'] . "</td><td>" . $row['mitigation'] . "</td><td><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
+		
+}
+	
+	$reviewtbl .= "<input class='button' type='submit' value='send' onclick='submitF(event);' id='submit'  name='submit'></form></tbody></table>";
+// 	end table generating
+	
+// 	Inject Modal HTML
+	echo <<<Modalpoo
+		<div class="modal">
+    <div class="modal-overlay modal-toggle"></div>
+    <div class="modal-wrapper modal-transition">
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
+        <h2 class="modal-heading">Peer Review Required</h2>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-content">
+          <p>
+					To Use This Too You Are Required To Participare in The Peer Review Prossess. Please Choose Good or Bad for each hazard in the tabe then click submit
+					
+					</p>
+					$reviewtbl
+        </div>
+      </div>
+    </div>
+  </div>
+Modalpoo;
+// 	End Modal HTML Inject
+	?>
+	</body>

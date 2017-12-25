@@ -2,7 +2,7 @@
 require('var.php');
 // var_dump($_GET);
 if(is_null($_GET[q])){
-    $query = "SELECT * FROM `hazmit` WHERE 1";
+    $query = "SELECT * FROM `hazmit` WHERE `review` >= 2";
 }else{
     switch ($_GET[q]) {
         case 0:
@@ -15,7 +15,7 @@ if(is_null($_GET[q])){
             echo "i equals 2";
             break;
       default:
-        $query =  "SELECT * FROM `hazmit` WHERE 1";
+        $query =  "SELECT * FROM WHERE `review` >= 2 and `bad` < 2";
  }
 }
 $rows = db_select($query);
