@@ -283,8 +283,9 @@ Poop;
 		<thead>
 			<tr>
 				<th>Source</th>
-				<th>Mitigation</th>
 				<th>Hazard</th>
+				<th>Mitigation</th>
+
 				<th>id</th>
 				<th>tags</th>
 				<th>crafts</th>
@@ -295,8 +296,9 @@ Poop;
 		 <tfoot>
             <tr>
 				<th>Source</th>
-				<th>Mitigation</th>
 				<th>Hazard</th>
+				<th>Mitigation</th>
+				
 							<th>id</th>
 				<th>tags</th>
 				<th>crafts</th>
