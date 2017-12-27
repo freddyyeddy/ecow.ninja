@@ -1,14 +1,18 @@
-<?php
-require('var.php');
-// var_dump($_GET);
+<head>	
+<link rel="stylesheet" href="main.css">
+  	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
- $query =  "SELECT * FROM `hazmit` WHERE `review` >= 2 and `bad` >= 2";
-$rows = db_select($query);
-if($rows === false) {
-    $error = db_error();
-    // Handle error - inform administrator, log to file, show error page, etc.
-}
+  	<script src="js/radio.js"></script>
+<script>
+  $(document).ready(function(){
+	$(":radio").labelauty();
+});
+  </script>
+</head>
 
-echo json_encode($rows);
 
-?>
+<form>
+  
+  <input type="radio" name="goodbad"  data-labelauty="Good Hazard"/>
+			<input type="radio" name="goodbad" data-labelauty="This is a Poor Hazard"/>
+</form>

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: icons-hazards;
-	src: url(/fonts/icons-hazards.woff) format('woff')
+	src: url(fonts/icons-hazards.woff) format('woff');
 }
 
-[class*=icon-hazards-]:before {
-	font-family: icons-permit-hazards;
+option{
+	font-family: icons-hazards;
 	font-style: normal;
 	font-weight: 400;
 	speak: none;
@@ -18,61 +18,85 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	position: relative;
-	z-index: 1
+	z-index: 1,
+
+}
+[class*=icon-hazards]:before {
+	font-family: icons-hazards;
+	font-style: normal;
+	font-weight: 400;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	min-width: 1em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+	z-index: 1,
 }
 
-.icon-permithazards-07:before {
+.icon-hazards-07:before {
 	content: '\e800'
 }
 
-.icon-permithazards-08:before {
+.icon-hazards-08:before {
 	content: '\e801'
 }
 
-.icon-permithazards-09:before {
+.icon-hazards-09:before {
 	content: '\e802'
 }
 
-.icon-permithazards-11:before {
+.icon-hazards-11:before {
 	content: '\e803'
 }
 
-.icon-permithazards-15:before {
+.icon-hazards-15:before {
+/* 	SIMOPS */
 	content: '\e804'
 }
 
-.icon-permithazards-16:before {
+.icon-hazards-16:before {
+/* 	Weather */
 	content: '\e805'
 }
 
-.icon-permithazards-021:before {
+.icon-hazards-021:before {
 	content: '\e806'
 }
 
-.icon-permithazards-022:before {
+.icon-hazards-022:before {
 	content: '\e807'
 }
 
-.icon-permithazards-071:before {
+.icon-hazards-071:before {
+/* 	Noise */
 	content: '\e808'
 }
 
-.icon-permithazards-111:before {
+.icon-hazards-111:before {
+/* 	Human Factor */
 	content: '\e809'
 }
 
-.icon-permithazards-01:before {
+.icon-hazards-01:before {
+/* 	Enviroment */
 	content: '\e80a'
 }
 
-.icon-permithazards-05:before {
+.icon-hazards-05:before {
+/* 	Electrical */
 	content: '\e80b'
 }
 
-.icon-permithazards-06:before {
+.icon-hazards-06:before {
 	content: '\e80c'
 }
 
-.icon-permithazards-02:before {
+.icon-hazards-02:before {
 	content: '\e80d'
 }

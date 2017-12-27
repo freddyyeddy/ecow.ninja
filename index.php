@@ -21,7 +21,7 @@ require("inc/var.php");
 				alert("Please Take The Time To Review All Mitigations")
 				return false;
 			}
-
+   
     $.ajax({
         url:'inc/review.php',
         type:'post',
@@ -33,21 +33,21 @@ require("inc/var.php");
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				$('.modal').toggleClass('is-visible');
 			},
-
+			
     });
 			 return false;
-
+	
 	};
   $(document).ready(function() {
 
 					// 		Variables
 
 		var oTable;
-
+		
 // 		Functions
+		
 
-
-
+		
 // 		Copy Text To Clipboard
 		function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -91,37 +91,37 @@ require("inc/var.php");
   document.body.removeChild(textArea);
 }
 // 		end Text Copying
-
+		
 // 		Do Stuff
-
+		
 // 		beautify radio buttons
 		$(":radio").labelauty({
-			minimum_width: "170px",
-
-
+			minimum_width: "170px", 
+			
+													
 													});
-
+		
 // 		Making Table  and Filter Drop Downs From Ajax Call
-
+		
 					oTable = $('#table').DataTable({
 					initComplete: function () {
 						$("#table_filter").detach().appendTo('#search');
 
         },
-
+					
         paging:   false,
         info:     false,
-
-
+				
+						
 						 ajax: {
         url: "inc/get.php",
         dataSrc: ''
     },
-
+					
       columns: [
             { "data": "source" },
             { "data": "hazard" },
-            { "data": "mitigation" },
+            { "data": "mitigation" },          
  						{ "data": "id" },
             { "data": "tags" },
             { "data": "crafts" },
@@ -132,32 +132,32 @@ require("inc/var.php");
             {
                 "targets": [ 4,5 ],
                 "visible": false,
-// 							'searchable'    : false,
-
-
+// 							'searchable'    : false, 
+                    
+                
             },
             {
                 "targets": [ 3,6,7 ],
                 "visible": false,
-													'searchable'    : false,
+													'searchable'    : false, 
 
             }
-
-
+						
+						
         ],
 						language: {
         search: "_INPUT_",
         searchPlaceholder: "Search..."
     },
 						bInfo: false,
-
-
-
+						
+				
+					
 
     });
 
 // 		Making Filters and Searches For Table
-
+		
 		yadcf.init(oTable, [
         {
             column_number : 0,
@@ -174,10 +174,10 @@ require("inc/var.php");
 						width: 'resolve',
 
 					}
-				},
-// 			{column_number : 1},
-// 			{column_number : 2},
-// 			{column_number : 3},
+				},  
+// 			{column_number : 1},      
+// 			{column_number : 2},      
+// 			{column_number : 3},      
 			{
             column_number : 4,
     				filter_container_id: 'Tags',
@@ -190,7 +190,7 @@ require("inc/var.php");
 										dropdownAutoWidth: false,
 						width: 'resolve',
 
-				},
+				},     
 			{
             column_number : 5,
     				filter_container_id: 'Craft',
@@ -203,16 +203,16 @@ require("inc/var.php");
 										dropdownAutoWidth: false,
 						width: 'resolve',
 
-				},
+				}, 
 		]
 							);
 // End Get Table and Generate Filters
+		
 
 
-
-
+		
 // 		Copy Text To Clipboard when Clicked and Alert with a popup
-
+		
 			 $(document).on('click', '#table tbody td:gt(1)',function(){
 				 var $this = $(this);
 				     var selectedCellIndex = this.cellIndex;
@@ -225,8 +225,8 @@ require("inc/var.php");
     }, 1000);
 			copyTextToClipboard($this.html());
    $.notify("Copied The "+ $th);
-
-
+		 
+	
 });
 		//       Highlights clicked row
       $('#table').on('click', 'tbody tr', function(event) {
@@ -253,9 +253,9 @@ Poop;
 // 		End Modal JS
 }
 
-
-
-
+					
+		
+		
 		?>
 		document.getElementById("table").deleteTFoot();
 
@@ -265,7 +265,7 @@ Poop;
 <body>
 <!-- 	  <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="768" height="800" viewBox="0 0 768 800"><defs><g id="icon-close"><path class="path1" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path></g></defs></svg> -->
 
-
+	
 	<div class="wrapper">
 	<div class="grid">
 	<div class="col-1-3" id="Source"></div>
@@ -274,7 +274,7 @@ Poop;
 	</div>
 
 	<div class="searchbox sbx-custom">
-
+		
 
 	<div id="search">
 </div>
@@ -285,7 +285,7 @@ Poop;
 				<th>Source</th>
 				<th>Hazard</th>
 				<th>Mitigation</th>
-
+				
 				<th>id</th>
 				<th>tags</th>
 				<th>crafts</th>
@@ -296,7 +296,7 @@ Poop;
 		 <tfoot>
             <tr>
 				<th>Source</th>
-				<th>Hazard</th>
+							<th>Hazard</th>
 				<th>Mitigation</th>
 				
 							<th>id</th>
@@ -313,17 +313,17 @@ Poop;
 	<?php
 // 	$reviewtbl =  var_dump($rows);
 	// 	generating table for peer review
-
+	
 $reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
 
 foreach ($rows as $row){
 	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . $row['hazard'] . "</td><td>" . $row['mitigation'] . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
-
+		
 }
-
+	
 	$reviewtbl .= "</form></tbody></table>";
 // 	end table generating
-
+	
 // 	Inject Modal HTML
 // 	Modal x button
 // 	         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
@@ -335,12 +335,12 @@ foreach ($rows as $row){
       <div class="modal-header">
         <h2 class="modal-heading">Peer Review Required</h2>
       </div>
-
+      
       <div class="modal-body">
         <div class="modal-content">
           <p>
 					To Use This Too You Are Required To Participare in The Peer Review Prossess. Please Choose Good or Bad for each hazard in the tabe then click submit
-
+					
 					</p>
 					$reviewtbl
         </div>
