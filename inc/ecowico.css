@@ -3,7 +3,7 @@
 	src: url(fonts/icons-hazards.woff) format('woff');
 }
 
-option{
+option, select{
 	font-family: icons-hazards;
 	font-style: normal;
 	font-weight: 400;

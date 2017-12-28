@@ -7,12 +7,38 @@ require("var.php");
 	<link rel="stylesheet" href="main.css">
 	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<script src="js/dataplg.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<script src="js/tagify.js"></script>
 <script src="js/select2.js"></script>
 	<script src="js/notify.js"></script>
 	  	<script src="js/radio.js"></script>
 </head>
 <script>
+	
+// 	function for remaing characters in textarea
+	function remaing_char(box,out,max){	
+	
+    out.html(max + ' characters remaining');
+
+    box.keyup(function() {
+        var text_length = box.val().length;
+        var text_remaining = max - text_length;
+
+        out.html(text_remaining + ' characters remaining');
+    });
+// 		$('#haztxt_feedback').html(max + ' characters remaining');
+
+//     $('#haztxt').keyup(function() {
+//         var text_length = $('#haztxt').val().length;
+//         var text_remaining = max - text_length;
+
+//         $('#haztxt_feedback').html(text_remaining + ' characters remaining');
+//     });
+	}
+	
+	
+	
+	
+	
 	// // 		Peer Review Submit Via Ajax
 		function submitF(e) {
 		e.preventDefault();
@@ -38,12 +64,76 @@ require("var.php");
 			 return false;
 	
 	};
+// 	end peer review ajax
+// 	Add Hazards 
+
+			function submitG(e) {
+
+		e.preventDefault();
+				
+// 				Varifiying input
+				var form = $('#adding');
+
+			var form_data = form.serializeArray();
+				
+				if(form_data[1].value === "" || form_data[2].value === "" ||form_data[3].value === ""||form_data[4].value === ""){
+					alert("We Need all Fields Filled Out"); 
+					return false;
+				}else{
+					
+					
+					 $.ajax({
+        url:'add.php',
+        type:'post',
+        data:$('#adding').serialize(),
+        success:function(data){
+//             alert($('#peerreview').serialize());
+					$('#add').toggleClass('is-visible');
+					console.log(data);
+        },
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+// 				$('#add').toggleClass('is-visible');
+				alert('Sorry Something Went Wrong');
+			},
+			
+    });
+			 return false;
+					
+					
+					
+				}
+
+				
+
+				// 				if(! $myForm[0].checkValidity()) {
+//   // If the form is invalid, submit it. The form won't actually submit;
+//   // this will just cause the browser to display the native HTML5 error messages.
+//   $myForm.find(':submit').click();
+// }
+				
+				
+// 			if(form_data.length < $("#add tbody tr").length){
+// 				alert("Please Take The Time To Review All Mitigations")
+// 				return false;
+// 			}
+   
+//    
+	
+	};
+	
+	// 	end add hazards
+	
+	
+	
+	
+	
+		var oTable;
+	
   $(document).ready(function() {
 
 					// 		Variables
 
-		var oTable;
-		
+	
 // 		Functions
 		
 
@@ -106,6 +196,39 @@ require("var.php");
 					oTable = $('#table').DataTable({
 					initComplete: function () {
 						$("#table_filter").detach().appendTo('#search');
+						var tgs = new Array();
+$.each(oTable.column( 4 ).data().toArray(), function( index, value ) {
+var separr = value.split(', ');
+  tgs = $.merge( tgs, separr );
+});
+						var crft = new Array();
+$.each(oTable.column( 5 ).data().toArray(), function( index, value ) {
+var separr = value.split(', ');
+  crft = $.merge( crft, separr );
+});
+					
+						
+		var input1 = document.querySelector('input[name=tags]'),
+    tagify1 = new Tagify(input1, {
+        whitelist : $.unique(tgs).sort(),
+        blacklist : ["fuck", "shit"],
+			delimiters          : ", ",
+    })
+		var input2 = document.querySelector('input[name=crafts]'),
+    tagify1 = new Tagify(input2, {
+        whitelist : $.unique(crft).sort(),
+        blacklist : ["fuck", "shit"],
+			  delimiters          : ", ",
+    })
+
+					for(var i=0; i< tgs.length;i++)
+{
+//creates option tag
+  jQuery('<option/>', {
+        value: tgs[i],
+        html: tgs[i]
+        }).appendTo('#tagsadd'); //appends to select if parent div has id dropdown
+}
 
         },
 					
@@ -158,6 +281,7 @@ require("var.php");
 					
 
     });
+		
 
 // 		Making Filters and Searches For Table
 		
@@ -265,12 +389,33 @@ Poop;
 		
 		?>
 				$(document).on('click',"#addhaz", function(){
-					console.log('clicked');
+// 					console.log('clicked');
+			$('#add').toggleClass('is-visible');
+					
+		});
+						$(document).on('click',".modal-close", function(){
 			$('#add').toggleClass('is-visible');
 					
 		});
 		document.getElementById("table").deleteTFoot();
-
+		
+		
+		
+		$('.nrgsrc').select2({
+			placeholder: 'Select an Energy Source',
+		  minimumResultsForSearch: -1,
+			dropdownAutoWidth : true,
+			width: "resolve",
+			
+		
+			
+			
+		});
+		remaing_char($('#haztxt'),$('#haztxt_feedback'),500);
+		remaing_char($('#mittxt'),$('#mittxt_feedback'),395);
+	
+		
+	
 });
 
 </script>
@@ -280,7 +425,7 @@ Poop;
 	
 	<div class="wrapper">
 	<div class="grid">
-	<div class="col-1-3" id="Source"></div>
+	<div class="col-1-3" style="font-family: icons-hazards;" id="Source"></div>
 	<div class="col-1-3" id="Craft"></div>
 	<div class="col-1-3" id="Tags"></div>
 	</div>
@@ -294,7 +439,7 @@ Poop;
 	<table id="table" class="stripe">
 		<thead>
 			<tr>
-				<th>Source</th>
+				<th style="min-width: 8em;">Source</th>
 				<th>Hazard</th>
 				<th>Mitigation</th>
 				
@@ -373,10 +518,11 @@ Modalpoo;
 	
 	<div id="add" class="modal">
     <div class="modal-overlay"></div>
-	         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
 
     <div class="modal-wrapper modal-transition">
       <div class="modal-header">
+					         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
+
         <h2 class="modal-heading">Add Hazards and Mitigations</h2>
       </div>
       
@@ -386,44 +532,39 @@ Modalpoo;
 					Remeber To make sure who what and how
 					
 					</p>
-					<form>
-						<table>
-							<thead>
-							<tr>Source</tr>
-								<tr>Hazard</tr>
-								<tr>Mitigation</tr>
-								<tr>Tags</tr>
-								<tr>Crafts</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td class="icoselect">
-									<select>
-  <option  value="P">Pressure<i class="icon-hazards-08" ></i></option>
-  <option value="M">Mechanical<i class="icon-hazards-07" ></i></option>
-  <option value="BM">Body Mechanics<i class="icon-hazards-02" ></i></option>
-  <option value="P">Pressure<i class="icon-hazards-08" ></i></option>
-  <option value="T">Thermal<i class="icon-hazards-11" ></i></option>
-  <option value="HPM">Hazardus Prossess Materials<i class="icon-hazards-09" ></i></option>
-  <option value="SIMOPS">SIMOPS &#xE804;</option>
-  <option value="W">Weather &#xE805;</option>
-  <option value="N">Noise &#xe808;</option>
-  <option  value="HF">Human Factor &#xe809;</option>
-  <option value="?">Enviromental &#xE80A;</option>
-  <option value="E">Electrical &#59403;</option>
+					<form id="adding">
+
+								<div class="icoselect">
+									<select name="source" class='nrgsrc' style="width:100%;">
+  <option  value="Pressure &#xe801;">Pressure &#xe801;</option>
+  <option value="Mechanical &#xe800;">Mechanical &#xe800;</option>
+  <option value="Body Mechanics &#xe80d;">Body Mechanics &#xe80d;</option>
+  <option value="Toxic Substances &#xe807;">Toxic Substances &#xe807;</option>
+  <option value="Thermal &#xe803;">Thermal &#xe803;</option>
+  <option value="Hazardus Prossess Materials &#xe806;">Hazardus Prossess Materials &#xe806;</option>
+  <option value="SIMOPS &#xE804;">SIMOPS &#xE804;</option>
+  <option value="Weather &#xE805;">Weather &#xE805;</option>
+  <option value="Noise &#xe808;">Noise &#xe808;</option>
+  <option  value="Human Factor &#xe809;">Human Factor &#xe809;</option>
+  <option  value="Gravity &#xe80c;">Gravity &#xe80c;</option>
+  <option  value="Radiation  &#xe802;">Radiation  &#xe802;</option>
+  <option value="Biological &#xE80A;">Biological &#xE80A;</option>
+  <option value="Electrical &#59403;">Electrical &#59403;</option>
 <!--   <option value="HF">Human Factor</option> -->
 
 </select>
-								</td>
-								<td>Hazard Input</td><td>Mitigation</td><td>tags</td><td>crafts</td></tr>
+								</div>
+								<div><textarea required rows="7" name="hazard" style="width:100%" placeholder="What Is The Hazard and How Can It Hurt You (other than your feelings)" id="haztxt" maxlength="500"></textarea><div id="haztxt_feedback"></div></div>
+								<div><textarea required rows="7" name="mitigation" style="width:100%" placeholder="Who Will Be Accountable For Mitigations and how Will they Act on them" id="mittxt"  cols="30" maxlength="395"></textarea><div id="mittxt_feedback"></div></div>
+								<div><input required name='tags' placeholder='Write tags eg: ladder, gas, excavation ect.'></div>
+								<div><input required name='crafts' placeholder='What Crafts Are This Aplicable to?' ></td></dib>
 							
-							</tbody>
-						</table>
+
 					</form>
         </div>
 				<div align="center"> 
 <!-- 					onclick='submitF(event);' -->
-				<input class='button myButton' type='submit' value='Submit' onclick="$('#rev').toggleClass('is-visible');" id='submithaz'  name='submit'>
+				<input class='button myButton' type='submit' value='Submit' onclick='submitG(event);' id='submithaz'  name='submit'>
 				</div>
       </div>
     </div>
