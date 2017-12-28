@@ -1,19 +1,20 @@
 <?php
 function db_connect() {
 
-    // Define connection as a static variable, to avoid connecting more than once 
+    // Define connection as a static variable, to avoid connecting more than once
     static $connection;
 
     // Try and connect to the database, if a connection has not been established yet
-    if(!isset($connection)) { 
-        $connection = mysqli_connect('localhost',"ecow","E4jyS54VdU55CT4d","ninja");
+    if(!isset($connection)) {
+      // $connection = mysqli_connect('localhost',"ecow","E4jyS54VdU55CT4d","ninja");
+        $connection = mysqli_connect('localhost',"lzxksnxr_site","pqt9rI3wo}A*","lzxksnxr_NINJAA");
       mysqli_set_charset( $connection, 'utf8');
     }
 
     // If connection was not successful, handle the error
     if($connection === false) {
         // Handle error - notify administrator, log to a file, show an error screen, etc.
-        return mysqli_connect_error(); 
+        return mysqli_connect_error();
     }
     return $connection;
 }
