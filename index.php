@@ -3,7 +3,7 @@ require("inc/var.php");
 ?>
 <head>
 	<title>Ninja!!</title>
-<!-- Hidden asdTest asdfdsfsadasdadsf 	<link rel="stylesheet" type="text/css" href="main.css"> -->
+<!--  <link rel="stylesheet" type="text/css" href="main.css"> -->
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<link rel="stylesheet" href="inc/main.css">
 	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
