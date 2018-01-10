@@ -3,7 +3,11 @@ require("inc/var.php");
 ?>
 <head>
 	<title>Ninja!!</title>
+<<<<<<< HEAD
 <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+=======
+<!--  test mk20 	<link rel="stylesheet" type="text/css" href="main.css"> -->
+>>>>>>> refs/remotes/origin/master
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<link rel="stylesheet" href="inc/main.css">
 	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -53,8 +57,9 @@ require("inc/var.php");
         url:'inc/review.php',
         type:'post',
         data:$('#peerreview').serialize(),
-        success:function(){
+        success:function(data){
 //             alert($('#peerreview').serialize());
+// 					alert(data);
 					$('#rev').toggleClass('is-visible');
         },
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -365,7 +370,7 @@ var separr = value.split(', ');
    }, 800);
 });
 		<?php
-		$query = "SELECT * FROM `hazmit` WHERE `review` < 2 and `bad` <= 2 and `bad` > 0  ORDER BY RAND() LIMIT 3";
+		$query = "SELECT * FROM `hazmit` WHERE `review` < 2  ORDER BY RAND() LIMIT 3";
 	$rows = db_select($query);
 if($rows === false) {
     $error = db_error();
