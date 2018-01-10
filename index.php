@@ -2,7 +2,7 @@
 require("inc/var.php");
 ?>
 <head>
-	<title>Ninja!!</title>
+	<title>Ninja!! test</title>
 <!--   	<link rel="stylesheet" type="text/css" href="main.css"> -->
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<link rel="stylesheet" href="inc/main.css">
