@@ -53,8 +53,9 @@ require("inc/var.php");
         url:'inc/review.php',
         type:'post',
         data:$('#peerreview').serialize(),
-        success:function(){
+        success:function(data){
 //             alert($('#peerreview').serialize());
+// 					alert(data);
 					$('#rev').toggleClass('is-visible');
         },
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -365,7 +366,7 @@ var separr = value.split(', ');
    }, 800);
 });
 		<?php
-		$query = "SELECT * FROM `hazmit` WHERE `review` < 2 and `bad` <= 2 and `bad` > 0  ORDER BY RAND() LIMIT 3";
+		$query = "SELECT * FROM `hazmit` WHERE `review` < 2  ORDER BY RAND() LIMIT 3";
 	$rows = db_select($query);
 if($rows === false) {
     $error = db_error();
