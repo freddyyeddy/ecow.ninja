@@ -3,11 +3,9 @@ require("inc/var.php");
 ?>
 <head>
 	<title>Ninja!!</title>
-<<<<<<< HEAD
+
 <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
-=======
-<!--  test mk20 	<link rel="stylesheet" type="text/css" href="main.css"> -->
->>>>>>> refs/remotes/origin/master
+
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<link rel="stylesheet" href="inc/main.css">
 	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
