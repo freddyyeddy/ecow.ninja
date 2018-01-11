@@ -1,5 +1,6 @@
 #!/bin/bash
 git add -A
-git commit -am "Removal Of CodeAnywhere Test"
+read -p "Commit Message: " Commit
+git commit -am $Commit
 read -p "What Branch: "  branch
 git push origin $branch
