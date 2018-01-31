@@ -21,11 +21,17 @@ color:red;
 #adding input.error {
 border:1px solid red;
 }
-	
+
 
 .icoselect{
 width:33%;
 	    margin: auto;
+}
+
+#search .dataTables_filter input:first-of-type{
+	width: 100%;
+	font-size: 1.5em;
+	border-radius: 7px;
 }
 
 
