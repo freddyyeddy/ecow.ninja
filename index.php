@@ -372,6 +372,9 @@ var separr = value.split(', ');
 		yadcf.init(oTable, [
 
 
+					}
+				},
+
 // 			{column_number : 1},
 // 			{column_number : 2},
 // 			{column_number : 3},
