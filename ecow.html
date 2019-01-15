@@ -7,5 +7,5 @@
   var c = url.searchParams.get("p");
   var ecow = "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/";
   console.log(c);
-  window.location = ecow + encodeURI(c) + "?openerRegistrationNumber=Permit";
+  window.location = ecow + encodeURIComponent(c) + "?openerRegistrationNumber=Permit";
 </script>
