@@ -28,14 +28,14 @@ width:33%;
 	    margin: auto;
 }
 
-
+<<<<<<< HEAD
 #search .dataTables_filter input:first-of-type{
 	width: 100%;
 	font-size: 1.5em;
 	border-radius: 7px;
 }
 
-
+=======
 .sidebar {
     overflow:hidden;
     background: #8DE8D5;
@@ -104,6 +104,7 @@ margin: 4px 2px;
 cursor: pointer;
 border-radius: 16px;
 }
+>>>>>>> master
 
  tbody tr td:first-of-type {
 font-family: icons-hazards;
