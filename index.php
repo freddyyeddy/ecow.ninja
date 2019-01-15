@@ -1,6 +1,7 @@
 <?php
 require("inc/var.php");
 ?>
+<!DOCTYPE html>
 <head>
 	<title>Ninja!!</title>
 <!-- test   <link rel="stylesheet" type="text/css" href="main.css"> -->
@@ -12,12 +13,54 @@ require("inc/var.php");
 <script src="inc/js/select2.js"></script>
 	<script src="inc/js/notify.js"></script>
 	  	<script src="inc/js/radio.js"></script>
-</head>
+
 <script>
-	
+
+function sidebar(){
+$(".sidebar").toggleClass("open transition");
+}
+function remove(i) {
+	localStorage.removeItem(i);
+	document.getElementById(i).outerHTML = "";
+}
+function add(l,d){
+
+	if (!$("#add")[0].checkValidity()) {
+	// If the form is invalid, submit it. The form won't actually submit;
+	// this will just cause the browser to display the native HTML5 error messages.
+	$("#add").find("#submit-hidden").click();
+}else{
+	var array = new Uint32Array(1);
+	var lnkds = [l,d];
+window.crypto.getRandomValues(array);
+document.getElementById("add").reset();
+console.log(array);
+// console.log(JSON.stringify(lnkds));
+	localStorage.setItem(array[0],JSON.stringify(lnkds));
+
+	var re1='.*?';	// Non-greedy match on filler
+	      var re2='(#{1}(?:[A-F0-9]){6})(?![0-9A-F])';	// HTML Color 1
+
+	      var p = new RegExp(re1+re2,["i"]);
+	      var m = p.exec(l);
+	      if (m != null)
+	      {
+	          var permit=m[1];
+					}
+	$('#Examples ul').prepend(
+		$('<li>').attr("id", array).append(
+				$('<a>').attr('href',l).append(
+						$('<span>').attr('class', 'tab').append(permit)),
+				$('<span>').append(d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array, 'onclick': "remove('"+array+"');"}).append("Remove"))
+					)
+	)
+}
+}
+
+
 // 	function for remaing characters in textarea
-	function remaing_char(box,out,max){	
-	
+	function remaing_char(box,out,max){
+
     out.html(max + ' characters remaining');
 
     box.keyup(function() {
@@ -35,11 +78,11 @@ require("inc/var.php");
 //         $('#haztxt_feedback').html(text_remaining + ' characters remaining');
 //     });
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	// // 		Peer Review Submit Via Ajax
 		function submitF(e) {
 		e.preventDefault();
@@ -48,7 +91,7 @@ require("inc/var.php");
 				alert("Please Take The Time To Review All Mitigations")
 				return false;
 			}
-   
+
     $.ajax({
         url:'inc/review.php',
         type:'post',
@@ -61,29 +104,29 @@ require("inc/var.php");
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				$('#rev').toggleClass('is-visible');
 			},
-			
+
     });
 			 return false;
-	
+
 	};
 // 	end peer review ajax
-// 	Add Hazards 
+// 	Add Hazards
 
 			function submitG(e) {
 
 		e.preventDefault();
-				
+
 // 				Varifiying input
 				var form = $('#adding');
 
 			var form_data = form.serializeArray();
-				
+
 				if(form_data[1].value === "" || form_data[2].value === "" ||form_data[3].value === ""||form_data[4].value === ""){
-					alert("We Need all Fields Filled Out"); 
+					alert("We Need all Fields Filled Out");
 					return false;
 				}else{
-					
-					
+
+
 					 $.ajax({
         url:'inc/add.php',
         type:'post',
@@ -97,49 +140,79 @@ require("inc/var.php");
 // 				$('#add').toggleClass('is-visible');
 				alert('Sorry Something Went Wrong');
 			},
-			
+
     });
 			 return false;
-					
-					
-					
+
+
+
 				}
 
-				
+
 
 				// 				if(! $myForm[0].checkValidity()) {
 //   // If the form is invalid, submit it. The form won't actually submit;
 //   // this will just cause the browser to display the native HTML5 error messages.
 //   $myForm.find(':submit').click();
 // }
-				
-				
+
+
 // 			if(form_data.length < $("#add tbody tr").length){
 // 				alert("Please Take The Time To Review All Mitigations")
 // 				return false;
 // 			}
-   
-//    
-	
+
+//
+
 	};
-	
+
 	// 	end add hazards
-	
-	
-	
-	
-	
+
+
+
+
+
 		var oTable;
-	
+
   $(document).ready(function() {
 
-					// 		Variables
-
-	
 // 		Functions
-		
 
-		
+// add("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #");
+
+// Retrieve
+for (var i = 0; i < localStorage.length; i++){
+	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
+	    console.log(json);
+	}).catch(err => {
+	    console.log(err);
+	});
+
+
+var lnkds = JSON.parse(localStorage.getItem(localStorage.key(i))|| null);
+
+var re1='.*?';	// Non-greedy match on filler
+      var re2='(#{1}(?:[A-F0-9]){6})(?![0-9A-F])';	// HTML Color 1
+
+      var p = new RegExp(re1+re2,["i"]);
+      var m = p.exec(lnkds[0]);
+      if (m != null)
+      {
+          var permit=m[1];
+				}
+
+$('#Examples ul').prepend(
+	$('<li>').attr("id",localStorage.key(i)).append(
+			$('<a>').attr('href',lnkds[0]).append(
+					$('<span>').attr('class', 'tab').append(permit)),
+			$('<span>').append(lnkds[1]).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':localStorage.key(i), 'onclick': "remove('"+localStorage.key(i)+"');"}).append("Remove"))
+
+)
+
+)
+
+};
+
 // 		Copy Text To Clipboard
 		function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -183,18 +256,18 @@ require("inc/var.php");
   document.body.removeChild(textArea);
 }
 // 		end Text Copying
-		
+
 // 		Do Stuff
-		
+
 // 		beautify radio buttons
 		$(":radio").labelauty({
-			minimum_width: "170px", 
-			
-													
+			minimum_width: "170px",
+
+
 													});
-		
+
 // 		Making Table  and Filter Drop Downs From Ajax Call
-		
+
 					oTable = $('#table').DataTable({
 					initComplete: function () {
 						$("#table_filter").detach().appendTo('#search');
@@ -208,8 +281,8 @@ $.each(oTable.column( 5 ).data().toArray(), function( index, value ) {
 var separr = value.split(', ');
   crft = $.merge( crft, separr );
 });
-					
-						
+
+
 		var input1 = document.querySelector('input[name=tags]'),
     tagify1 = new Tagify(input1, {
         whitelist : $.unique(tgs).sort(),
@@ -233,21 +306,21 @@ var separr = value.split(', ');
 }
 
         },
-					
+
         paging:   false,
         info:     false,
-				
-						
+
+
 						 ajax: {
         url: "inc/get.php",
         dataSrc: '',
 							 type: "POST",
     },
-					
+
       columns: [
             { "data": "source" },
             { "data": "hazard" },
-            { "data": "mitigation" },          
+            { "data": "mitigation" },
  						{ "data": "id" },
             { "data": "tags" },
             { "data": "crafts" },
@@ -258,55 +331,40 @@ var separr = value.split(', ');
             {
                 "targets": [ 4,5 ],
                 "visible": false,
-// 							'searchable'    : false, 
-                    
-                
+// 							'searchable'    : false,
+
+
             },
             {
                 "targets": [ 3,6,7 ],
                 "visible": false,
-													'searchable'    : false, 
+													'searchable'    : false,
 
             }
-						
-						
+
+
         ],
 						language: {
         search: "_INPUT_",
         searchPlaceholder: "Search...",
 							zeroRecords: "Looks Like There Are No Hazards Like What Your Looking For Add a Hazard <button id='addhaz' type='button'>Add hazards</button>"
-						
+
     },
 						bInfo: false,
-						
-				
-					
+
+
+
 
     });
-		
+
 
 // 		Making Filters and Searches For Table
-		
-		yadcf.init(oTable, [
-        {
-            column_number : 0,
-    				filter_container_id: 'Source',
-            filter_default_label: "Energy Source",
-					select_type: "select2",
-					filter_type: "select",
-					filter_reset_button_text: false,
-					select_type_options: {
-						minimumResultsForSearch: -1,
-						placeholder: "Energy Sources",
-						allowClear: true,
-						dropdownAutoWidth: false,
-						width: 'resolve',
 
-					}
-				},  
-// 			{column_number : 1},      
-// 			{column_number : 2},      
-// 			{column_number : 3},      
+		yadcf.init(oTable, [
+
+// 			{column_number : 1},
+// 			{column_number : 2},
+// 			{column_number : 3},
 			{
             column_number : 4,
     				filter_container_id: 'Tags',
@@ -319,7 +377,7 @@ var separr = value.split(', ');
 										dropdownAutoWidth: false,
 						width: 'resolve',
 
-				},     
+				},
 			{
             column_number : 5,
     				filter_container_id: 'Craft',
@@ -332,16 +390,16 @@ var separr = value.split(', ');
 										dropdownAutoWidth: false,
 						width: 'resolve',
 
-				}, 
+				},
 		]
 							);
 // End Get Table and Generate Filters
-		
 
 
-		
+
+
 // 		Copy Text To Clipboard when Clicked and Alert with a popup
-		
+
 			 $(document).on('click', '#table tbody td:not(:first-child)',function(){
 				 var $this = $(this);
 				     var selectedCellIndex = this.cellIndex;
@@ -354,8 +412,8 @@ var separr = value.split(', ');
     }, 1000);
 			copyTextToClipboard($this.html());
    $.notify("Copied The "+ $th);
-		 
-	
+
+
 });
 		//       Highlights clicked row
       $('#table').on('click', 'tbody tr', function(event) {
@@ -370,7 +428,7 @@ var separr = value.split(', ');
 	$rows = db_select($query);
 if($rows === false) {
     $error = db_error();
-	
+
     // Handle error - inform administrator, log to file, show error page, etc.
 }
 
@@ -386,54 +444,75 @@ Poop;
 }
 
 
-					
-		
-		
+
+
+
 		?>
 				$(document).on('click',"#addhaz", function(){
 // 					console.log('clicked');
 			$('#add').toggleClass('is-visible');
-					
+
 		});
 						$(document).on('click',".modal-close", function(){
 			$('#add').toggleClass('is-visible');
-					
+
 		});
 		document.getElementById("table").deleteTFoot();
-		
-		
-		
+
+
+
 		$('.nrgsrc').select2({
 			placeholder: 'Select an Energy Source',
 		  minimumResultsForSearch: -1,
 			dropdownAutoWidth : true,
 			width: "resolve",
-			
-		
-			
-			
+
+
+
+
 		});
 		remaing_char($('#haztxt'),$('#haztxt_feedback'),500);
 		remaing_char($('#mittxt'),$('#mittxt_feedback'),395);
-	
-		
-	
+
+
+
 });
 
+
 </script>
+</head>
 <body>
 	  <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="768" height="800" viewBox="0 0 768 800"><defs><g id="icon-close"><path class="path1" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path></g></defs></svg>
 
-	
+
+
 	<div class="wrapper">
-	<div class="grid">
-	<div class="col-1-3" style="font-family: icons-hazards;" id="Source"></div>
+	<div class="grid" style="margin-left: 1em;">
+	<div class="col-1-4">
+		<button class="show" onclick="sidebar()">Examples</button>
+		<nav class="sidebar transition">
+				<span id=Examples>
+					<ul>
+					<li>
+						<form id="add">
+
+						<input required pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="nwlink" name="nwlink" placeholder="Paste eCOW Link">
+						<input required type="text" id="nwdesc" placeholder="Description Goes Here">
+						<button type='button' onclick="add(document.getElementById('nwlink').value,document.getElementById('nwdesc').value)">Add</button>
+	  <input id="submit-hidden" type="submit" style="display: none" />
+						</form>
+					</li>
+					</ul>
+				</span>
+			</nav>
+		</div>
+
 	<div class="col-1-3" id="Craft"></div>
 	<div class="col-1-3" id="Tags"></div>
 	</div>
 
 	<div class="searchbox sbx-custom">
-		
+
 
 	<div id="search">
 </div>
@@ -444,7 +523,7 @@ Poop;
 				<th style="min-width: 8em;">Source</th>
 				<th>Hazard</th>
 				<th>Mitigation</th>
-				
+
 				<th>id</th>
 				<th>tags</th>
 				<th>crafts</th>
@@ -457,7 +536,7 @@ Poop;
 				<th>Source</th>
 							<th>Hazard</th>
 				<th>Mitigation</th>
-			
+
 							<th>id</th>
 				<th>tags</th>
 				<th>crafts</th>
@@ -471,20 +550,20 @@ Poop;
 </div>
 	<?php
 	if(!isset($nomodal)){
-	
+
 // 	$reviewtbl =  var_dump($rows);
 	// 	generating table for peer review
-	
+
 $reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
 
 foreach ($rows as $row){
 	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . $row['hazard'] . "</td><td>" . $row['mitigation'] . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
-		
+
 }
-	
+
 	$reviewtbl .= "</form></tbody></table>";
 // 	end table generating
-	
+
 // 	Inject Modal HTML
 // 	Modal x button
 // 	         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
@@ -496,12 +575,12 @@ foreach ($rows as $row){
       <div class="modal-header">
         <h2 class="modal-heading">Peer Review Required</h2>
       </div>
-      
+
       <div class="modal-body">
         <div class="modal-content">
           <p>
 					To Use This Tool You Are Required To Participare in The Peer Review Prossess. Please Select good or poor for each hazard then submit.
-					
+
 					</p>
 					$reviewtbl
         </div>
@@ -515,9 +594,9 @@ Modalpoo;
 // 	End Modal HTML Inject
 	}
 	?>
-	
+
 <!-- 	add hazards modal -->
-	
+
 	<div id="add" class="modal">
     <div class="modal-overlay"></div>
 
@@ -527,12 +606,12 @@ Modalpoo;
 
         <h2 class="modal-heading">Add Hazards and Mitigations</h2>
       </div>
-      
+
       <div class="modal-body">
         <div class="modal-content">
           <p>
 					Remeber To make sure who what and how
-					
+
 					</p>
 					<form id="adding">
 
@@ -559,20 +638,20 @@ Modalpoo;
 								<div><textarea required rows="7" name="hazard" style="width:100%" placeholder="What Is The Hazard and How Can It Hurt You (other than your feelings)" id="haztxt" maxlength="500"></textarea><div id="haztxt_feedback"></div></div>
 								<div><textarea required rows="7" name="mitigation" style="width:100%" placeholder="Who Will Be Accountable For Mitigations and how Will they Act on them" id="mittxt"  cols="30" maxlength="395"></textarea><div id="mittxt_feedback"></div></div>
 								<div><input required name='tags' placeholder='Write tags eg: ladder, gas, excavation ect.'></div>
-								<div><input required name='crafts' placeholder='What Crafts Are This Aplicable to?' ></td></dib>
-							
+								<div><input required name='crafts' placeholder='What Crafts Are This Aplicable to?' ></div>
+
 
 					</form>
         </div>
-				<div align="center"> 
+				<div align="center">
 <!-- 					onclick='submitF(event);' -->
 				<input class='button myButton' type='submit' value='Submit' onclick='submitG(event);' id='submithaz'  name='submit'>
 				</div>
       </div>
     </div>
   </div>
-	
+
 <!-- 	end hazards modal -->
-	
-	
+
+
 	</body>
