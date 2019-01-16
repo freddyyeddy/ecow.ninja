@@ -199,6 +199,8 @@ var re1='.*?';	// Non-greedy match on filler
       if (m != null)
       {
           var permit=m[1];
+				}else{
+				var permit="Permit # Link";
 				}
 
 $('#Examples ul').prepend(
