@@ -46,7 +46,11 @@ console.log(array);
 	      if (m != null)
 	      {
 	          var permit=m[1];
+					}else{
+					var permit="Permit# Link";
 					}
+	
+	
 	$('#Examples ul').prepend(
 		$('<li>').attr("id", array).append(
 				$('<a>').attr('href',l).append(
