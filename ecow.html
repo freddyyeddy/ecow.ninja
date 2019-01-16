@@ -4,8 +4,8 @@
 <script type="text/javascript">
   var url_string = window.location.href
   var url = new URL(url_string);
-  var c = url.searchParams.get("p");
+  var c = url.searchParams.get("p").trim();
   var ecow = "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/";
   console.log(c);
-//   window.location = ecow + encodeURIComponent(c).trim() + "?openerRegistrationNumber=Permit";
+  window.location = ecow + encodeURIComponent(c) + "?openerRegistrationNumber=Permit";
 </script>
