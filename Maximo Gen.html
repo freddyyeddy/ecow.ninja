@@ -1,0 +1,99 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Generate Maximo Multi Where Query</title>
+
+  
+<script type="text/javascript">
+
+
+function populateSecondTextBox() {
+  var str = "(";
+  var arr = document.getElementById('txtFirst').value.split("\n").filter(function(e) {
+    return e
+  });
+
+  var arrayLength = arr.length;
+  for (var i = 0; i < arrayLength; i++) {
+    if (i < arr.length - 1) {
+
+      str += "(wonum = '" + arr[i].toUpperCase() + "') or ";
+    } else {
+      str += "(wonum = '" + arr[i].toUpperCase() + "')) order by schedstart ASC";
+    }
+  }
+  document.getElementById('txtSecond').innerHTML = str
+}
+
+
+
+
+
+
+
+</script>
+
+  
+</head>
+
+<body>
+<h3>
+Some Handy Maximo Tools
+</h3>
+<p>
+to search for children of a PArent number 
+"where wonum in (select wonum from woancestor where ancestor = '1839207')"
+</p>
+<p>
+If you run a report and dont email it (just click run with the immidiate box checked) then add "__format=pdf" to the end of the url of the new tab that opened you will see a pdf of the workorder you opened
+(Maximos BIRT report tool doesnt support explorer-11 go figure)
+</p>
+<p>
+If you want to only search for whats in stock at c pad paste this into a where query
+</br>
+"(inventoryid in (select inventory.inventoryid
+
+from inventory
+
+inner join invbalances
+
+on inventory.siteid = invbalances.siteid
+
+and inventory.itemnum = invbalances.itemnum
+
+and inventory.itemsetid = invbalances.itemsetid
+
+and inventory.location = invbalances.location
+
+and invbalances.curbal >1)) and ((location like '%NS01%'))
+"
+</br>
+Then save the query as default then filter the stocked items from there
+</p>
+<h2>
+You Can Either Paste Or enter Your WO Numbers Here &darr; (Put Each One On a New Line Like Example)
+</h2>
+  <p>
+  <textarea placeholder="TK797041 TK797163 TK737311 TK799822 TK799825"rows="10" cols="10" id="txtFirst" onkeyup="populateSecondTextBox();" /></textarea>
+</p>
+<hr>
+</hr>
+<h1>
+&darr; Your Query Will Show up here Copy and Paste it Into a Maximo Where Clause
+<h1>
+<p id="txtSecond">
+</p>
+
+  
+
+
+</body>
+
+</html>
+
