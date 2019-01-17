@@ -53,7 +53,7 @@ console.log(array);
 	
 	$('#Examples ul').prepend(
 		$('<li>').attr("id", array).append(
-				$('<a>').attr('href',l).append(
+				$('<a>').attr({'href':l,'target':"_blank" }).append(
 						$('<span>').attr('class', 'tab').append(permit)),
 				$('<span>').append(d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array, 'onclick': "remove('"+array+"');"}).append("Remove"))
 					)
@@ -209,7 +209,7 @@ var re1='.*?';	// Non-greedy match on filler
 
 $('#Examples ul').prepend(
 	$('<li>').attr("id",localStorage.key(i)).append(
-			$('<a>').attr('href',lnkds[0]).append(
+			$('<a>').attr({'href':lnkds[0], 'target':"_blank"}).append(
 					$('<span>').attr('class', 'tab').append(permit)),
 			$('<span>').append(lnkds[1]).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':localStorage.key(i), 'onclick': "remove('"+localStorage.key(i)+"');"}).append("Remove"))
 
