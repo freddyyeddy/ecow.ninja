@@ -49,8 +49,8 @@ console.log(array);
 					}else{
 					var permit="Permit# Link";
 					}
-	
-	
+
+
 	$('#Examples ul').prepend(
 		$('<li>').attr("id", array).append(
 				$('<a>').attr({'href':l,'target':"_blank" }).append(
@@ -179,6 +179,7 @@ console.log(array);
 		var oTable;
 
   $(document).ready(function() {
+
 
 // 		Functions
 
@@ -456,11 +457,11 @@ Poop;
 		?>
 				$(document).on('click',"#addhaz", function(){
 // 					console.log('clicked');
-			$('#add').toggleClass('is-visible');
+			$('.modal').toggleClass('is-visible');
 
 		});
 						$(document).on('click',".modal-close", function(){
-			$('#add').toggleClass('is-visible');
+			$('.modal').toggleClass('is-visible');
 
 		});
 		document.getElementById("table").deleteTFoot();
