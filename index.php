@@ -662,3 +662,6 @@ Modalpoo;
 
 
 	</body>
+<footer>
+    <a href="mailto: freddyyeddy@pm.me">Contact</a>
+</footer>
