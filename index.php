@@ -138,9 +138,9 @@ console.log(array);
         success:function(data){
 //             alert($('#peerreview').serialize());
 // 					$('#add').toggleClass('is-visible');
-					$('#add').modal('toggle');
+					$(".modal-close").click()
 					document.getElementById("adding").reset();
-					console.log(data);
+// 					console.log(data);
         },
 			error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
 // 				$('#add').toggleClass('is-visible');
