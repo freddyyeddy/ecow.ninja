@@ -137,8 +137,10 @@ console.log(array);
         data:$('#adding').serialize(),
         success:function(data){
 //             alert($('#peerreview').serialize());
-					$('#add').toggleClass('is-visible');
-// 					console.log(data);
+// 					$('#add').toggleClass('is-visible');
+					$('#add').modal('toggle');
+					document.getElementById("adding").reset();
+					console.log(data);
         },
 			error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
 // 				$('#add').toggleClass('is-visible');
