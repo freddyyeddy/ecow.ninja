@@ -140,10 +140,10 @@ console.log(array);
 					$('#add').toggleClass('is-visible');
 // 					console.log(data);
         },
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
 // 				$('#add').toggleClass('is-visible');
 				alert('Sorry Something Went Wrong');
-				console.log(XMLHttpRequest, textStatus, errorThrown);
+				console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
 			},
 
     });
