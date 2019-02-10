@@ -143,6 +143,7 @@ console.log(array);
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 // 				$('#add').toggleClass('is-visible');
 				alert('Sorry Something Went Wrong');
+				console.log(XMLHttpRequest, textStatus, errorThrown);
 			},
 
     });
