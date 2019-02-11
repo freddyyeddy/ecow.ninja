@@ -415,7 +415,7 @@ var separr = value.split(', ');
     // set a timeout that will revert back class after 5 seconds:
     window.setTimeout(function() {
         $this.removeClass('highlighted');
-    }, 3333);
+    }, 2222);
 			copyTextToClipboard($this.html());
    $.notify("Copied The "+ $th);
 
