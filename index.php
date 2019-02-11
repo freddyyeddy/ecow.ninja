@@ -431,7 +431,7 @@ var separr = value.split(', ');
     $(this).addClass('highlight').siblings().removeClass('highlight');
         setTimeout(function() {
        ths.removeClass('highlight', 2000, 'linear');
-   }, 800);
+   }, 2222);
 });
 		<?php
 		$query = "SELECT * FROM `hazmit` WHERE `review` < 2  ORDER BY RAND() LIMIT 3";
