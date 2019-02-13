@@ -17,6 +17,6 @@ $query =  "INSERT INTO `hazmit`(`id`, `hazard`, `mitigation`, `source`, `tags`, 
 
 
   echo json_encode($response_array);
-echo mysqli_error();
+echo mysqli_error(db_connect());
  echo "test";
 ?>
