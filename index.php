@@ -567,7 +567,7 @@ Poop;
 $reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
 
 foreach ($rows as $row){
-	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . $row['hazard'] . "</td><td>" . $row['mitigation'] . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
+	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
 
 }
 
