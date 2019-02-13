@@ -140,7 +140,7 @@ console.log(array);
 // 					$('#add').toggleClass('is-visible');
 					$(".modal-close").click()
 					document.getElementById("adding").reset();
-// 					console.log(data);
+					console.log(data);
         },
 			error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
 // 				$('#add').toggleClass('is-visible');
