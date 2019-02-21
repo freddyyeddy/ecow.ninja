@@ -23,9 +23,9 @@ function populateSecondTextBox() {
   for (var i = 0; i < arrayLength; i++) {
     if (i < arr.length - 1) {
 
-      str += "(wonum = '" + arr[i].toUpperCase() + "') or ";
+      str += "(wonum.toUpperCase() = '" + arr[i].toUpperCase() + "') or ";
     } else {
-      str += "(wonum = '" + arr[i].toUpperCase() + "'))";
+      str += "(wonum.toUpperCase() = '" + arr[i].toUpperCase() + "'))";
     }
   }
   // document.getElementById('txtSecond').innerHTML = str;
@@ -34,14 +34,14 @@ function populateSecondTextBox() {
 
 function parent(){
   var number = document.getElementById("k").value;
-  var lnk = maxlnk.slice(0, -30) + "useqbe&additionaleventvalue=parent=" + number + "&forcereload=true";
+  var lnk = maxlnk.slice(0, -30) + "useqbe&additionaleventvalue=parent=" + number.toUpperCase() + "&forcereload=true";
 
   window.open(lnk , '_blank');
 }
   
   function Ancestor(){
   var number = document.getElementById("k").value;
-  var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number + "')&forcereload=true";
+  var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number.toUpperCase() + "')&forcereload=true";
 
   window.open(lnk , '_blank');
 }
