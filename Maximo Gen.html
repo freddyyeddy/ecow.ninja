@@ -23,9 +23,9 @@ function populateSecondTextBox() {
   for (var i = 0; i < arrayLength; i++) {
     if (i < arr.length - 1) {
 
-      str += "(wonum.toUpperCase() = '" + arr[i].toUpperCase() + "') or ";
+      str += "(wonum = '" + arr[i].toUpperCase().trim() + "') or ";
     } else {
-      str += "(wonum.toUpperCase() = '" + arr[i].toUpperCase() + "'))";
+      str += "(wonum = '" + arr[i].toUpperCase().trim() + "'))";
     }
   }
   // document.getElementById('txtSecond').innerHTML = str;
@@ -34,7 +34,7 @@ function populateSecondTextBox() {
 
 function parent(){
   var number = document.getElementById("k").value;
-  var lnk = maxlnk.slice(0, -30) + "useqbe&additionaleventvalue=parent=" + number.toUpperCase() + "&forcereload=true";
+  var lnk = maxlnk.slice(0, -30) + "useqbe&additionaleventvalue=parent=" + number.toUpperCase().trim() + "&forcereload=true";
 
   window.open(lnk , '_blank');
 }
@@ -46,12 +46,6 @@ function parent(){
   window.open(lnk , '_blank');
 }
 
-$('#k input').keydown(function(e) {
-    if (e.keyCode == 13) {
-        Ancestor();
-    }
-});
-
 </script>
 
 
@@ -62,11 +56,12 @@ $('#k input').keydown(function(e) {
 Some Handy Maximo Tools
 </h3>
 <p>
-<form>
+<form id="parentk" onsubmit="return false">
   Show all of The Children
 <input id="k" type="text" ></input>
 <!--   <br><button type="button" onclick="parent()" >Child Parent</button> -->
 <button type="button" onclick="Ancestor()" >Find Parent</button>
+  <button type="submit" onclick="Ancestor()" style="display: none;" ></button>
 </form>
 </p>
 <p>
