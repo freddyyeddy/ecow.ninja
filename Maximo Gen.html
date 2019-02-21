@@ -34,7 +34,7 @@ function populateSecondTextBox() {
 
 function parent(){
   var number = document.getElementById("k").value;
-  var lnk = maxlnk + "wonum in (select wonum from woancestor where ancestor='" + number + "')" + "&forcereload=true";
+  var lnk = maxlnk + "(parent='" + number + "')" + "&forcereload=true";
 
   window.open(lnk , '_blank');
 }
