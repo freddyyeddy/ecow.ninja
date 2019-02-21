@@ -38,6 +38,13 @@ function parent(){
 
   window.open(lnk , '_blank');
 }
+  
+  function Ancestor(){
+  var number = document.getElementById("k").value;
+  var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number + "')&forcereload=true";
+
+  window.open(lnk , '_blank');
+}
 
 
 
@@ -54,7 +61,8 @@ Some Handy Maximo Tools
 <form>
   Show all of The Children
 <input id="k" type="text" ></input>
-  <button type="button" onclick="parent()" >Find Children</button>
+  <br><button type="button" onclick="parent()" >Child Parent</button>
+ <br> <button type="button" onclick="Ancestor()" >OG Parent</button>
 </form>
 </p>
 <p>
