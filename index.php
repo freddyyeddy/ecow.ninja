@@ -156,6 +156,9 @@ console.log(array);
 // 					$('#add').toggleClass('is-visible');
 					$(".modal-close").click()
 					document.getElementById("adding").reset();
+					var elements = document.getElementsByTagName('tag')
+while (elements[0]) elements[0].parentNode.removeChild(elements[0])
+					$('#adsrc').val([]).trigger('change');
 					console.log(data);
         },
 			error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
@@ -313,13 +316,13 @@ var separr = value.split(",");
         whitelist : $.unique(tgs).sort(),
         blacklist : ["fuck", "shit"],
 			delimiters          : ", ",
-    })
+    });
 		var input2 = document.querySelector('input[name=crafts]'),
-    tagify1 = new Tagify(input2, {
+    tagify2 = new Tagify(input2, {
         whitelist : $.unique(crft).sort(),
         blacklist : ["fuck", "shit"],
 			  delimiters          : ", ",
-    })
+    });
 
 					for(var i=0; i< tgs.length;i++)
 {
@@ -641,7 +644,7 @@ Modalpoo;
 					<form id="adding">
 
 								<div class="icoselect">
-									<select name="source" class='nrgsrc' style="width:100%;">
+									<select name="source" id="adsrc" class='nrgsrc' style="width:100%;">
   <option  value="Pressure &#xe801;">Pressure &#xe801;</option>
   <option value="Mechanical &#xe800;">Mechanical &#xe800;</option>
   <option value="Body Mechanics &#xe80d;">Body Mechanics &#xe80d;</option>
@@ -662,8 +665,8 @@ Modalpoo;
 								</div>
 								<div><textarea required rows="7" name="hazard" style="width:100%" placeholder="What Is The Hazard and How Can It Hurt You (other than your feelings)" id="haztxt" maxlength="500"></textarea><div id="haztxt_feedback"></div></div>
 								<div><textarea required rows="7" name="mitigation" style="width:100%" placeholder="Who Will Be Accountable For Mitigations and how Will they Act on them" id="mittxt"  cols="30" maxlength="395"></textarea><div id="mittxt_feedback"></div></div>
-								<div><input required name='tags' placeholder='Write tags eg: ladder, gas, excavation ect.'></div>
-								<div><input required name='crafts' placeholder='What Crafts Are This Aplicable to?' ></div>
+								<div><input id="tgs" required name='tags' placeholder='Write tags eg: ladder, gas, excavation ect.'></div>
+								<div><input id="crft" required name='crafts' placeholder='What Crafts Are This Aplicable to?' ></div>
 
 
 					</form>
