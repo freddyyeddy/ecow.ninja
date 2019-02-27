@@ -15,7 +15,23 @@ require("inc/var.php");
 	  	<script src="inc/js/radio.js"></script>
 
 <script>
+(function($){
 
+    var _old = $.unique;
+
+    $.unique = function(arr){
+
+        // do the default behavior only if we got an array of elements
+        if (!!arr[0].nodeType){
+            return _old.apply(this,arguments);
+        } else {
+            // reduce the array to contain no dupes via grep/inArray
+            return $.grep(arr,function(v,k){
+                return $.inArray(v,arr) === k;
+            });
+        }
+    };
+})(jQuery);
 function sidebar(){
 $(".sidebar").toggleClass("open transition");
 }
@@ -191,7 +207,7 @@ console.log(array);
 // Retrieve
 for (var i = 0; i < localStorage.length; i++){
 	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
-	    console.log(json);
+	    // console.log(json);
 	}).catch(err => {
 	    console.log(err);
 	});
@@ -283,15 +299,14 @@ $('#Examples ul').prepend(
 						$("#table_filter").detach().appendTo('#search');
 						var tgs = new Array();
 $.each(oTable.column( 4 ).data().toArray(), function( index, value ) {
-var separr = value.split(', ');
+var separr = value.split(",");
   tgs = $.merge( tgs, separr );
 });
 						var crft = new Array();
 $.each(oTable.column( 5 ).data().toArray(), function( index, value ) {
-var separr = value.split(', ');
+var separr = value.split(",");
   crft = $.merge( crft, separr );
 });
-
 
 		var input1 = document.querySelector('input[name=tags]'),
     tagify1 = new Tagify(input1, {
@@ -379,7 +394,7 @@ var separr = value.split(', ');
             column_number : 4,
     				filter_container_id: 'Tags',
 					filter_type: "multi_select",
-				text_data_delimiter: ", ",
+				text_data_delimiter: ",",
 				case_insensitive: "true",
         filter_default_label: "Select any Tags",
 				select_type: "select2",
@@ -392,7 +407,7 @@ var separr = value.split(', ');
             column_number : 5,
     				filter_container_id: 'Craft',
             filter_default_label: "Select Craft or Crafts",
-				text_data_delimiter: ", ",
+				text_data_delimiter: ",",
 				case_insensitive: "true",
 					filter_type: "multi_select",
 				select_type: "select2",
