@@ -5,13 +5,89 @@ include("var.php");
 // if i dont detect a match in database from localstorage id then i will auto invalidate and send a new magic link with the new uid stored
 // and store it in database as well as return the new uniqid and store it in local storage for new magic link test.
 // Establishing Variables
+		//Replacement Magic Link and Session Info
+		$magic2 = bin2hex(random_bytes( 72 ));
+		$magichash2 = password_hash($magic2,PASSWORD_BCRYPT);
+		$ses2 = md5(uniqid(rand(), true));
 
-$magic2 = bin2hex(random_bytes( 72 ));
-$magichash2 = password_hash($magic2,PASSWORD_BCRYPT);
-$ses2 = md5(uniqid(rand(), true));
+		//Html For Page Elements
+				//Begin Html Loader
+		$htmlloadercss = <<<css
+<style>
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #4258ee;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
 
+</style>
+css;
+		$htmlloaderdiv = <<<html
+<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+html;
 
+				//End Html Loader
 // End Establishing Varaables
+echo <<<EOT
+<head>
+$htmlloadercss
+</head>
+
+<body>
+$htmlloaderdiv
+</body>
+
+EOT;
 if(isset($_GET['mg']) and isset($_GET['f'])) {$magic = $_GET['mg']; $fac = $_GET['f'];}else{$magic = "0"; $fac = "potato";}
 
 
@@ -58,9 +134,10 @@ reset;
 	if(!empty($rows)){
 
 		$session = $rows[0]["session"];
+		$_SESSION['sess'] = $session;
 		$magichash = $rows[0]["Magic"];
-		var_dump(password_verify($magic, $magichash));
-		echo "\n" . $session .  "\n" . $magichash;
+		// var_dump(password_verify($magic, $magichash));
+		// echo "\n" . $session .  "\n" . $magichash;
 		// End vriable Setting
 
 			// Start EOT Local Reset
@@ -71,13 +148,13 @@ reset;
 		sessioncheck.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		       // after sucsessfull load
-		       console.log(sessioncheck.responseText);
+		       document.getElementsByTagName('body')[0].innerHTML = sessioncheck.responseText;
 		    }
 		};
 
 
 		var ses = "s=" + localStorage.getItem("session");
-		sessioncheck.open("GET", "tst5.php"+"?"ses, true);
+		sessioncheck.open("GET", "tst5.php"+"?" + ses + "&f=$fac", true);
 		sessioncheck.send();
 		}
 local_reset_test;
@@ -85,29 +162,15 @@ local_reset_test;
 
 		if(password_verify($magic, $magichash)){
 			// setting session variable to pass without showing session to validate
-$_SESSION['sess'] = $session;
+$_SESSION['ses'] = $session;
 			// Link Good and Hash Match is Good now getting page data from php page and testing if session matches
-			echo <<<pass_match
-	<script>
-	// testing if I recognize borwser
-	if (localStorage.getItem("session") != null) {
-		console.log(localStorage.getItem("session"));
-		console.log("expects: $session");
-		if(localStorage.getItem("session") ==="$session"){
-			// I recognize this browser Lets Get into Backend
-			alert("session Match");
-		}else{
-			localStorage.setItem("session", "$ses2");
-			// I dont recognize this browser
-			alert("I dont recognize you lets make a new link just in case");
-pass_match;
+			echo "<script>" . $local_test . "</script>";
 
-echo $resetthethings . "		\t\t\n}\t\n	}\n </script>";
 
 
 		}else{
 		// failed Hash check Fishyness is Fishy new link time
-		echo "\n\n'" . $magic .  "','" . $magichash . "'";
+		// echo "\n\n'" . $magic .  "','" . $magichash . "'";
 		echo <<<hash_fail
 <script>
 		// I dont recognize this browser
@@ -124,7 +187,7 @@ hash_fail;
 		if($fac != "potato"){
 // Nothing Found Sending new Magic link
 
-		echo "<script>" . $resetthethings . "</script>";
+		echo "<script>" . $resetthethings . " alert('link expired a new link has been sent');</script>";
 
 }else{
 	echo "Not a Valid Facility";
