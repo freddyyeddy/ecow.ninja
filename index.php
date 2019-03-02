@@ -35,9 +35,16 @@ require("inc/var.php");
 function sidebar(){
 $(".sidebar").toggleClass("open transition");
 }
-function remove(i) {
-	localStorage.removeItem(i);
-	document.getElementById(i).outerHTML = "";
+function remove(id) {
+	// localStorage.removeItem(i);
+	var retcon = JSON.parse(localStorage.getItem('links')).filter(function( obj, i, n) {
+    return obj.id != id;
+});
+// console.log(JSON.parse(localStorage.getItem('links')));
+// console.log(retcon);
+// console.log(id);
+localStorage.setItem("links", JSON.stringify(retcon));
+	document.getElementById(id).outerHTML = "";
 }
 function add(l,d){
 
@@ -56,13 +63,13 @@ catch(err) {
 }
 // window.crypto.getRandomValues(array);
 document.getElementById("add").reset();
-console.log(array);
+// console.log(array);
 // console.log(JSON.stringify(lnkds));
 if (localStorage.getItem("links") !== null) {
 	var jsonObj = JSON.parse(localStorage.getItem('links'));
 	var newobj = {
 	    "Link" : l,    //your artist variable
-	    "id" : array,   //your title variable
+	    "id" : array[0],   //your title variable
 	    "Description" : d   //your title variable
 	};
 	jsonObj.push( newobj );
@@ -90,7 +97,7 @@ if (localStorage.getItem("links") !== null) {
 }else{
 	var newobj = [{
 	    "Link" : l,    //your artist variable
-	    "id" : array,   //your title variable
+	    "id" : array[0],   //your title variable
 	    "Description" : d   //your title variable
 	}];
 	localStorage.setItem('links',JSON.stringify(newobj));
