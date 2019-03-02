@@ -48,7 +48,13 @@ function add(l,d){
 }else{
 	var array = new Uint32Array(1);
 	// var lnkds = [l,d];
-window.crypto.getRandomValues(array);
+	try {
+  window.crypto.getRandomValues(array);
+}
+catch(err) {
+  window.msCrypto.getRandomValues(array);
+}
+// window.crypto.getRandomValues(array);
 document.getElementById("add").reset();
 console.log(array);
 // console.log(JSON.stringify(lnkds));
