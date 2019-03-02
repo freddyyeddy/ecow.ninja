@@ -47,12 +47,47 @@ function add(l,d){
 	$("#add").find("#submit-hidden").click();
 }else{
 	var array = new Uint32Array(1);
-	var lnkds = [l,d];
+	// var lnkds = [l,d];
 window.crypto.getRandomValues(array);
 document.getElementById("add").reset();
 console.log(array);
 // console.log(JSON.stringify(lnkds));
-	localStorage.setItem(array[0],JSON.stringify(lnkds));
+if (localStorage.getItem("links") !== null) {
+	var jsonObj = JSON.parse(localStorage.getItem('links'));
+	var newobj = {
+	    "Link" : l,    //your artist variable
+	    "id" : array,   //your title variable
+	    "Description" : d   //your title variable
+	};
+	jsonObj.push( newobj );
+	localStorage.setItem('links',JSON.stringify(jsonObj));
+	// var input = decodeURIComponent("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-CGF%23309592/templateAsNew");
+	//
+	// var arr = input.split("#")[2].substring(0,6);
+
+	      var m = decodeURIComponent(l);
+	      if (m != null)
+	      {
+	          var permit= "#" + m.split("#")[2].substring(0,6);;
+					}else{
+					var permit="Permit# Link";
+					}
+
+
+	$('#Examples ul').prepend(
+		$('<li>').attr("id", array).append(
+				$('<a>').attr({'href':l,'target':"_blank" }).append(
+						$('<span>').attr('class', 'tab').append(permit)),
+				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array, 'onclick': "remove('"+array+"');"}).append("Remove"))
+					)
+	)
+}else{
+	var newobj = [{
+	    "Link" : l,    //your artist variable
+	    "id" : array,   //your title variable
+	    "Description" : d   //your title variable
+	}];
+	localStorage.setItem('links',JSON.stringify(newobj));
 
 	var re1='.*?';	// Non-greedy match on filler
 	      var re2='(#{1}(?:[A-F0-9]){6})(?![0-9A-F])';	// HTML Color 1
@@ -74,6 +109,7 @@ console.log(array);
 				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array, 'onclick': "remove('"+array+"');"}).append("Remove"))
 					)
 	)
+}
 }
 }
 
@@ -208,39 +244,45 @@ while (elements[0]) elements[0].parentNode.removeChild(elements[0])
 // add("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #");
 
 // Retrieve
-for (var i = 0; i < localStorage.length; i++){
-	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
-	    // console.log(json);
-	}).catch(err => {
-	    console.log(err);
-	});
+if (localStorage.getItem("links") !== null) {
+  //...JSON.stringify(obj) "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #"
+	// var jsonStringify = '[{Link : 'Link', id : 'randomid', Description : 'description'}]';
 
+	var jsonObj = JSON.parse(localStorage.getItem("links"));
 
-var lnkds = JSON.parse(localStorage.getItem(localStorage.key(i))|| null);
+	for(var i = 0; i < jsonObj.length; i++)
+	{
 
-var re1='.*?';	// Non-greedy match on filler
-      var re2='(#{1}(?:[A-F0-9]){6})(?![0-9A-F])';	// HTML Color 1
+					var m = decodeURIComponent(jsonObj[i]['Link']);
+					if (m != null)
+					{
+							var permit= "#" + m.split("#")[2].substring(0,6);;
+						}else{
+						var permit="Permit# Link";
+						}
 
-      var p = new RegExp(re1+re2,["i"]);
-      var m = p.exec(lnkds[0]);
-      if (m != null)
-      {
-          var permit=m[1];
-				}else{
-				var permit="Permit # Link";
-				}
+	$('#Examples ul').prepend(
+		$('<li>').attr("id",jsonObj[i]['id']).append(
+				$('<a>').attr({'href':jsonObj[i]['Link'], 'target':"_blank"}).append(
+						$('<span>').attr('class', 'tab').append(permit)),
+				$('<span>').append("--->" + jsonObj[i]['Description']).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':jsonObj[i]['id'], 'onclick': "remove('"+jsonObj[i]['id']+"');"}).append("Remove"))
 
-$('#Examples ul').prepend(
-	$('<li>').attr("id",localStorage.key(i)).append(
-			$('<a>').attr({'href':lnkds[0], 'target':"_blank"}).append(
-					$('<span>').attr('class', 'tab').append(permit)),
-			$('<span>').append("--->" + lnkds[1]).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':localStorage.key(i), 'onclick': "remove('"+localStorage.key(i)+"');"}).append("Remove"))
+	)
 
-)
-
-)
-
-};
+	)
+	}
+}
+// for (var i = 0; i < localStorage.length; i++){
+// 	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
+// 	    // console.log(json);
+// 	}).catch(err => {
+// 	    console.log(err);
+// 	});
+//
+//
+// var lnkds = JSON.parse(localStorage.getItem(localStorage.key(i))|| null);
+//
+// };
 
 // 		Copy Text To Clipboard
 		function copyTextToClipboard(text) {
