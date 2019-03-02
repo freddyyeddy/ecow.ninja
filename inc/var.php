@@ -49,4 +49,14 @@ function db_select($query) {
     return $rows;
 }
 
+$rows = db_query('describe hazmit');
+$hzfields = array();
+while ( $row = $rows->fetch_assoc() ) {
+    $hzfields[] = $row['Field'];
+}
+$rows = db_query('describe aas');
+$aafields = array();
+while ( $row = $rows->fetch_assoc() ) {
+    $aafields[] = $row['Field'];
+}
 ?>
