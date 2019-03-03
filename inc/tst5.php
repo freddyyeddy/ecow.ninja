@@ -63,8 +63,8 @@ $mail->Body    = "The New Magic Link is <a href='//localhost/Ecow.Ninja/inc/tst2
 if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message has been sent';
+    echo "<script>alert('Something Seems Off Sending a New Link');</script>";
+  } else {
 
 }
 }
@@ -85,7 +85,7 @@ session_destroy();
 }else{
 
   resetthings($magic2,$magichash2,$ses2,$fac);
-  echo "<script>alert('Something Seems Off Sending a New Link');</script>";
+  echo "<script id='removeme'>alert('Something Seems Off Sending a New Link'); localStorage.setItem('session', '$ses2'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
 }
 
 }else{

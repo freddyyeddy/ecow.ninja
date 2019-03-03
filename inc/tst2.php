@@ -170,7 +170,7 @@ local_reset_test;
 			// setting session variable to pass without showing session to validate
 $_SESSION['ses'] = $session;
 			// Link Good and Hash Match is Good now getting page data from php page and testing if session matches
-			echo "<script>" . $local_test . "</script>";
+			echo "<script id='removeme'>" . $local_test . " var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
 
 
 
@@ -178,14 +178,14 @@ $_SESSION['ses'] = $session;
 		// failed Hash check Fishyness is Fishy new link time
 		// echo "\n\n'" . $magic .  "','" . $magichash . "'";
 		echo <<<hash_fail
-<script>
+<script id='removeme'>
 		// I dont recognize this browser
 		localStorage.setItem("session", "$ses2");
 		alert("Something Seems Fishy Have a New Link...");
 
 hash_fail;
 
-  echo $resetthethings . "</script>";
+  echo $resetthethings . " var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
 
 		}
 
@@ -193,7 +193,7 @@ hash_fail;
 		if($fac != "potato"){
 // Nothing Found Sending new Magic link
 
-		echo "<script>" . $resetthethings . " alert('link expired a new link has been sent');</script>";
+		echo "<script id='removeme'>" . $resetthethings . " alert('link expired a new link has been sent'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
 
 }else{
 	echo "Not a Valid Facility";
