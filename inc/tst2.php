@@ -78,14 +78,11 @@ html;
 
 				//End Html Loader
 // End Establishing Varaables
+// Starting Head Html Tag
 echo <<<EOT
+
 <head>
 $htmlloadercss
-</head>
-
-<body>
-$htmlloaderdiv
-</body>
 
 EOT;
 if(isset($_GET['mg']) and isset($_GET['f'])) {$magic = $_GET['mg']; $fac = $_GET['f'];}else{$magic = "0"; $fac = "potato";}
@@ -145,10 +142,15 @@ reset;
 		$local_test = <<<local_reset_test
 		if (localStorage.getItem("session") != null) {
 		var sessioncheck = new XMLHttpRequest();
+		console.log("Running Test");
 		sessioncheck.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		       // after sucsessfull load
-		       document.getElementsByTagName('body')[0].innerHTML = sessioncheck.responseText;
+					 var newdiv = document.createElement('div');
+					 newdiv.innerHTML = sessioncheck.responseText;
+					 document.getElementsByTagName('body')[0].innerHTML = '';
+					 document.getElementsByTagName('body')[0].appendChild(newdiv);
+		       // document.getElementsByTagName('body')[0].innerHTML = sessioncheck.responseText;
 		    }
 		};
 
@@ -156,7 +158,11 @@ reset;
 		var ses = "s=" + localStorage.getItem("session");
 		sessioncheck.open("GET", "tst5.php"+"?" + ses + "&f=$fac", true);
 		sessioncheck.send();
-		}
+	}else{
+		localStorage.setItem("session", "$ses2");
+		alert("Looks Like You Havent Visited Yet Lets Fix that Sending A new Link");
+		$resetthethings
+	}
 local_reset_test;
 			// End EOT Local Reset Bodies
 
@@ -212,5 +218,12 @@ hash_fail;
 // }else{
 // echo "false";
 // }
+echo <<<EOT
+</head>
 
+<body>
+$htmlloaderdiv
+</body>
+
+EOT;
 ?>

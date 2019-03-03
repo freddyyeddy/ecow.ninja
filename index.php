@@ -88,10 +88,10 @@ if (localStorage.getItem("links") !== null) {
 
 
 	$('#Examples ul').prepend(
-		$('<li>').attr("id", array).append(
+		$('<li>').attr("id", array[0]).append(
 				$('<a>').attr({'href':l,'target':"_blank" }).append(
 						$('<span>').attr('class', 'tab').append(permit)),
-				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array, 'onclick': "remove('"+array+"');"}).append("Remove"))
+				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array[0], 'onclick': "remove('"+array[0]+"');"}).append("Remove"))
 					)
 	)
 }else{
@@ -116,10 +116,10 @@ if (localStorage.getItem("links") !== null) {
 
 
 	$('#Examples ul').prepend(
-		$('<li>').attr("id", array).append(
+		$('<li>').attr("id", array[0]).append(
 				$('<a>').attr({'href':l,'target':"_blank" }).append(
 						$('<span>').attr('class', 'tab').append(permit)),
-				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array, 'onclick': "remove('"+array+"');"}).append("Remove"))
+				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array[0], 'onclick': "remove('"+array[0]+"');"}).append("Remove"))
 					)
 	)
 }
@@ -577,7 +577,7 @@ Poop;
 				<span id=Examples>
 					<ul>
 					<li>
-						<form id="add">
+						<form id="add" onkeypress="return event.keyCode != 13;">
 
 						<input required pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="nwlink" name="nwlink" placeholder="Paste eCOW Link">
 						<input required type="text" id="nwdesc" placeholder="Description Goes Here">
