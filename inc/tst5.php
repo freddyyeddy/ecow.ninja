@@ -127,92 +127,8 @@ $( function() {
 
 
 
-	// // 		Peer Review Submit Via Ajax
-		function submitF(e) {
-		e.preventDefault();
-			var form_data = $('#peerreview').serializeArray();
-			if(form_data.length < $("#rev tbody tr").length){
-				alert("Please Take The Time To Review All Mitigations")
-				return false;
-			}
-
-    $.ajax({
-        url:'inc/review.php',
-        type:'post',
-        data:$('#peerreview').serialize(),
-        success:function(data){
-//             alert($('#peerreview').serialize());
-// 					alert(data);
-					$('#rev').toggleClass('is-visible');
-        },
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				$('#rev').toggleClass('is-visible');
-			},
-
-    });
-			 return false;
-
-	};
-// 	end peer review ajax
-// 	Add Hazards
-
-			function submitG(e) {
-
-		e.preventDefault();
-
-// 				Varifiying input
-				var form = $('#adding');
-
-			var form_data = form.serializeArray();
-
-				if(form_data[1].value === "" || form_data[2].value === "" ||form_data[3].value === ""||form_data[4].value === ""){
-					alert("We Need all Fields Filled Out");
-					return false;
-				}else{
 
 
-					 $.ajax({
-        url:'add.php',
-        type:'post',
-        data:$('#adding').serialize(),
-        success:function(data){
-//             alert($('#peerreview').serialize());
-// 					$('#add').toggleClass('is-visible');
-					$(".modal-close").click()
-					document.getElementById("adding").reset();
-					var elements = document.getElementsByTagName('tag')
-while (elements[0]) elements[0].parentNode.removeChild(elements[0])
-					$('#adsrc').val([]).trigger('change');
-					console.log(data);
-        },
-			error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
-// 				$('#add').toggleClass('is-visible');
-				alert('Sorry Something Went Wrong');
-				console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
-			},
-
-    });
-			 return false;
-
-
-
-				}
-
-
-
-
-
-
-// 			if(form_data.length < $("#add tbody tr").length){
-// 				alert("Please Take The Time To Review All Mitigations")
-// 				return false;
-// 			}
-
-//
-
-	};
-
-	// 	end add hazards
 
 
 
@@ -382,7 +298,7 @@ var separr = value.split(",");
 					filter_type: "multi_select",
 				text_data_delimiter: ",",
 				case_insensitive: "true",
-        filter_default_label: "Select any Tags",
+        filter_default_label: "Tags",
 				select_type: "select2",
 				filter_reset_button_text: false,
 										dropdownAutoWidth: false,
@@ -392,7 +308,7 @@ var separr = value.split(",");
 			{
             column_number : 5,
     				filter_container_id: 'Craft',
-            filter_default_label: "Select Craft or Crafts",
+            filter_default_label: "Crafts",
 				text_data_delimiter: ",",
 				case_insensitive: "true",
 					filter_type: "multi_select",
@@ -555,14 +471,14 @@ if(!isset($nomodal)){
 // 	$reviewtbl =  var_dump($rows);
 // 	generating table for peer review
 
-$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
+$reviewtbl = "<form  id='peerreview'><table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'>";
 
-foreach ($rows as $row){
+foreach ($rows2 as $row){
 $reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
 
 }
 
-$reviewtbl .= "</form></tbody></table>";
+$reviewtbl .= "</tbody></table></form>";
 // 	end table generating
 
 // 	Inject Modal HTML

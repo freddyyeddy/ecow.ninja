@@ -148,11 +148,11 @@ reset;
 		sessioncheck.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
        // after sucsessfull load
-       var newdiv = document.createElement('div');
-       newdiv.innerHTML = sessioncheck.responseText;
-       document.getElementsByTagName('body')[0].innerHTML = '';
-       document.getElementsByTagName('body')[0].appendChild(newdiv);
-       // document.getElementsByTagName('body')[0].innerHTML = sessioncheck.responseText;
+       // var newdiv = document.createElement('div');
+       // newdiv.innerHTML = sessioncheck.responseText;
+       // document.getElementsByTagName('body')[0].innerHTML = '';
+       // document.getElementsByTagName('body')[0].appendChild(newdiv);
+       document.getElementsByTagName('body')[0].innerHTML = sessioncheck.responseText;
 			 eval($("#removeme1").text());
 			 eval($("#back").text());
 		};
@@ -234,6 +234,99 @@ echo <<<EOT
 <script src="js/notify.js"></script>
 		<script src="js/radio.js"></script>
 			<link rel="stylesheet" href="main.css">
+			<script> // 	Add Hazards
+
+						function submitG(e) {
+
+					e.preventDefault();
+
+			// 				Varifiying input
+							var form = $('#adding');
+
+						var form_data = form.serializeArray();
+
+							if(form_data[1].value === "" || form_data[2].value === "" ||form_data[3].value === ""||form_data[4].value === ""){
+								alert("We Need all Fields Filled Out");
+								return false;
+							}else{
+
+
+								 $.ajax({
+			        url:'add.php',
+			        type:'post',
+			        data:$('#adding').serialize(),
+			        success:function(data){
+			//             alert($('#peerreview'));
+			// 					$('#add').toggleClass('is-visible');
+								$(".modal-close").click()
+								document.getElementById("adding").reset();
+								var elements = document.getElementsByTagName('tag')
+			while (elements[0]) elements[0].parentNode.removeChild(elements[0])
+								$('#adsrc').val([]).trigger('change');
+								console.log(data);
+			        },
+						error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
+			// 				$('#add').toggleClass('is-visible');
+							alert('Sorry Something Went Wrong');
+							console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
+						},
+
+			    });
+						 return false;
+
+
+
+							}
+
+
+
+
+
+
+			// 			if(form_data.length < $("#add tbody tr").length){
+			// 				alert("Please Take The Time To Review All Mitigations")
+			// 				return false;
+			// 			}
+
+			//
+
+				};
+
+				// 	end add hazards
+
+				// // 		Peer Review Submit Via Ajax
+					function submitF(e,f) {
+					e.preventDefault();
+						var form_data = $('#peerreview').serializeArray();
+						if(form_data.length < $("#rev tbody tr").length){
+							alert("Please Take The Time To Review All Mitigations")
+							return false;
+						}
+
+			    $.ajax({
+			        url:'review.php',
+			        type:'post',
+			        data:$('#peerreview').serialize(),
+			        success:function(data){
+			            // alert($('#peerreview').serialize());
+								// alert(data);
+								$('#rev').toggleClass('is-visible');
+			        },
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							console.log(errorThrown);
+							$('#rev').toggleClass('is-visible');
+						},
+
+			    });
+						 return false;
+
+				};
+			// 	end peer review ajax
+
+$(document).on('submit','#peerreview',function(){});
+// $(document).on('submit','#adding',function(){});
+  // window.history.pushState("object or string", "Title", "/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split("?")[0]);
+				</script>
 </head>
 
 <body>
