@@ -143,16 +143,20 @@ reset;
 		if (localStorage.getItem("session") != null) {
 		var sessioncheck = new XMLHttpRequest();
 		console.log("Running Test");
+		console.log("Expected: $session");
+		console.log("Currently Set as: " + localStorage.getItem("session"));
 		sessioncheck.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		       // after sucsessfull load
-					 var newdiv = document.createElement('div');
-					 newdiv.innerHTML = sessioncheck.responseText;
-					 document.getElementsByTagName('body')[0].innerHTML = '';
-					 document.getElementsByTagName('body')[0].appendChild(newdiv);
-		       // document.getElementsByTagName('body')[0].innerHTML = sessioncheck.responseText;
-		    }
+		if (this.readyState == 4 && this.status == 200) {
+       // after sucsessfull load
+       var newdiv = document.createElement('div');
+       newdiv.innerHTML = sessioncheck.responseText;
+       document.getElementsByTagName('body')[0].innerHTML = '';
+       document.getElementsByTagName('body')[0].appendChild(newdiv);
+       // document.getElementsByTagName('body')[0].innerHTML = sessioncheck.responseText;
+			 eval($("#removeme1").text());
+			 eval($("#back").text());
 		};
+	}
 
 
 		var ses = "s=" + localStorage.getItem("session");
@@ -170,7 +174,7 @@ local_reset_test;
 			// setting session variable to pass without showing session to validate
 $_SESSION['ses'] = $session;
 			// Link Good and Hash Match is Good now getting page data from php page and testing if session matches
-			echo "<script id='removeme'>" . $local_test . " var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
+			echo "<script id='removeme3'>" . $local_test . " var elem = document.getElementById('removeme3'); elem.parentNode.removeChild(elem);</script>";
 
 
 
@@ -178,14 +182,14 @@ $_SESSION['ses'] = $session;
 		// failed Hash check Fishyness is Fishy new link time
 		// echo "\n\n'" . $magic .  "','" . $magichash . "'";
 		echo <<<hash_fail
-<script id='removeme'>
+<script id='removeme2'>
 		// I dont recognize this browser
 		localStorage.setItem("session", "$ses2");
 		alert("Something Seems Fishy Have a New Link...");
 
 hash_fail;
 
-  echo $resetthethings . " var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
+  echo $resetthethings . " localStorage.setItem('session', '$ses2');  var elem = document.getElementById('removeme2'); elem.parentNode.removeChild(elem);</script>";
 
 		}
 
@@ -193,7 +197,7 @@ hash_fail;
 		if($fac != "potato"){
 // Nothing Found Sending new Magic link
 
-		echo "<script id='removeme'>" . $resetthethings . " alert('link expired a new link has been sent'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
+		echo "<script id='removeme'>" . $resetthethings . " alert('link expired a new link has been sent'); localStorage.setItem('session', '$ses2'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
 
 }else{
 	echo "Not a Valid Facility";
@@ -219,6 +223,17 @@ hash_fail;
 // echo "false";
 // }
 echo <<<EOT
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/dataplg.js"></script>
+<script src="js/tagify.js"></script>
+<script src="js/select2.js"></script>
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/notify.js"></script>
+		<script src="js/radio.js"></script>
+			<link rel="stylesheet" href="main.css">
 </head>
 
 <body>
