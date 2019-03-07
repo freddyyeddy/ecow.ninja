@@ -291,21 +291,22 @@ var separr = value.split(",");
         ],
 					"columnDefs": [
             {
-                "targets": [ 4,5 ],
+                "targets": [ 4,5,6,7 ],
                 "visible": false,
 // 							'searchable'    : false,
 
 
             },
             {
-                "targets": [ 6,7,8 ],
+                "targets": [ 8 ],
                 "visible": false,
-													'searchable'    : false,
+
 
             },
             {
             "targets": 3,
             // "data": null,
+            "title": "Flagged",
             'searchable'    : false,
             render: function ( data, type, row ) {
 Back_End_Interface;
@@ -377,6 +378,19 @@ echo <<<'Back_End_Interface'
 						width: 'resolve',
 
 				},
+        {
+              column_number : 8,
+      				filter_container_id: 'facflag',
+              filter_default_label: "Facility",
+  				text_data_delimiter: ",",
+  				case_insensitive: "true",
+  					filter_type: "multi_select",
+  				select_type: "select2",
+  				filter_reset_button_text: false,
+  										dropdownAutoWidth: false,
+  						width: 'resolve',
+
+  				},
 		]
 							);
 // End Get Table and Generate Filters
@@ -483,8 +497,9 @@ echo <<<Back_End_Interface
 <div class="grid" style="margin-left: 1em;">
 
 
-<div class="col-1-3" style="width: 49%;" id="Craft"></div>
-<div class="col-1-3" style="width: 49%;" id="Tags"></div>
+<div class="col-1-3" style="width: 32%;" id="facflag"></div>
+<div class="col-1-3" style="width: 32%;" id="Craft"></div>
+<div class="col-1-3" style="width: 32%;" id="Tags"></div>
 </div>
 
 <div class="searchbox sbx-custom">
