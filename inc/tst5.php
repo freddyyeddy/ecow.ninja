@@ -381,7 +381,7 @@ echo <<<'Back_End_Interface'
         {
               column_number : 8,
       				filter_container_id: 'facflag',
-              filter_default_label: "Facility",
+              filter_default_label: "Facilitys",
   				text_data_delimiter: ",",
   				case_insensitive: "true",
   					filter_type: "multi_select",

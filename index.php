@@ -409,10 +409,11 @@ var separr = value.split(",");
             { "data": "crafts" },
             { "data": "review" },
             { "data": "bad" },
+            { "data": "facilitys" },
         ],
 					"columnDefs": [
             {
-                "targets": [ 4,5 ],
+                "targets": [ 4,5,8 ],
                 "visible": false,
 // 							'searchable'    : false,
 
@@ -454,7 +455,7 @@ var separr = value.split(",");
 					filter_type: "multi_select",
 				text_data_delimiter: ",",
 				case_insensitive: "true",
-        filter_default_label: "Select any Tags",
+        filter_default_label: "Tags",
 				select_type: "select2",
 				filter_reset_button_text: false,
 										dropdownAutoWidth: false,
@@ -464,7 +465,7 @@ var separr = value.split(",");
 			{
             column_number : 5,
     				filter_container_id: 'Craft',
-            filter_default_label: "Select Craft or Crafts",
+            filter_default_label: "Crafts",
 				text_data_delimiter: ",",
 				case_insensitive: "true",
 					filter_type: "multi_select",
@@ -474,6 +475,19 @@ var separr = value.split(",");
 						width: 'resolve',
 
 				},
+				{
+							column_number : 8,
+							filter_container_id: 'facflag',
+							filter_default_label: "Facilitys",
+					text_data_delimiter: ",",
+					case_insensitive: "true",
+						filter_type: "multi_select",
+					select_type: "select2",
+					filter_reset_button_text: false,
+											dropdownAutoWidth: false,
+							width: 'resolve',
+
+					},
 		]
 							);
 // End Get Table and Generate Filters
@@ -590,6 +604,7 @@ Poop;
 			</nav>
 		</div>
 
+	<div class="col-1-3" id="facflag"></div>
 	<div class="col-1-3" id="Craft"></div>
 	<div class="col-1-3" id="Tags"></div>
 	</div>

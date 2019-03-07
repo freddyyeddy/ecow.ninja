@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("var.php");
+echo "<!DOCTYPE html>";
 // Making a unique id for storing into localstorage then going to use an ajax request post to actually check magic link and password
 // if i dont detect a match in database from localstorage id then i will auto invalidate and send a new magic link with the new uid stored
 // and store it in database as well as return the new uniqid and store it in local storage for new magic link test.
@@ -249,7 +250,15 @@ echo <<<EOT
 		<script src="js/radio.js"></script>
 			<link rel="stylesheet" href="main.css">
 			<script> // 	Add Hazards
+			String.prototype.includes = function (str) {
+			  var returnValue = false;
 
+			  if (this.indexOf(str) !== -1) {
+			    returnValue = true;
+			  }
+
+			  return returnValue;
+			}
 						function submitG(e) {
 
 					e.preventDefault();
