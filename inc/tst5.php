@@ -7,7 +7,7 @@ require_once('phpmail/PHPMailer.php');
 require_once('phpmail/Exception.php');
 require_once('phpmail/SMTP.php');
 //Replacement Magic Link and Session Info
-sleep(1);
+sleep(1.5);
 $fac =   isset($_GET['f']) ? $_GET['f']: '';
 $magic2 = bin2hex(random_bytes( 72 ));
 $magichash2 = password_hash($magic2,PASSWORD_BCRYPT);
@@ -82,20 +82,21 @@ echo <<<Back_End_Interface
 
 $(document).on('click','.flag',function(e){//do something
     $.ajax({
- url:'flag.php',
+ url:'validated.php',
  type:'post',
  data: {"id": e.target.id, "flag":e.target.value, "facility" : "$fac"},
-Back_End_Interface;
-echo <<<'Back_End_Interface'
  success:function(data){
    // console.log(e);
-   $.notify(e.target.value);
-   if(e.target.value == "Unflagged"){
-     e.target.innerHTML = "Flag";
-     e.target.value = "Flagged";
+   $.notify(e.target.value + " at $fac");
+Back_End_Interface;
+echo <<<'Back_End_Interface'
+
+   if(e.target.value == "Invalidated"){
+     e.target.innerHTML = "Validate";
+     e.target.value = "Validated";
    }else{
-     e.target.innerHTML = "Unflag";
-     e.target.value = "Unflagged";
+     e.target.innerHTML = "Invalidate";
+     e.target.value = "Invalidated";
    }
  },
 error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
@@ -306,7 +307,7 @@ var separr = value.split(",");
             {
             "targets": 3,
             // "data": null,
-            "title": "Flagged",
+            "title": "Validated",
             'searchable'    : false,
             render: function ( data, type, row ) {
 Back_End_Interface;
@@ -319,14 +320,14 @@ if (data123) {
               if (data123.includes("$fac")) {
 Back_End_Interface;
 echo <<<'Back_End_Interface'
-                    return '<button id="' + data + '" class="flag" value="Unflagged">Unlag</button>';
+                    return '<button id="' + data + '" class="flag" value="Invalidated">Invalidate</button>';
                     }
                   else {
-                    return '<button id="' + data + '" class="flag" value="Flagged">Flag</button>';
+                    return '<button id="' + data + '" class="flag" value="Validated">Validate</button>';
                     }
 
         }else {
-          return '<button id="' + data + '" class="flag" value="Flagged">Flag</button>';
+          return '<button id="' + data + '" class="flag" value="Validated">Validate</button>';
           }
       }
 
@@ -400,7 +401,7 @@ echo <<<'Back_End_Interface'
 
 // 		Copy Text To Clipboard when Clicked and Alert with a popup
 
-			 $(document).on('click', '#table tbody td:not(:first-child)',function(){
+			 $(document).on('click', '#table tbody td:not(:first-child, :last-child)',function(){
 				 var $this = $(this);
 				     var selectedCellIndex = this.cellIndex;
     var correspondingHeader = $("table thead tr th")[selectedCellIndex];
@@ -481,7 +482,6 @@ echo <<<Back_End_Interface
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Prefered Permits</a></li>
-    <li><a href="#tabs-3">Prefered Controls</a></li>
     <li><a href="#tabs-2">Haz/Con Database</a></li>
 
   </ul>
