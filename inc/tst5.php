@@ -77,8 +77,42 @@ if(isset($_GET['s']) and isset($_SESSION['ses']) and isset($_GET['f'])){
 
 if($_GET['s'] == $_SESSION['ses']){
 
-echo <<<'Back_End_Interface'
+echo <<<Back_End_Interface
 <script id="back">
+
+$(document).on('click','.flag',function(e){//do something
+    $.ajax({
+ url:'flag.php',
+ type:'post',
+ data: {"id": e.target.id, "flag":e.target.value, "facility" : "$fac"},
+Back_End_Interface;
+echo <<<'Back_End_Interface'
+ success:function(data){
+   // console.log(e);
+   $.notify(e.target.value);
+   if(e.target.value == "Unflagged"){
+     e.target.innerHTML = "Flag";
+     e.target.value = "Flagged";
+   }else{
+     e.target.innerHTML = "Unflag";
+     e.target.value = "Unflagged";
+   }
+ },
+error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
+ alert('Sorry Something Went Wrong');
+ console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
+},
+
+});
+return false;
+
+
+
+
+
+
+});
+
 $( function() {
   $( "#tabs" ).tabs();
 } );
@@ -253,6 +287,7 @@ var separr = value.split(",");
             { "data": "crafts" },
             { "data": "review" },
             { "data": "bad" },
+            { "data": "facilitys" },
         ],
 					"columnDefs": [
             {
@@ -263,13 +298,38 @@ var separr = value.split(",");
 
             },
             {
-                "targets": [ 3,6,7 ],
+                "targets": [ 6,7,8 ],
                 "visible": false,
 													'searchable'    : false,
 
-            }
+            },
+            {
+            "targets": 3,
+            // "data": null,
+            'searchable'    : false,
+            render: function ( data, type, row ) {
+Back_End_Interface;
+echo <<<Back_End_Interface
+// console.log(data123 = row['facilitys']);
+data123 = row['facilitys']
+if (data123) {
 
 
+              if (data123.includes("$fac")) {
+Back_End_Interface;
+echo <<<'Back_End_Interface'
+                    return '<button id="' + data + '" class="flag" value="Unflagged">Unlag</button>';
+                    }
+                  else {
+                    return '<button id="' + data + '" class="flag" value="Flagged">Flag</button>';
+                    }
+
+        }else {
+          return '<button id="' + data + '" class="flag" value="Flagged">Flag</button>';
+          }
+      }
+
+}
         ],
 						language: {
         search: "_INPUT_",
@@ -283,7 +343,6 @@ var separr = value.split(",");
 
 
     });
-
 
 // 		Making Filters and Searches For Table
 

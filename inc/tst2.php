@@ -14,66 +14,80 @@ include("var.php");
 				//Begin Html Loader
 		$htmlloadercss = <<<css
 <style>
-.lds-ellipsis {
+.lds-grid {
   display: inline-block;
   position: relative;
-  width: 64px;
-  height: 64px;
+	margin-left: 50%;
+transform: translateX(-50%);
+  width: 26.5em;
+  height: 26.5em;
 }
-.lds-ellipsis div {
+.lds-grid div {
   position: absolute;
-  top: 27px;
-  width: 11px;
-  height: 11px;
+  width: 6.5em;
+  height: 6.5em;
   border-radius: 50%;
-  background: #4258ee;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  background: #30b4e9;
+  animation: lds-grid 1.2s linear infinite;
 }
-.lds-ellipsis div:nth-child(1) {
-  left: 6px;
-  animation: lds-ellipsis1 0.6s infinite;
+.lds-grid div:nth-child(1) {
+  top: 0em;
+  left: 0em;
+  animation-delay: 0s;
 }
-.lds-ellipsis div:nth-child(2) {
-  left: 6px;
-  animation: lds-ellipsis2 0.6s infinite;
+.lds-grid div:nth-child(2) {
+  top: 0em;
+  left: 10em;
+  animation-delay: -0.4s;
 }
-.lds-ellipsis div:nth-child(3) {
-  left: 26px;
-  animation: lds-ellipsis2 0.6s infinite;
+.lds-grid div:nth-child(3) {
+  top: 0em;
+  left: 20em;
+  animation-delay: -0.8s;
 }
-.lds-ellipsis div:nth-child(4) {
-  left: 45px;
-  animation: lds-ellipsis3 0.6s infinite;
+.lds-grid div:nth-child(4) {
+  top: 10em;
+  left: 0em;
+  animation-delay: -0.4s;
 }
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
+.lds-grid div:nth-child(5) {
+  top: 10em;
+  left: 10em;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 10em;
+  left: 20em;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 20em;
+  left: 0em;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 20em;
+  left: 10em;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 20em;
+  left: 20em;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
   }
-  100% {
-    transform: scale(1);
+  50% {
+    opacity: 0.5;
   }
 }
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(19px, 0);
-  }
-}
-
 </style>
 css;
 		$htmlloaderdiv = <<<html
-<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 html;
 
 				//End Html Loader

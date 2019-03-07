@@ -1,17 +1,29 @@
-
 <script>
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-         // Action to be performed when the document is read;
-         // xhttp.responseXML
-         alert("sucsess");
-      }
-  };
-  var magic = "mg= &";
-  var session = "s= &";
-  var fac = "f= ";
+$(document).on('click','#btnPrepend',function(e){//do something
+    $.ajax({
+ url:'inc/review.php',
+ type:'post',
+ data: {"id": e.target.id, "unflag":e.target.value},
+ success:function(data){
+$.notify("Flagged/Unflaged " + data);
+ },
+error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
+ alert('Sorry Something Went Wrong');
+ console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
+},
 
-  xhttp.open("GET", "tst3.php"+"?mg"+magic+session+fac, true);
-  xhttp.send();
-  </script>
+});
+return false;
+
+
+
+
+
+
+};
+
+
+
+
+
+};
