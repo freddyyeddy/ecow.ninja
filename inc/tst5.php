@@ -9,6 +9,8 @@ require_once('phpmail/SMTP.php');
 //Replacement Magic Link and Session Info
 sleep(1.5);
 $fac =   isset($_GET['f']) ? $_GET['f']: '';
+$examplejson = isset($_GET['x']) ? json_decode(stripslashes($_GET['x']),true): '';
+// var_dump($examplejson);
 $magic2 = bin2hex(random_bytes( 72 ));
 $magichash2 = password_hash($magic2,PASSWORD_BCRYPT);
 $ses2 = md5(uniqid(rand(), true));
@@ -58,7 +60,7 @@ $mail->WordWrap = 50;                                 // Set word wrap to 50 cha
 $mail->isHTML(true);
 
 $mail->Subject = 'Magic Link';
-$mail->Body    = "The New Magic Link is <a href='//localhost/Ecow.Ninja/inc/tst2.php?mg=$magic&f=$fac'>Magggic....</a>";
+$mail->Body    = "This link is only good for one user the link is <a href='//localhost/Ecow.Ninja/inc/tst2.php?mg=$magic&f=$fac'>Magggic....</a>";
 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {
@@ -77,9 +79,57 @@ if(isset($_GET['s']) and isset($_SESSION['ses']) and isset($_GET['f'])){
 
 if($_GET['s'] == $_SESSION['ses']){
 
+  $query102 =  "SELECT * FROM `favorites` WHERE  `aa` = '$fac' ";
+  // echo $query;
+  $rows102 = db_query($query102);
+  if($rows102 === false) {
+  	 $error = db_error();
+  	 // var_dump($error);
+  	 // Handle error - inform administrator, log to file, show error page, etc.
+  }else{
+    $dbdata = array();
+
+    while ( $row = $rows102->fetch_assoc())  {
+  	$dbdata[]=$row;
+    }
+
+  //Print array in JSON format
+   echo json_encode($dbdata);
+   $favoritesis = json_encode($dbdata);
+
+
+  }
+
+
+$templatepermits = <<<Templatepermits
+
+<div id="users">
+<input class="search" placeholder="Search" />
+<button class="sort" data-sort="name">
+  Sort by name
+</button>
+
+<ul class="list"></ul>
+
+</div>
+
+Templatepermits;
+
 echo <<<Back_End_Interface
 <script id="back">
+var options = {
+  valueNames: [ 'link', 'description' ],
+  item: '<li><h3 class="link"></h3><p class="description"></p></li>'
+};
 
+var values = $favoritesis;
+
+var userList = new List('users', options, values);
+
+// userList.add({
+//   name: "Gustaf Lindqvist",
+//   born: 1983
+// });
 $(document).on('click','.flag',function(e){//do something
     $.ajax({
  url:'validated.php',
@@ -476,7 +526,9 @@ echo <<<Back_End_Interface
 
 
 
-
+    $( function() {
+      $( "#accordion" ).accordion();
+    } );
 
 </script>
 <div id="tabs">
@@ -486,7 +538,12 @@ echo <<<Back_End_Interface
 
   </ul>
   <div id="tabs-1">
-    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+  <span>Form for addding to the shared permit database
+  <form id="addexample">
+  <input name="links" type="text"><input name="description" type="text">
+  <button name="add">Add Permit Example</button>
+  </form></span>
+  $templatepermits
   </div>
   <div id="tabs-2">
   <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="768" height="800" viewBox="0 0 768 800"><defs><g id="icon-close"><path class="path1" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path></g></defs></svg>
@@ -648,10 +705,6 @@ echo <<<Back_End_Interface
 Back_End_Interface;
 
 echo <<<Back_End_Interface
-  </div>
-  <div id="tabs-3">
-    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
   </div>
 </div>
 Back_End_Interface;

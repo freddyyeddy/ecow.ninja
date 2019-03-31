@@ -111,7 +111,6 @@ if($rows === false) {
 	 // var_dump($error);
 	 // Handle error - inform administrator, log to file, show error page, etc.
 }else{
-
 // start email reset
 $resetthethings = <<<reset
 
@@ -120,13 +119,13 @@ var xhttp2 = new XMLHttpRequest();
 // xhttp.onreadystatechange = function() {
 // 		if (this.readyState == 4 && this.status == 200) {
 // 			 // after sucsessfull load
-// 			 // console.log(xhttp.responseText);
+			 console.log(xhttp.responseText);
 // 		}
 // };
 // xhttp2.onreadystatechange = function() {
 // 		if (this.readyState == 4 && this.status == 200) {
 // 			 // after sucsessfull load
-// 			 // console.log(xhttp2.responseText);
+			 console.log(xhttp2.responseText);
 // 		}
 // };
 
@@ -146,6 +145,7 @@ reset;
 	if(!empty($rows)){
 
 		$session = $rows[0]["session"];
+		$permittemps = $rows[0]["Examples"];
 		$_SESSION['sess'] = $session;
 		$magichash = $rows[0]["Magic"];
 		// var_dump(password_verify($magic, $magichash));
@@ -157,9 +157,9 @@ reset;
 		$local_test = <<<local_reset_test
 		if (localStorage.getItem("session") != null) {
 		var sessioncheck = new XMLHttpRequest();
-		console.log("Running Test");
-		console.log("Expected: $session");
-		console.log("Currently Set as: " + localStorage.getItem("session"));
+		// console.log("Running Test");
+		// console.log("Expected: $session");
+		// console.log("Currently Set as: " + localStorage.getItem("session"));
 		sessioncheck.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
        // after sucsessfull load
@@ -175,7 +175,7 @@ reset;
 
 
 		var ses = "s=" + localStorage.getItem("session");
-		sessioncheck.open("GET", "tst5.php"+"?" + ses + "&f=$fac", true);
+		sessioncheck.open("GET", "tst5.php"+"?" + ses + "&f=$fac&x=$permittemps", true);
 		sessioncheck.send();
 	}else{
 		localStorage.setItem("session", "$ses2");
@@ -240,7 +240,8 @@ hash_fail;
 echo <<<EOT
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 <script src="js/dataplg.js"></script>
 <script src="js/tagify.js"></script>
 <script src="js/select2.js"></script>
