@@ -209,11 +209,12 @@ while (elements[0]) elements[0].parentNode.removeChild(elements[0])
 
 // Retrieve
 for (var i = 0; i < localStorage.length; i++){
-	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
-	    // console.log(json);
-	}).catch(err => {
-	    console.log(err);
-	});
+	
+// 	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
+// 	    // console.log(json);
+// 	}).catch(err => {
+// 	    console.log(err);
+// 	});
 
 
 var lnkds = JSON.parse(localStorage.getItem(localStorage.key(i))|| null);
