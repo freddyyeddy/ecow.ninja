@@ -509,7 +509,7 @@ input.labelauty+label>span.labelauty-checked-image {
 
 /* modal Popup stuff */
 
-.modal {
+.modal2 {
 	position: absolute;
 	z-index: 9000;
 	/* 1 */
@@ -520,11 +520,11 @@ input.labelauty+label>span.labelauty-checked-image {
 	height: 100%;
 }
 
-.modal.is-visible {
+.modal2.is-visible {
 	visibility: visible;
 }
 
-.modal-overlay {
+.modal2-overlay {
 	position: fixed;
 	z-index: 10;
 	top: 0;
@@ -537,13 +537,13 @@ input.labelauty+label>span.labelauty-checked-image {
 	transition: visibility 0s linear 0.3s, opacity 0.3s;
 }
 
-.modal.is-visible .modal-overlay {
+.modal2.is-visible .modal2-overlay {
 	opacity: 1;
 	visibility: visible;
 	transition-delay: 0s;
 }
 
-.modal-wrapper {
+.modal2-wrapper {
 	position: absolute;
 	z-index: 8999;
 	top: 6em;
@@ -554,26 +554,26 @@ input.labelauty+label>span.labelauty-checked-image {
 	box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
 }
 
-.modal-transition {
+.modal2-transition {
 	transition: all 0.3s 0.12s;
 	transform: translateY(-10%);
 	opacity: 0;
 }
 
-.modal.is-visible .modal-transition {
+.modal2.is-visible .modal2-transition {
 	transform: translateY(0);
 	opacity: 1;
 	top: 1em;
 }
 
-.modal-header,
-.modal-content {
+.modal2-header,
+.modal2-content {
 	padding: 1em;
 	text-align: center;
 	color: #695958;
 }
 
-.modal-header {
+.modal2-header {
 	text-align: center;
 	color: #695958;
 	position: relative;
@@ -582,7 +582,7 @@ input.labelauty+label>span.labelauty-checked-image {
 	border-bottom: 1px solid #e8e8e8;
 }
 
-.modal-close {
+.modal2-close {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -592,18 +592,18 @@ input.labelauty+label>span.labelauty-checked-image {
 	border: 0;
 }
 
-.modal-close:hover {
+.modal2-close:hover {
 	color: #777;
 }
 
-.modal-heading {
+.modal2-heading {
 	font-size: 1.125em;
 	margin: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.modal-content>*:first-child {
+.modal2-content>*:first-child {
 	margin-top: 0;
 }
 
