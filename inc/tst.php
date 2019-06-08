@@ -44,7 +44,7 @@ $mail->WordWrap = 50;                                 // Set word wrap to 50 cha
 $mail->isHTML(true);
 
 $mail->Subject = 'Magic Link';
-$mail->Body    = "The New Magic Link is <a href='//localhost/Ecow.Ninja/inc/tst2.php?mg=$magic&f=$fac'>Magggic....</a>";
+$mail->Body    = "The New Magic Link is <a href='//localhost/ecow_ninja/inc/tst2.php?mg=$magic&f=$fac'>Magggic....</a>";
 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {
