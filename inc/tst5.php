@@ -87,49 +87,30 @@ if($_GET['s'] == $_SESSION['ses']){
   	 // var_dump($error);
   	 // Handle error - inform administrator, log to file, show error page, etc.
   }else{
-    $dbdata = array();
+
+    $paradigm = <<<Paradigmpermits
+    <table id="prardigm">
+    <tr>
+    <th>Link</th>
+    <th>Short Description</th>
+    <th>Vote and Scores</th>
+    </tr>
+
+Paradigmpermits;
 
     while ( $row = $rows102->fetch_assoc())  {
-  	$dbdata[]=$row;
+  	$paradigm .= "<tr><td>$row[link]</td><td>$row[description]</td><td>$row[score]<a>$row[id]</a></td>";
+    // var_dump($row);
     }
-
-  //Print array in JSON format
-   echo json_encode($dbdata);
-   $favoritesis = json_encode($dbdata);
+  $dbdata;
 
 
   }
 
 
-$templatepermits = <<<Templatepermits
-
-<div id="users">
-<input class="search" placeholder="Search" />
-<button class="sort" data-sort="name">
-  Sort by name
-</button>
-
-<ul class="list"></ul>
-
-</div>
-
-Templatepermits;
 
 echo <<<Back_End_Interface
 <script id="back">
-var options = {
-  valueNames: [ 'link', 'description' ],
-  item: '<li><h3 class="link"></h3><p class="description"></p></li>'
-};
-
-var values = $favoritesis;
-
-var userList = new List('users', options, values);
-
-// userList.add({
-//   name: "Gustaf Lindqvist",
-//   born: 1983
-// });
 $(document).on('click','.flag',function(e){//do something
     $.ajax({
  url:'validated.php',
@@ -539,18 +520,12 @@ $('.modal2').toggleClass('is-visible');
 </script>
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Permit Paradigms</a></li>
     <li><a href="#tabs-2">Haz/Con Database</a></li>
+    <li><a href="#tabs-1">Permit Paradigms</a></li>
+
 
   </ul>
-  <div id="tabs-1">
-  <span>Form for addding to the shared permit database
-  <form id="addexample">
-  <input name="links" type="text"><input name="description" type="text">
-  <button name="add">Add Permit Example</button>
-  </form></span>
-  $templatepermits
-  </div>
+
   <div id="tabs-2">
   <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="768" height="800" viewBox="0 0 768 800"><defs><g id="icon-close"><path class="path1" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path></g></defs></svg>
 
@@ -713,6 +688,16 @@ Back_End_Interface;
 
 echo <<<Back_End_Interface
   </div>
+  <div id="tabs-1">
+  <span><h2>Paradigm - an outstandingly clear or typical example or archetype of something...</h2>
+  <br>
+  This is how we will find good. Any AA can Add to the list and vote on any other paradigms. The top 5 paradigms are visable on ecow.ninja for all who use it to see what good.  Change is inevitable and due to the nature of that change the paradigm list will reset each month. and the Same Paradigm sugjstions cannot be re-used again.
+
+$paradigm
+
+
+  </div>
+
 </div>
 Back_End_Interface;
 session_destroy();
