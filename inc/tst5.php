@@ -60,7 +60,7 @@ $mail->WordWrap = 50;                                 // Set word wrap to 50 cha
 $mail->isHTML(true);
 
 $mail->Subject = 'Magic Link';
-$mail->Body    = "This link is only good for one user the link is <a href='//localhost/Ecow.Ninja/inc/tst2.php?mg=$magic&f=$fac'>Magggic....</a>";
+$mail->Body    = "This link is only good for one user the link is <a href='//localhost/ecow_ninja/inc/tst2.php?mg=$magic&f=$fac'>Magggic....</a>";
 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {
@@ -79,7 +79,7 @@ if(isset($_GET['s']) and isset($_SESSION['ses']) and isset($_GET['f'])){
 
 if($_GET['s'] == $_SESSION['ses']){
 
-  $query102 =  "SELECT * FROM `favorites` WHERE  `aa` = '$fac' ";
+  $query102 =  "SELECT * FROM `favorites`";
   // echo $query;
   $rows102 = db_query($query102);
   if($rows102 === false) {
@@ -135,8 +135,8 @@ $(document).on('click','.flag',function(e){//do something
  url:'validated.php',
  type:'post',
  data: {"id": e.target.id, "flag":e.target.value, "facility" : "$fac"},
- success:function(data){
-   // console.log(e);
+ success:function(data, responseText){
+   // console.log(data);
    $.notify(e.target.value + " at $fac");
 Back_End_Interface;
 echo <<<'Back_End_Interface'
@@ -145,8 +145,10 @@ echo <<<'Back_End_Interface'
      e.target.innerHTML = "Validate";
      e.target.value = "Validated";
    }else{
+     if(e.target.value == "Validated"){
      e.target.innerHTML = "Invalidate";
      e.target.value = "Invalidated";
+   }
    }
  },
 error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
@@ -370,14 +372,14 @@ if (data123) {
               if (data123.includes("$fac")) {
 Back_End_Interface;
 echo <<<'Back_End_Interface'
-                    return '<button id="' + data + '" class="flag" value="Invalidated">Invalidate</button>';
+                    return '<button id="' + data + '" class="flag" value="Invalidated">Invalidate</button><br><button id="' + data + '" class="flag" value="Review">reevaluate</button>';
                     }
                   else {
-                    return '<button id="' + data + '" class="flag" value="Validated">Validate</button>';
+                    return '<button id="' + data + '" class="flag" value="Validated">Validate</button><br>  <button id="' + data + '" class="flag" value="Review">reevaluate</button>';
                     }
 
         }else {
-          return '<button id="' + data + '" class="flag" value="Validated">Validate</button>';
+            return '<button id="' + data + '" class="flag" value="Validated">Validate</button> <br>  <button id="' + data + '" class="flag" value="Review">Reevaluate</button>';
           }
       }
 
@@ -507,6 +509,10 @@ echo <<<Back_End_Interface
 			$('.modal').toggleClass('is-visible');
 
 		});
+    $(document).on('click',".modal-close2", function(){
+$('.modal2').toggleClass('is-visible');
+
+});
 		document.getElementById("table").deleteTFoot();
 
 
@@ -533,7 +539,7 @@ echo <<<Back_End_Interface
 </script>
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Prefered Permits</a></li>
+    <li><a href="#tabs-1">Permit Paradigms</a></li>
     <li><a href="#tabs-2">Haz/Con Database</a></li>
 
   </ul>
@@ -617,17 +623,18 @@ $reviewtbl .= "</tbody></table></form>";
 // 	         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
 
 echo <<<Modalpoo
-  <div id="rev" class="modal">
-  <div class="modal-overlay modal-toggle"></div>
-  <div class="modal-wrapper modal-transition">
-    <div class="modal-header">
-      <h2 class="modal-heading">Peer Review Required</h2>
+  <div id="rev" class="modal2">
+  <div class="modal2-overlay modal2-toggle"></div>
+  <div class="modal2-wrapper modal2-transition">
+    <div class="modal2-header">
+      <h2 class="modal2-heading">Peer Review <button class="modal-close2 modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button></h2>
+
     </div>
 
-    <div class="modal-body">
-      <div class="modal-content">
+    <div class="modal2-body">
+      <div class="modal2-content">
         <p>
-        To Use This Tool You Are Required To Participare in The Peer Review Prossess. Please Select good or poor for each hazard then submit.
+        To add a hazard and controll pair to the system it has to be peer reviewed after submital. This means at least two other people have to think that the hazard and controll are good
 
         </p>
         $reviewtbl

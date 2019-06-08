@@ -507,7 +507,7 @@ input.labelauty+label>span.labelauty-checked-image {
 	background-color: 99D5C9;
 }
 
-/* Modal Popup stuff */
+/* modal Popup stuff */
 
 .modal {
 	position: absolute;
@@ -610,6 +610,109 @@ input.labelauty+label>span.labelauty-checked-image {
 .modal-content>*:last-child {
 	margin-bottom: 0;
 }
+
+.modal2 {
+	position: absolute;
+	z-index: 9000;
+	/* 1 */
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+.modal2.is-visible {
+	visibility: visible;
+}
+
+.modal2-overlay {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: hsla(0, 0%, 0%, 0.5);
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s linear 0.3s, opacity 0.3s;
+}
+
+.modal2.is-visible .modal2-overlay {
+	opacity: 1;
+	visibility: visible;
+	transition-delay: 0s;
+}
+
+.modal2-wrapper {
+	position: absolute;
+	z-index: 8999;
+	top: 6em;
+	left: 50%;
+	width: 95%;
+	margin-left: -47.5%;
+	background-color: #fff;
+	box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+}
+
+.modal2-transition {
+	transition: all 0.3s 0.12s;
+	transform: translateY(-10%);
+	opacity: 0;
+}
+
+.modal2.is-visible .modal2-transition {
+	transform: translateY(0);
+	opacity: 1;
+	top: 1em;
+}
+
+.modal2-header,
+.modal2-content {
+	padding: 1em;
+	text-align: center;
+	color: #695958;
+}
+
+.modal2-header {
+	text-align: center;
+	color: #695958;
+	position: relative;
+	background-color: #fff;
+	box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.06);
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.modal-close2 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1em;
+	color: #aaa;
+	background: none;
+	border: 0;
+}
+
+.modal-close2:hover {
+	color: #777;
+}
+
+.modal2-heading {
+	font-size: 1.125em;
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.modal2-content>*:first-child {
+	margin-top: 0;
+}
+
+.modal2-content>*:last-child {
+	margin-bottom: 0;
+}
+
 
 .icon {
 	display: inline-block;

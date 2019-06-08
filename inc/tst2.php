@@ -103,7 +103,7 @@ EOT;
 if(isset($_GET['mg']) and isset($_GET['f'])) {$magic = $_GET['mg']; $fac = $_GET['f'];}else{$magic = "0"; $fac = "potato";}
 
 
-$query =  "SELECT * FROM `aas` WHERE  `Facility` = '$fac' and  TIMESTAMPDIFF(MINUTE, `Timestamp`, NOW()) <= 5";
+$query =  "SELECT * FROM `aas` WHERE  `Facility` = '$fac' and  TIMESTAMPDIFF(DAY, `Timestamp`, NOW()) <= 14";
 // echo $query;
 $rows = db_select($query);
 if($rows === false) {
