@@ -1,0 +1,48 @@
+.arrow{
+max-width: 10em;
+fill: none;
+transition: 1s;
+}
+.arrow .mnarr{
+  stroke-dasharray: 227;
+  stroke-dashoffset: -113;
+  pointer-events: none;
+transition: 1s;
+}
+.altarr{
+  pointer-events: none;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 105;
+    transition: 1s;
+}
+
+.upvt:hover ~ .altarr{
+  transition: 1s;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 105;
+
+  /* fill: #bcdaf3; */
+}
+
+.dwnvt:hover ~ .altarr{
+  transition: 1s;
+  stroke-dasharray: 230;
+  stroke-dashoffset: 350;
+  /* fill: #bcdaf3; */
+}
+
+
+
+.upvt:hover ~ .mnarr{
+  transition: 1s;
+  stroke-dasharray: 223;
+  stroke-dashoffset: -339;
+  /* fill: #bcdaf3; */
+}
+
+.dwnvt:hover ~ .mnarr{
+  transition: 1s;
+  /* stroke-dasharray: 220;
+  stroke-dashoffset: 105; */
+  /* fill: #bcdaf3; */
+}

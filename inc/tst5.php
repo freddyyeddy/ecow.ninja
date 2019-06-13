@@ -89,20 +89,45 @@ if($_GET['s'] == $_SESSION['ses']){
   }else{
 
     $paradigm = <<<Paradigmpermits
-    <table id="prardigm">
+    <table id="prardigm" class="ptable" cellspacing="0">
+    <thead>
     <tr>
     <th>Link</th>
     <th>Short Description</th>
     <th>Vote and Scores</th>
     </tr>
-
+    </thead>
+<tbody>
 Paradigmpermits;
 
     while ( $row = $rows102->fetch_assoc())  {
-  	$paradigm .= "<tr><td>$row[link]</td><td>$row[description]</td><td>$row[score]<a>$row[id]</a></td>";
-    // var_dump($row);
+
+  	$paradigm .= <<<Table
+  <tr>
+    <td class="plink"><a href="$row[link]">Permit Link</a></td>
+    <td>$row[description]</td>
+    <td class="pscore">$row[score]<a>$row[id]</a>
+    <span >
+      <svg class="arrow" viewBox="0 0 152 319">
+          <path class="bgarr"   pointer-events="  pointer-events="none" "stroke-linecap="round" stroke="#bcdaf3" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
+        <path fill="#044B94" fill-opacity="0" class="upvt" stroke="none" d="M0 0h152v158H0z"/>
+        <path fill="#044B94" fill-opacity="0" class="dwnvt" stroke="none" d="M0 158h152v160H0z"/>
+      <path class="altarr" stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
+      <path class="mnarr" stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
+    </svg>
+    </span>
+    </td>
+  </tr>
+Table;
+// var_dump($row);
     }
-  $dbdata;
+  $paradigm .= <<<Table
+
+</tbody>
+
+
+Table;
+
 
 
   }
@@ -140,12 +165,29 @@ error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
 });
 return false;
 
+});
 
+$(document).on('click','.vote',function(e){
+  // console.log(this.name);
+    $.ajax({
+ url:'vote.php',
+ type:'post',
+ data: {"id": this.id, "vote":this.name},
+ success:function(data, responseText){
 
-
-
+   $.notify("We Just Counted Your Vote");
+ },
+error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
+ alert('Sorry We Had Some Trouble Try Again Soon');
+ console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
+},
 
 });
+return false;
+
+});
+
+
 
 $( function() {
   $( "#tabs" ).tabs();
@@ -521,7 +563,7 @@ $('.modal2').toggleClass('is-visible');
 <div id="tabs">
   <ul>
     <li><a href="#tabs-2">Haz/Con Database</a></li>
-    <li><a href="#tabs-1">Permit Paradigms</a></li>
+    <li><a href="#tabs-1">Permit Paradigm</a></li>
 
 
   </ul>
@@ -689,7 +731,9 @@ Back_End_Interface;
 echo <<<Back_End_Interface
   </div>
   <div id="tabs-1">
-  <span><h2>Paradigm - an outstandingly clear or typical example or archetype of something...</h2>
+  <span><h2><i>Paradigm</i><h4><div style="padding-left: 3em; margin-top: -1.5em;" >an outstandingly clear or typical example or archetype.</div></h4></h2>
+  <br>
+
   <br>
   This is how we will find good. Any AA can Add to the list and vote on any other paradigms. The top 5 paradigms are visable on ecow.ninja for all who use it to see what good.  Change is inevitable and due to the nature of that change the paradigm list will reset each month. and the Same Paradigm sugjstions cannot be re-used again.
 
