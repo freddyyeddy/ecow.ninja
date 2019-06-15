@@ -103,15 +103,15 @@ Paradigmpermits;
     while ( $row = $rows102->fetch_assoc())  {
 
   	$paradigm .= <<<Table
-  <tr>
+  <tr id="$row[id]">
     <td class="plink"><a href="$row[link]">Permit Link</a></td>
     <td>$row[description]</td>
-    <td class="pscore">$row[score]<a>$row[id]</a>
+    <td class="pscore">
     <span >
       <svg class="arrow" viewBox="0 0 152 319">
           <path class="bgarr"   pointer-events="  pointer-events="none" "stroke-linecap="round" stroke="#bcdaf3" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
-        <path fill="#044B94" fill-opacity="0" class="upvt" stroke="none" d="M0 0h152v158H0z"/>
-        <path fill="#044B94" fill-opacity="0" class="dwnvt" stroke="none" d="M0 158h152v160H0z"/>
+      <a class="vote" id="$row[id]" xlink:href="*" value="1"> <path fill="#044B94" fill-opacity="0" class="upvt" stroke="none" d="M0 0h152v158H0z"/> </a>
+      <a class="vote" id="$row[id]" xlink:href="*" value="-1"><path fill="#044B94" fill-opacity="0" class="dwnvt" stroke="none" d="M0 158h152v160H0z"/> <a>
       <path class="altarr" stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
       <path class="mnarr" stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
     </svg>
@@ -168,11 +168,11 @@ return false;
 });
 
 $(document).on('click','.vote',function(e){
-  // console.log(this.name);
+  // console.log($(this).attr('value'));
     $.ajax({
  url:'vote.php',
  type:'post',
- data: {"id": this.id, "vote":this.name},
+ data: {"id": this.id, "vote":$(this).attr('value')},
  success:function(data, responseText){
 
    $.notify("We Just Counted Your Vote");
@@ -395,14 +395,14 @@ if (data123) {
               if (data123.includes("$fac")) {
 Back_End_Interface;
 echo <<<'Back_End_Interface'
-                    return '<button id="' + data + '" class="flag" value="Invalidated">Invalidate</button><br><button id="' + data + '" class="flag" value="Review">reevaluate</button>';
+                    return '<button id="' + data + '" class="flag" value="Invalidated">Invalidate</button><br><button id="' + data + '" class="flag" value="Review">Reassessment</button>';
                     }
                   else {
-                    return '<button id="' + data + '" class="flag" value="Validated">Validate</button><br>  <button id="' + data + '" class="flag" value="Review">reevaluate</button>';
+                    return '<button id="' + data + '" class="flag" value="Validated">Validate</button><br>  <button id="' + data + '" class="flag" value="Review">Reassessment</button>';
                     }
 
         }else {
-            return '<button id="' + data + '" class="flag" value="Validated">Validate</button> <br>  <button id="' + data + '" class="flag" value="Review">Reevaluate</button>';
+            return '<button id="' + data + '" class="flag" value="Validated">Validate</button> <br>  <button id="' + data + '" class="flag" value="Review">Reassessment</button>';
           }
       }
 

@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD']=== "POST") {
     db_query($query);
   // Returning Returing Values if there is an error or sucssess onto page
     $response_array['status'] = 'success';
+
     echo json_encode($response_array);
     echo mysqli_error(db_connect());
 
