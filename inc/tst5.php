@@ -109,11 +109,11 @@ Paradigmpermits;
     <td class="pscore">
     <span >
       <svg class="arrow" viewBox="0 0 152 319">
-          <path class="bgarr"   pointer-events="  pointer-events="none" "stroke-linecap="round" stroke="#bcdaf3" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
-      <a class="vote" id="$row[id]" xlink:href="*" value="1"> <path fill="#044B94" fill-opacity="0" class="upvt" stroke="none" d="M0 0h152v158H0z"/> </a>
-      <a class="vote" id="$row[id]" xlink:href="*" value="-1"><path fill="#044B94" fill-opacity="0" class="dwnvt" stroke="none" d="M0 158h152v160H0z"/> <a>
-      <path class="altarr" stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
-      <path class="mnarr" stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
+          <path class="bgarr"   pointer-events="none" "stroke-linecap="round" stroke="#bcdaf3" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
+      <a class="vote upvt" id="$row[id]" xlink:href="foo" value="1"> <path fill="#044B94" fill-opacity="0" class="upvt" stroke="none" d="M0 0h152v158H0z"/> </a>
+      <a class="vote dwnvt" id="$row[id]" xlink:href="foo" value="-1"><path fill="#044B94" fill-opacity="0" class="dwnvt" stroke="none" d="M0 158h152v160H0z"/> </a>
+      <path class="altarr"  stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
+      <path class="mnarr"   stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
     </svg>
     </span>
     </td>
