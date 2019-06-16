@@ -66,6 +66,9 @@ text-align: center;
     background-position: bottom;
     transition: 1000ms ease;
 		mix-blend-mode: multiply;
+		border: solid;
+		border-color: #FFF;
+		border-width: 1px 0;
 	}
 
 	.ptable .plink{

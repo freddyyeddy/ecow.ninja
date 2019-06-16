@@ -174,8 +174,11 @@ $(document).on('click','.vote',function(e){
  type:'post',
  data: {"id": this.id, "vote":$(this).attr('value')},
  success:function(data, responseText){
-
+  elm = JSON.parse(data);
+   console.log(elm.percentage)
    $.notify("We Just Counted Your Vote");
+
+   $('#' + elm.id ).css("background-size", "100%" + elm.percentage + "%");
  },
 error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
  alert('Sorry We Had Some Trouble Try Again Soon');
