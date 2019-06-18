@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD']=== "POST") {
     $response_array['status'] = 'success';
     $response_array['id'] = $id;
     $response_array['percentage'] = $percentage;
-    $response_array['score'] = $score;
+    $response_array['score'] = $score[0]["score"];
     echo json_encode($response_array);
     echo mysqli_error(db_connect());
 

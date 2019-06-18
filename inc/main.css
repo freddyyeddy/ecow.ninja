@@ -75,7 +75,8 @@ text-align: center;
     width: 10em;
 	}
 	.ptable .pscore{
-
+		text-align: center;
+		    position: relative;
 	}
 /* End Paradign Table Styles */
 /* Voting Arrows and Animation */
@@ -128,9 +129,17 @@ transition: 1s;
   /* fill: #bcdaf3; */
 }
 
+.scorein{
+	display: none;
+	 position: absolute;
+	  top: 50%;
+		 left: 50%;
+		 transform: translate(-50%, -50%);
+}
+
 .bounce-out-bck {
-	-webkit-animation: bounce-out-bck 1.5s both;
-	        animation: bounce-out-bck 1.5s both;
+	-webkit-animation: bounce-out-bck .5s both;
+	        animation: bounce-out-bck .5s both;
 }
 
 -webkit-keyframes bounce-out-bck {

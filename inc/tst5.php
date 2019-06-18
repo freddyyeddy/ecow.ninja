@@ -107,6 +107,7 @@ Paradigmpermits;
     <td class="plink"><a href="$row[link]">Permit Link</a></td>
     <td>$row[description]</td>
     <td class="pscore">
+
     <span >
       <svg id="svg_$row[id]" class="arrow" viewBox="0 0 152 319">
           <path class="bgarr"   pointer-events="none" "stroke-linecap="round" stroke="#bcdaf3" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
@@ -116,6 +117,8 @@ Paradigmpermits;
       <path class="mnarr"   stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
     </svg>
     </span>
+<div  class="scorein"id="score_$row[id]">
+</div>
     </td>
   </tr>
 Table;
@@ -175,11 +178,14 @@ $(document).on('click','.vote',function(e){
  data: {"id": this.id, "vote":$(this).attr('value')},
  success:function(data, responseText){
   elm = JSON.parse(data);
-   console.log(elm.percentage)
+   // console.log(elm.score);
    $.notify("We Just Counted Your Vote");
+   $('#score_' + elm.id ).text(elm.score)
 
    $('#' + elm.id ).css("background-size", "100%" + elm.percentage + "%");
    $('#svg_' + elm.id).addClass("bounce-out-bck");
+   $('#score_' + elm.id ).fadeIn( "slow" );
+
  },
 error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
  alert('Sorry We Had Some Trouble Try Again Soon');
