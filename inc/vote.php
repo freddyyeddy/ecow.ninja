@@ -9,8 +9,9 @@ if ($_SERVER['REQUEST_METHOD']=== "POST") {
   // Setting Update Values
     $id = $_POST['id'];
     $vote = intval($_POST['vote']) + $vote;
+    $aa = $_POST['AA'];
     // echo "vote value is $vote";
-    $query = "UPDATE `favorites` SET `score` = `score` + $vote WHERE `id`=$id";
+    $query = "UPDATE `favorites` SET `score` = `score` + $vote , `aa` = CONCAT(`aa`, '_$aa') WHERE `id`=$id";
   // Update Values Set
   // Updating the Results
 

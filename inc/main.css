@@ -69,6 +69,7 @@ text-align: center;
 		border: solid;
 		border-color: #FFF;
 		border-width: 1px 0;
+		    height: 5em;
 	}
 
 	.ptable .plink{

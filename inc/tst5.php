@@ -80,6 +80,9 @@ if(isset($_GET['s']) and isset($_SESSION['ses']) and isset($_GET['f'])){
 if($_GET['s'] == $_SESSION['ses']){
 
   $query102 =  "SELECT * FROM `favorites`";
+  $query105 = "SELECT MAX(`score`) as max FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`)";
+  $max = db_select($query105);
+  $max = $max[0]["max"];
   // echo $query;
   $rows102 = db_query($query102);
   if($rows102 === false) {
@@ -101,7 +104,24 @@ if($_GET['s'] == $_SESSION['ses']){
 Paradigmpermits;
 
     while ( $row = $rows102->fetch_assoc())  {
+if (strpos($row['aa'], $fac) !== false) {
+  $manyunits = $row['score']/$max;
+  $maxpercentage = 47;
+  $percentage = ($maxpercentage * $manyunits)+53;
 
+  $paradigm .= <<<Table
+<tr style="background-size: 100% $percentage%" id="$row[id]">
+  <td class="plink"><a href="$row[link]">Permit Link</a></td>
+  <td>$row[description]</td>
+  <td class="pscore">
+<div id="score_$row[id]">
+$row[score]
+</div>
+  </td>
+</tr>
+Table;
+}
+else{
   	$paradigm .= <<<Table
   <tr id="$row[id]">
     <td class="plink"><a href="$row[link]">Permit Link</a></td>
@@ -122,6 +142,7 @@ Paradigmpermits;
     </td>
   </tr>
 Table;
+}
 // var_dump($row);
     }
   $paradigm .= <<<Table
@@ -143,7 +164,7 @@ $(document).on('click','.flag',function(e){//do something
     $.ajax({
  url:'validated.php',
  type:'post',
- data: {"id": e.target.id, "flag":e.target.value, "facility" : "$fac"},
+ data: {"id": e.target.id, "flag":e.target.value},
  success:function(data, responseText){
    // console.log(data);
    $.notify(e.target.value + " at $fac");
@@ -175,7 +196,11 @@ $(document).on('click','.vote',function(e){
     $.ajax({
  url:'vote.php',
  type:'post',
- data: {"id": this.id, "vote":$(this).attr('value')},
+Back_End_Interface;
+echo <<<Back_End_Interface
+ data: {"id": this.id, "vote":$(this).attr('value'), "AA" : '$fac'},
+Back_End_Interface;
+echo <<<'Back_End_Interface'
  success:function(data, responseText){
   elm = JSON.parse(data);
    // console.log(elm.score);
