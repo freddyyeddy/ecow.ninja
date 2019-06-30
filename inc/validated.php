@@ -4,8 +4,10 @@ header('Content-type: application/json');
 require('var.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$id = $_POST['id'];
-	$fac = $_POST['facility'];
+	$fac = $_POST['AA'];
 	$flag = $_POST['flag'];
+	$reason = "";
+	if(isset($_POST['reason'])) $reason = $_POST['reason'];
 
 	switch ($flag) {
     case "Validated":
@@ -19,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$response_array['status'] = 'success';
 				break;
     case "Review":
-        $query =  "UPDATE `hazmit` SET `review` = 0 , `bad` = 0 , `facilitys` = Replace(`facilitys`, '$fac,', '') WHERE `id` = $id";
+		$reason = "$fac Said: $reason";
+        $query =  "UPDATE `hazmit` SET `review` = 0 , `reviewtxt` = '$reason', `bad` = 0 , `facilitys` = Replace(`facilitys`, '$fac,', '') WHERE `id` = $id";
 				db_query($query);
 				$response_array['status'] = 'success';
 				break;

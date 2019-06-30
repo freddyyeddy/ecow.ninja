@@ -322,7 +322,7 @@ echo <<<EOT
 					function submitF(e,f) {
 					e.preventDefault();
 						var form_data = $('#peerreview').serializeArray();
-						if(form_data.length < $("#rev tbody tr").length){
+						if(form_data.length < $("#rev tbody tr:not(.rvw)").length){
 							alert("Please Take The Time To Review All Mitigations")
 							return false;
 						}

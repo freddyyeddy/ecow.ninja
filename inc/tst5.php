@@ -161,26 +161,38 @@ Table;
 echo <<<Back_End_Interface
 <script id="back">
 $(document).on('click','.flag',function(e){//do something
+
+var rsntxt;
+  if (e.target.value == "Review"){
+  var reason = prompt("Please A Enter Reason");
+   if (reason != null) {
+    rsntxt =  reason;
+   }
+ }
     $.ajax({
  url:'validated.php',
  type:'post',
- data: {"id": e.target.id, "flag":e.target.value},
+ data: {"id": e.target.id, "flag":e.target.value, "AA" : '$fac', "reason" : rsntxt},
  success:function(data, responseText){
-   // console.log(data);
-   $.notify(e.target.value + " at $fac");
-Back_End_Interface;
-echo <<<'Back_End_Interface'
+//  console.log(data);
+
 
    if(e.target.value == "Invalidated"){
      e.target.innerHTML = "Validate";
      e.target.value = "Validated";
+     $.notify("Removed $fac's Tag From Haz/Mit Comination");
    }else{
      if(e.target.value == "Validated"){
      e.target.innerHTML = "Invalidate";
      e.target.value = "Invalidated";
+     $.notify("Added $fac's Tag To Haz/Mit Comination");
+   }else{
+     $.notify("Submitted For Peer Review");
    }
    }
  },
+Back_End_Interface;
+ echo <<<'Back_End_Interface'
 error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
  alert('Sorry Something Went Wrong');
  console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
@@ -663,8 +675,12 @@ if(!isset($nomodal)){
 $reviewtbl = "<form  id='peerreview'><table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'>";
 
 foreach ($rows2 as $row){
-$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
-
+	if($row['reviewtxt'] == null){
+	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
+}else{
+	$reviewtbl .= "<tr><td style='border-bottom: none;'>" . $row['source'] . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['hazard']) . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left; border-bottom: none;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
+	$reviewtbl .= "<tr class='rvw'><td style='border-top-style: dashed; border-bottom-style: double;' Colspan='4'>$row[reviewtxt]</td></tr>";
+}
 }
 
 $reviewtbl .= "</tbody></table></form>";

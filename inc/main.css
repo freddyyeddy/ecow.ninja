@@ -15,6 +15,9 @@ element {
 	box-sizing: border-box;
 }
 /* Styling the Paradigm table */
+
+
+
 .ptable{
 		border-spacing: 0;
     color: #666;
@@ -284,23 +287,53 @@ position: absolute;
     transition: width 0.3s;
 		z-index: 10000000;
 }
+.sidebarpara {
+    overflow:hidden;
+    background: #8DE8D5;
+		top: inherit;
+right: 2px;
+border-radius: 1em;
+box-shadow: 0 0 20px 0px #0000002e inset, 2px 2px 9px 1px #00000066;
+position: absolute;
+    -webkit-transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    -ms-transition: width 0.3s;
+    -o-transition: width 0.3s;
+    transition: width 0.3s;
+		z-index: 10000000;
+}
 #side{
 	position: relative;
 }
-.show{
+.showex{
 	margin: .2em .2em;
-	background-color: #615d6c;
-	border: 2px;
-	color: white;
-	box-shadow: black;
-	box-shadow: 1px 1px 5px 1px #2b2b2b;
-	border-radius: .5em;
-	padding: 4px 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-
+width: 10vw;
+background-color: #615d6c;
+border: 2px;
+color: white;
+box-shadow: black;
+/* box-shadow: 1px 1px 5px 1px #2b2b2b; */
+border-radius: .5em;
+padding: .6em .3em;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: .75em;
+}
+.showpar{
+	margin: .2em .2em;
+width: 10vw;
+background-color: #615d6c;
+border: 2px;
+color: white;
+box-shadow: black;
+/* box-shadow: 1px 1px 5px 1px #2b2b2b; */
+border-radius: .5em;
+padding: .6em .3em;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: .75em;
 }
 
 
@@ -311,7 +344,7 @@ position: absolute;
 	    padding-right: 1em;
 
 }
-.sidebar.open {
+[class^=sidebar].open {
 	width:38vw;
     /* min-width: max-content; */
 		display: block;

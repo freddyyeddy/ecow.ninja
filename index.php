@@ -32,8 +32,9 @@ require("inc/var.php");
         }
     };
 })(jQuery);
-function sidebar(){
-$(".sidebar").toggleClass("open transition");
+function sidebar(el){
+$(el).next("[class^=sidebar]").toggleClass("open transition");
+console.log(el);
 }
 function remove(id) {
 	// localStorage.removeItem(i);
@@ -156,8 +157,10 @@ if (localStorage.getItem("links") !== null) {
 		function submitF(e) {
 		e.preventDefault();
 			var form_data = $('#peerreview').serializeArray();
-			if(form_data.length < $("#rev tbody tr").length){
+			if(form_data.length < $("#rev tbody tr:not(.rvw)").length){
 				alert("Please Take The Time To Review All Mitigations")
+				// console.log(form_data.length);
+					// console.log($("#rev tbody tr:not(.rvw)").length);
 				return false;
 			}
 
@@ -584,9 +587,15 @@ Poop;
 
 
 	<div class="wrapper">
-	<div class="grid" style="margin-left: 1em;">
-	<div class="col-1-4">
-		<button class="show" onclick="sidebar()">Examples</button>
+	<div>
+		<style>
+		  [id^=yadcf-filter-wrapper--]{ width: 25vw;
+			}
+		</style>
+		<table>
+			<tr>
+	<td >
+		<button class="showex" onclick="sidebar(this)">Examples</button>
 		<nav class="sidebar transition">
 				<span id=Examples>
 					<ul>
@@ -602,11 +611,30 @@ Poop;
 					</ul>
 				</span>
 			</nav>
-		</div>
+		</td>
+	<td  style="width: 25%" id="facflag"></td>
+	<td style="width: 25%" id="Craft"></td>
+	<td style="width: 25%" id="Tags"></td>
+	<td>
+	<button class="showpar" onclick="sidebar(this)">Examples</button>
+	<nav class="sidebarpara transition">
+			<span id="Examples">
+				<ul>
+				<li>
+					<form id="add" onkeypress="return event.keyCode != 13;">
 
-	<div class="col-1-3" id="facflag"></div>
-	<div class="col-1-3" id="Craft"></div>
-	<div class="col-1-3" id="Tags"></div>
+					<input required="" pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="nwlink" name="nwlink" placeholder="Paste eCOW Link">
+					<input required="" type="text" id="nwdesc" placeholder="Description Goes Here">
+					<button type="button" onclick="add(document.getElementById('nwlink').value,document.getElementById('nwdesc').value)">Add</button>
+	<input id="submit-hidden" type="submit" style="display: none">
+					</form>
+				</li>
+				</ul>
+			</span>
+		</nav>
+	</td>
+</tr>
+</table>
 	</div>
 
 	<div class="searchbox sbx-custom">
@@ -652,11 +680,15 @@ Poop;
 // 	$reviewtbl =  var_dump($rows);
 	// 	generating table for peer review
 
-$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
+$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Hazard</th><th>Mitigation</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
 
 foreach ($rows as $row){
+	if($row['reviewtxt'] == null){
 	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
-
+}else{
+	$reviewtbl .= "<tr><td style='border-bottom: none;'>" . $row['source'] . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['hazard']) . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left; border-bottom: none;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
+	$reviewtbl .= "<tr class='rvw'><td style='border-top-style: dashed; border-bottom-style: double;' Colspan='4'>$row[reviewtxt]</td></tr>";
+}
 }
 
 	$reviewtbl .= "</form></tbody></table>";
