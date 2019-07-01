@@ -34,7 +34,7 @@ require("inc/var.php");
 })(jQuery);
 function sidebar(el){
 $(el).next("[class^=sidebar]").toggleClass("open transition");
-console.log(el);
+// console.log(el);
 }
 function remove(id) {
 	// localStorage.removeItem(i);
@@ -594,8 +594,8 @@ Poop;
 		</style>
 		<table>
 			<tr>
-	<td >
-		<button class="showex" onclick="sidebar(this)">Examples</button>
+	<td style="border-left: none;" >
+		<button class="showex" onclick="sidebar(this)">Favorites</button>
 		<nav class="sidebar transition">
 				<span id=Examples>
 					<ul>
@@ -612,26 +612,36 @@ Poop;
 				</span>
 			</nav>
 		</td>
-	<td  style="width: 25%" id="facflag"></td>
-	<td style="width: 25%" id="Craft"></td>
-	<td style="width: 25%" id="Tags"></td>
-	<td>
-	<button class="showpar" onclick="sidebar(this)">Examples</button>
+	<td  style="width: 20%; border-left: none;" id="facflag"></td>
+	<td style="width: 20%; border-left: none;" id="Craft"></td>
+	<td style="width: 20%; border-left: none;" id="Tags"></td>
+	<td style="border-left: none; padding-left: .3em; position: relative;">
+	<button class="showpar" onclick="sidebar(this)">Paradigm</button>
 	<nav class="sidebarpara transition">
-			<span id="Examples">
-				<ul>
-				<li>
-					<form id="add" onkeypress="return event.keyCode != 13;">
+	<ul>
+		<?php
+$query123222 = "SELECT * FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`) ORDER BY `score` DESC  LIMIT 3";
+$resil = db_select($query123222);
+if( count($resil) > 0){
+	foreach ($resil as $row){
 
-					<input required="" pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="nwlink" name="nwlink" placeholder="Paste eCOW Link">
-					<input required="" type="text" id="nwdesc" placeholder="Description Goes Here">
-					<button type="button" onclick="add(document.getElementById('nwlink').value,document.getElementById('nwdesc').value)">Add</button>
-	<input id="submit-hidden" type="submit" style="display: none">
-					</form>
-				</li>
-				</ul>
-			</span>
-		</nav>
+echo <<<Table
+<li><span><a href="$row[link]">Permit #</a>: $row[description]</span></li>
+Table;
+}
+}else{
+	$query123222 = "SELECT * FROM `favorites` ORDER BY `score` DESC  LIMIT 3";
+	$resil = db_select($query123222);
+	foreach ($resil as $row){
+echo <<<Table
+<li><span><a href="$row[link]">Link</a> $row[description]</span></li>
+Table;
+
+}
+}
+		 ?>
+	</ul>
+	</nav>
 	</td>
 </tr>
 </table>
