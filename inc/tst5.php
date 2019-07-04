@@ -79,18 +79,19 @@ if(isset($_GET['s']) and isset($_SESSION['ses']) and isset($_GET['f'])){
 
 if($_GET['s'] == $_SESSION['ses']){
 
-  $query102 =  "SELECT * FROM `favorites`";
+  $query102 =  "SELECT * FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`)";
   $query105 = "SELECT MAX(`score`) as max FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`)";
   $max = db_select($query105);
   $max = $max[0]["max"];
+
   // echo $query;
   $rows102 = db_query($query102);
-  if($rows102 === false) {
+  if(mysqli_num_rows($rows102) == 0) {
   	 $error = db_error();
   	 // var_dump($error);
   	 // Handle error - inform administrator, log to file, show error page, etc.
   }else{
-
+// var_dump($rows102);
     $paradigm = <<<Paradigmpermits
     <table id="prardigm" class="ptable" cellspacing="0">
     <thead>
@@ -145,6 +146,8 @@ Table;
 }
 // var_dump($row);
     }
+
+
   $paradigm .= <<<Table
 
 </tbody>
