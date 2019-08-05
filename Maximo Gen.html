@@ -42,10 +42,17 @@
   }
     function sapopen(){
           var number = document.getElementById("SAP").value;
-          var lnk = "https://flpnwc-qtx1x2fpma.dispatcher.us3.hana.ondemand.com/sites/internalbp#upstreamManageMaintenanceOrder-Display&/OrderHeadSet=" + number.toUpperCase();
+          var lnk = "https://flpnwc-qtx1x2fpma.dispatcher.us3.hana.ondemand.com/sites/internalbp#upstreamManageMaintenanceOrder-Display&/OrderHeadSet=" + number.toUpperCase().trim();
           window.open(lnk , '_blank');     
     }
 
+        function sapfind(){
+          var number = document.getElementById("SAPfind").value;
+          var lnk = " http://bblookup.bpweb.bp.com/v2/AKA/WM/WORKORDER?Q_1154252719=" + number.toUpperCase().trim();
+          window.open(lnk , '_blank');     
+    }
+    
+    
 function arsearch(){
   var number = document.getElementById("ar").value;
   var lnk = arr + number;
@@ -68,7 +75,7 @@ Some Handy Tools:
      <form id="SAPWO" onsubmit="return false">
   Open SAP "Mainenance Order"
   <input id="SAP" type="text" ></input>
-  <!--   <br><button type="button" onclick="parent()" >Child Parent</button> -->
+
   <button type="button" onclick="sapopen()">Open Item</button>
     <button type="submit" onclick="sapopen()" style="display: none;" ></button>
   </form>
@@ -76,7 +83,19 @@ Some Handy Tools:
 <br/>
 <br/>
 <br/>
+       <form id="SAPfind" onsubmit="return false">
+ Look For a SAP maintance order for Maximo WOrk Order Number
+  <input id="SAPfind" type="text" ></input>
+
+  <button type="button" onclick="sapfind()">Find Maint. Order Number</button>
+    <button type="submit" onclick="sapfind()" style="display: none;" ></button>
+  </form>
   
+  sapfind()
+<br/>
+<br/>
+<br/>
+
   <form id="Arsearch" onsubmit="return false">
   Search for an AR
   <input id="ar" type="text" ></input>
