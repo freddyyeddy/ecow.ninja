@@ -37,7 +37,7 @@
 
     function Ancestor(){
     var number = document.getElementById("k").value;
-    var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number.trim() + "')&forcereload=true";
+    var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number.toUpperCase().trim() + "')&forcereload=true";
     window.open(lnk , '_blank');
   }
     function sapopen(){
