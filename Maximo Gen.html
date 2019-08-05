@@ -37,10 +37,14 @@
 
     function Ancestor(){
     var number = document.getElementById("k").value;
-    var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number.toUpperCase() + "')&forcereload=true";
+    var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number.trim() + "')&forcereload=true";
     window.open(lnk , '_blank');
   }
-
+    function sapopen(){
+          var number = document.getElementById("SAP").value;
+          var lnk = maxlnk + "https://flpnwc-qtx1x2fpma.dispatcher.us3.hana.ondemand.com/sites/internalbp#upstreamManageMaintenanceOrder-Display&/OrderHeadSet=" + number.toUpperCase() + "')&forcereload=true";
+          window.open(lnk , '_blank');     
+    }
 
 function arsearch(){
   var number = document.getElementById("ar").value;
@@ -57,8 +61,22 @@ function arsearch(){
 
 <body>
 <h3>
-Some Handy Tools
+Some Handy Tools:
 </h3>
+  
+  <p>
+     <form id="SAPWO" onsubmit="return false">
+  Open SAP "Mainenance Order"
+  <input id="SAP" type="text" ></input>
+  <!--   <br><button type="button" onclick="parent()" >Child Parent</button> -->
+  <button type="button" onclick="sapopen()">Find AR</button>
+    <button type="submit" onclick="sapopen()" style="display: none;" ></button>
+  </form>
+ 
+    
+  </p>
+  
+  
 <p>
   <form id="Arsearch" onsubmit="return false">
   Search for an AR
@@ -74,20 +92,20 @@ Some Handy Tools
 
 
 <form id="parentk" onsubmit="return false">
-  Show all of The Children
+Show All Children of a Maximo WO
 <input id="k" type="text" ></input>
 <!--   <br><button type="button" onclick="parent()" >Child Parent</button> -->
-<button type="button" onclick="Ancestor()" >Find Parent</button>
+<button type="button" onclick="Ancestor()" >Find Children</button>
   <button type="submit" onclick="Ancestor()" style="display: none;" ></button>
 </form>
 </p>
-<p>
+<!-- <p>
 If you run a report and dont email it (just click run with the immidiate box checked) then add "__format=pdf" to the end of the url of the new tab that opened you will see a pdf of the workorder you opened
 (Maximos BIRT report tool doesnt support explorer-11 go figure)
 </p>
-
+-->
 <h2>
-You Can Either Paste Or enter Your WO Numbers Here &darr; (Put Each One On a New Line Like Example)
+&darr; This Allows you to Pull up Multiple Maximo WOrk Ordres at Once  (Put Each One On a New Line Like Example)
 </h2>
   <p>
   <textarea placeholder="TK797041 TK797163 TK737311 TK799822 TK799825"rows="10" cols="10" id="txtFirst" onkeyup="populateSecondTextBox();" /></textarea>
