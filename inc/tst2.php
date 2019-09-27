@@ -200,7 +200,11 @@ $_SESSION['ses'] = $session;
 <script id='removeme2'>
 		// I dont recognize this browser
 		localStorage.setItem("session", "$ses2");
-		alert("Something Seems Fishy Have a New Link...");
+		alert("I Detect Mischief...
+hash_fail;
+echo '\n';
+echo <<<hash_fail
+Either the link has been shared with the unworthy or this is a different computer or browser. Sending you a link with renewed Magic should see whom is worthy");
 
 hash_fail;
 
@@ -212,7 +216,7 @@ hash_fail;
 		if($fac != "potato"){
 // Nothing Found Sending new Magic link
 
-		echo "<script id='removeme'>" . $resetthethings . " alert('link expired a new link has been sent'); localStorage.setItem('session', '$ses2'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
+		echo "<script id='removeme'>" . $resetthethings . " alert('The Magic Hath Expired..." . '\n' . "Sending a Link With Renewed Magic'); localStorage.setItem('session', '$ses2'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
 
 }else{
 	echo "Not a Valid Facility";
