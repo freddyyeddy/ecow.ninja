@@ -617,6 +617,7 @@ echo <<<'Back_End_Interface'
 
 
 });
+
 		//       Highlights clicked row
       $('#table').on('click', 'tbody tr', function(event) {
         var ths = $(this);
@@ -684,6 +685,7 @@ $('.modal2').toggleClass('is-visible');
     $( function() {
       $( "#accordion" ).accordion();
     } );
+
 
 </script>
 <div id="tabs">
@@ -867,10 +869,13 @@ echo <<<Back_End_Interface
   <br>
   This is how we will find good. Any AA can Add to the list and vote on any other paradigms. The top 5 paradigms are visable on ecow.ninja for all who use it to see what good.  Change is inevitable and due to the nature of that change the paradigm list will reset each month. and the Same Paradigm sugjstions cannot be re-used again.
 <div>
-<form>
+<br>
+<form id="submitnwpara">
 <span>
-Ecow Permit Link <input type="url" name="homepage"> <br>
-What Makes This a Paradigm  <input type="text" name="usrname" maxlength="128">
+Permit Link <input required="" pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="paralnk" name="paralnk" placeholder="Paste eCOW Link"> <br>
+What Makes This a Paradigm <input type="text" id="paradescuioopp" name="description" maxlength="128">
+<button type="button" onclick="submitparadigm(document.getElementById('paralnk').value,document.getElementById('paradescuioopp').value)">Submit</button>
+<input id="submit-hidden" type="submit" style="display: none">
 </span>
 </form>
 </div>

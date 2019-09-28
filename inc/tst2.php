@@ -354,6 +354,36 @@ echo <<<EOT
 $(document).on('submit','#peerreview',function(){});
 // $(document).on('submit','#adding',function(){});
   // window.history.pushState("object or string", "Title", "/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split("?")[0]);
+	//Paradigm Submitting Function
+	function submitparadigm(l,d){
+
+		if (!$("#submitnwpara")[0].checkValidity()) {
+		// If the form is invalid, submit it. The form won't actually submit;
+		// this will just cause the browser to display the native HTML5 error messages.
+		$("#submitnwpara").find("#submit-hidden").click();
+	}else{
+
+	$.ajax({
+	url:'addparadgm.php',
+	type:'post',
+	data: {"link": l, "description":d, "AA" : '$fac'},
+	success:function(data, responseText){
+	//  console.log(data);
+	 $.notify("Just Submitted Your Paradigm");
+	document.getElementById("submitnwpara").reset();
+	},
+	error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
+	 alert('Sorry Something Went Wrong');
+	 console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
+	},
+
+	});
+
+	return false;
+
+	}};
+
+
 				</script>
 </head>
 
