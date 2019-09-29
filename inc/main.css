@@ -22,7 +22,7 @@ element {
 		border-spacing: 0;
     color: #666;
     font-size: 12px;
-
+		min-width: 70vw;
 
     margin: 20px;
     border: #ccc 1px solid;

@@ -511,7 +511,7 @@ var separr = value.split(",");
         $this.removeClass('highlighted');
     }, 1000);
 			copyTextToClipboard($this.html());
-   $.notify("Copied The "+ $th);
+   $.notify("Copied The "+ $th , "success");
 
 
 });

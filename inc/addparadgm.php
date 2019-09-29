@@ -1,33 +1,40 @@
 <?php
 include("var.php");
-// if ($_SERVER['REQUEST_METHOD']=== "POST") {
-if (1 === 1) {
+if ($_SERVER['REQUEST_METHOD']=== "POST") {
+// if (1 === 1) {
 
 
-  // Setting Update Values
+  // Setting Paradigm Values
     $link = $_POST['link'];
     $description = $_POST['description'];
     $aa = $_POST['AA'];
-    // echo "vote value is $vote";
 
+    // $link = "Link Test None";
+    // $description = "Test Description";
+    // $aa = "Master";
+
+// Testing If Link Has Been Used
     $querytest = "SELECT  1  FROM `favorites` WHERE `link` = '$link' LIMIT 1";
-  if(db_select($querytest) <= 0){
+  if(mysqli_num_rows(db_query($querytest)) <= 0){
+    // Link Is Original
+      $response_array['status'] = 'success';
+      $response_array['msg'] = "Submitted Your Paradigm Sucsefully";
+     $query = "INSERT INTO `favorites` (`aa`, `link`, `description`, `score`) VALUES ('$aa' , '$link', '$description', 1)";
+     db_query($query);
+     echo json_encode($response_array);
+}else{
+// Link Has Been Used Becho json_encode($response_array);efore
+  $response_array['status'] = 'error';
+  $response_array['msg'] = "Looks Like This One Has Been Used Before Try Another";
+  echo json_encode($response_array);
+}
 
-  }
-    $query = "UPDATE `favorites` SET `score` = `score` + $vote , `aa` = CONCAT(`aa`, '_$aa') WHERE `id`=$id";
+    // $query = "UPDATE `favorites` SET `score` = `score` + $vote , `aa` = CONCAT(`aa`, '_$aa') WHERE `id`=$id";
   // Update Values Set
   // Updating the Results
 
-    db_query($query);
+    // db_query($query);
 
-    $query = "SELECT MAX(`score`) as max FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`)";
-    $max = db_select($query);
-    $query = "SELECT `score` FROM `favorites` WHERE `id` = $id";
-    $score = db_select($query);
-    $max = $max[0]["max"];
-    $manyunits = $score[0]["score"]/$max;
-    $maxpercentage = 47;
-    $percentage = ($maxpercentage * $manyunits)+53;
 
 // echo <<<HTML
 //   Max Score is: $max
@@ -37,18 +44,13 @@ if (1 === 1) {
 // HTML;
 
   // Returning Retu/47ring Values if there is an error or sucssess onto page
-    $response_array['status'] = 'success';
-    $response_array['id'] = $id;
-    $response_array['percentage'] = $percentage;
-    $response_array['score'] = $score[0]["score"];
-    echo json_encode($response_array);
-    echo mysqli_error(db_connect());
 
+    echo mysqli_error(db_connect());
 
 }else{
   $response_array['status'] = 'error';
+  $response_array['msg'] = "Somethings Wrong Try Again Later";
   echo json_encode($response_array);
-  echo mysqli_error(db_connect());
 
 
 }

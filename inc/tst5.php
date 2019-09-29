@@ -258,14 +258,14 @@ var rsntxt;
    if(e.target.value == "Invalidated"){
      e.target.innerHTML = "Validate";
      e.target.value = "Validated";
-     $.notify("Removed $fac's Tag From Haz/Mit Comination");
+     $.notify("Removed $fac's Tag From Haz/Mit Comination" , "success");
    }else{
      if(e.target.value == "Validated"){
      e.target.innerHTML = "Invalidate";
      e.target.value = "Invalidated";
-     $.notify("Added $fac's Tag To Haz/Mit Comination");
+     $.notify("Added $fac's Tag To Haz/Mit Comination" , "success");
    }else{
-     $.notify("Submitted For Peer Review");
+     $.notify("Submitted For Peer Review" , "success");
      e.target.innerHTML = "Flaged";
    }
    }
@@ -295,7 +295,7 @@ echo <<<'Back_End_Interface'
  success:function(data, responseText){
   elm = JSON.parse(data);
    // console.log(elm.score);
-   $.notify("We Just Counted Your Vote");
+   $.notify("We Just Counted Your Vote" , "success");
    $('#score_' + elm.id ).text(elm.score)
 
    $('#' + elm.id ).css("background-size", "100%" + elm.percentage + "%");
@@ -613,7 +613,7 @@ echo <<<'Back_End_Interface'
         $this.removeClass('highlighted');
     }, 1000);
 			copyTextToClipboard($this.html());
-   $.notify("Copied The "+ $th);
+   $.notify("Copied The "+ $th , "success");
 
 
 });
@@ -871,12 +871,23 @@ echo <<<Back_End_Interface
 <div>
 <br>
 <form id="submitnwpara">
-<span>
-Permit Link <input required="" pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="paralnk" name="paralnk" placeholder="Paste eCOW Link"> <br>
-What Makes This a Paradigm <input type="text" id="paradescuioopp" name="description" maxlength="128">
+<table>
+<tr>
+<td>
+<input required pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="paralnk" name="paralnk" placeholder="Paste eCOW Link">
+</td>
+<td border="none">
 <button type="button" onclick="submitparadigm(document.getElementById('paralnk').value,document.getElementById('paradescuioopp').value)">Submit</button>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<textarea required placeholder="Type What Makes This a Paradigm Here" rows="4" cols="50" id="paradescuioopp" name="description" minlength="50" maxlength="280">
+</textArea>
+</td>
 <input id="submit-hidden" type="submit" style="display: none">
-</span>
+</tr>
+</table>
 </form>
 </div>
 $paradigm

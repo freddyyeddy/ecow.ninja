@@ -368,13 +368,21 @@ $(document).on('submit','#peerreview',function(){});
 	type:'post',
 	data: {"link": l, "description":d, "AA" : '$fac'},
 	success:function(data, responseText){
-	//  console.log(data);
-	 $.notify("Just Submitted Your Paradigm");
-	document.getElementById("submitnwpara").reset();
+	elm = JSON.parse(data);
+	if(elm.status === "error") {
+		$.notify(elm.msg , "warn");
+	}else{
+		if(elm.status === "success") {
+		$.notify(elm.msg , "success");
+	 document.getElementById("submitnwpara").reset();
+ }else{
+	 $.notify(elm.msg , "error");
+ }
+}
 	},
-	error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
-	 alert('Sorry Something Went Wrong');
-	 console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
+	error: function(data, responseText) {
+		elm = JSON.parse(data);
+	 $.notify("There Was A Problem Try Again Later", "error");
 	},
 
 	});
@@ -382,8 +390,7 @@ $(document).on('submit','#peerreview',function(){});
 	return false;
 
 	}};
-
-
+	
 				</script>
 </head>
 
