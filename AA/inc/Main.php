@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("var.php");
+include("../../inc/var.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require_once('phpmail/PHPMailer.php');
@@ -172,8 +172,8 @@ if($_GET['s'] == $_SESSION['ses']){
     <thead>
     <tr>
     <th>Link</th>
-    <th>Short Description</th>
-    <th>Vote and Scores</th>
+    <th>What Makes This a Paradigm</th>
+    <th style="width: 10%">Vote and Scores</th>
     </tr>
     </thead>
 <tbody>
@@ -187,10 +187,11 @@ if (strpos($row['aa'], $fac) !== false) {
 
   $paradigm .= <<<Table
 <tr style="background-size: 100% $percentage%" id="$row[id]">
-  <td class="plink"><a href="$row[link]">Permit Link</a></td>
-  <td>$row[description]</td>
+  <td class="plink"><a target="_blank" href="$row[link]">Permit Link</a></td>
+  <td><div class="mixdif">$row[description]</div></td>
   <td class="pscore">
-<div id="score_$row[id]">
+<div class="mixdif" style="font-size: 3em;" id="score_$row[id]">
+
 $row[score]
 </div>
   </td>
@@ -200,8 +201,8 @@ Table;
 else{
   	$paradigm .= <<<Table
   <tr id="$row[id]">
-    <td class="plink"><a href="$row[link]">Permit Link</a></td>
-    <td>$row[description]</td>
+    <td class="plink"><a target="_blank" href="$row[link]">Permit Link</a></td>
+    <td><div class="mixdif">$row[description]</div></td>
     <td class="pscore">
 
     <span >
@@ -213,7 +214,7 @@ else{
       <path class="mnarr"   stroke-linecap="round" stroke="#184d72" stroke-width="19%" d="M74 261L27 158 74 56l51 102z"/>
     </svg>
     </span>
-<div  class="scorein"id="score_$row[id]">
+<div  style="font-size: 3em;" class="scorein mixdif"id="score_$row[id]">
 </div>
     </td>
   </tr>
@@ -242,13 +243,13 @@ $(document).on('click','.flag',function(e){//do something
 
 var rsntxt;
   if (e.target.value == "Review"){
-  var reason = prompt("Please A Enter Reason");
+  var reason = prompt("Please A Enter Reason This Should Be Reviewed");
    if (reason != null) {
     rsntxt =  reason;
    }
  }
     $.ajax({
- url:'validated.php',
+ url:'inc/Validate.php',
  type:'post',
  data: {"id": e.target.id, "flag":e.target.value, "AA" : '$fac', "reason" : rsntxt},
  success:function(data, responseText){
@@ -267,6 +268,7 @@ var rsntxt;
    }else{
      $.notify("Submitted For Peer Review" , "success");
      e.target.innerHTML = "Flaged";
+     e.target.closest('tr').style.display = "none";
    }
    }
  },
@@ -285,7 +287,7 @@ return false;
 $(document).on('click','.vote',function(e){
   // console.log($(this).attr('value'));
     $.ajax({
- url:'vote.php',
+ url:'inc/Vote.php',
  type:'post',
 Back_End_Interface;
 echo <<<Back_End_Interface
@@ -475,7 +477,7 @@ var separr = value.split(",");
 
 
 						 ajax: {
-        url: "get.php",
+        url: "inc/Get.php",
         dataSrc: '',
 							 type: "POST",
     },
@@ -688,7 +690,7 @@ $('.modal2').toggleClass('is-visible');
 
 
 </script>
-<div id="tabs">
+<div id="tabs" style=" padding-bottom: 3em;">
   <ul>
     <li><a href="#tabs-2">Haz/Con Database</a></li>
     <li><a href="#tabs-1">Permit Paradigm</a></li>
@@ -865,24 +867,20 @@ echo <<<Back_End_Interface
   <div id="tabs-1">
   <span><h2><i>Paradigm</i><h4><div style="padding-left: 3em; margin-top: -1.5em;" >an outstandingly clear or typical example or archetype.</div></h4></h2>
   <br>
-
-  <br>
-  This is how we will find good. Any AA can Add to the list and vote on any other paradigms. The top 5 paradigms are visable on ecow.ninja for all who use it to see what good.  Change is inevitable and due to the nature of that change the paradigm list will reset each month. and the Same Paradigm sugjstions cannot be re-used again.
-<div>
 <br>
 <form id="submitnwpara">
-<table>
+<table style="width: 100%;">
 <tr>
 <td>
-<input required pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="paralnk" name="paralnk" placeholder="Paste eCOW Link">
+<input style="Width: 100%;" required pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="paralnk" name="paralnk" placeholder="Paste eCOW Link">
 </td>
-<td border="none">
-<button type="button" onclick="submitparadigm(document.getElementById('paralnk').value,document.getElementById('paradescuioopp').value)">Submit</button>
+<td style="border: none;">
+<button style="width: 100%;" type="button" onclick="submitparadigm(document.getElementById('paralnk').value,document.getElementById('paradescuioopp').value)">Submit</button>
 </td>
 </tr>
 <tr>
 <td colspan="2">
-<textarea required placeholder="Type What Makes This a Paradigm Here" rows="4" cols="50" id="paradescuioopp" name="description" minlength="50" maxlength="280">
+<textarea style="border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; width: 100%; height: 8em;" required placeholder="Type What Makes This a Paradigm Here \n-Submit As Many As You Want\n -Can Not Re-Use Permits\n -Every Paradigms Reset\n -The Top 3 Paradim Are On Ecow.Ninja" id="paradescuioopp" name="description" minlength="50" maxlength="280">
 </textArea>
 </td>
 <input id="submit-hidden" type="submit" style="display: none">

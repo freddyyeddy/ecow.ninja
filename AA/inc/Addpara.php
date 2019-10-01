@@ -1,5 +1,5 @@
 <?php
-include("var.php");
+include("../../inc/var.php");
 if ($_SERVER['REQUEST_METHOD']=== "POST") {
 // if (1 === 1) {
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("var.php");
+include("../inc/var.php");
 echo "<!DOCTYPE html>";
 // Making a unique id for storing into localstorage then going to use an ajax request post to actually check magic link and password
 // if i dont detect a match in database from localstorage id then i will auto invalidate and send a new magic link with the new uid stored
@@ -134,9 +134,9 @@ var magic = "mg=$magichash2&";
 var magic2 = "mg=$magic2&";
 var session = "s=$ses2&";
 var fac = "f=$fac";
-xhttp2.open("GET", "tst.php"+"?"+magic2+fac, true);
+xhttp2.open("GET", "inc/Email.php"+"?"+magic2+fac, true);
 xhttp2.send();
-xhttp.open("GET", "tst3.php"+"?"+magic+session+fac, true);
+xhttp.open("GET", "inc/Reset.php"+"?"+magic+session+fac, true);
 xhttp.send();
 
 reset;
@@ -175,7 +175,7 @@ reset;
 
 
 		var ses = "s=" + localStorage.getItem("session");
-		sessioncheck.open("GET", "tst5.php"+"?" + ses + "&f=$fac&x=$permittemps", true);
+		sessioncheck.open("GET", "inc/Main.php"+"?" + ses + "&f=$fac&x=$permittemps", true);
 		sessioncheck.send();
 	}else{
 		localStorage.setItem("session", "$ses2");
@@ -246,14 +246,14 @@ echo <<<EOT
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-<script src="js/dataplg.js"></script>
-<script src="js/tagify.js"></script>
-<script src="js/select2.js"></script>
+<script src="inc/js/dataplg.js"></script>
+<script src="inc/js/tagify.js"></script>
+<script src="inc/js/select2.js"></script>
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="js/notify.js"></script>
-		<script src="js/radio.js"></script>
-			<link rel="stylesheet" href="main.css">
+<script src="inc/js/notify.js"></script>
+		<script src="inc/js/radio.js"></script>
+			<link rel="stylesheet" href="../inc/main.css">
 			<script> // 	Add Hazards
 			String.prototype.includes = function (str) {
 			  var returnValue = false;
@@ -280,7 +280,7 @@ echo <<<EOT
 
 
 								 $.ajax({
-			        url:'add.php',
+			        url:'inc/Add.php',
 			        type:'post',
 			        data:$('#adding').serialize(),
 			        success:function(data){
@@ -332,7 +332,7 @@ echo <<<EOT
 						}
 
 			    $.ajax({
-			        url:'review.php',
+			        url:'inc/Review.php',
 			        type:'post',
 			        data:$('#peerreview').serialize(),
 			        success:function(data){
@@ -364,7 +364,7 @@ $(document).on('submit','#peerreview',function(){});
 	}else{
 
 	$.ajax({
-	url:'addparadgm.php',
+	url:'inc/Addpara.php',
 	type:'post',
 	data: {"link": l, "description":d, "AA" : '$fac'},
 	success:function(data, responseText){
@@ -390,7 +390,7 @@ $(document).on('submit','#peerreview',function(){});
 	return false;
 
 	}};
-	
+
 				</script>
 </head>
 

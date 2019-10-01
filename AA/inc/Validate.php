@@ -1,7 +1,7 @@
 <?php
 header('Content-type: application/json');
 
-require('var.php');
+require('../../inc/var.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$id = $_POST['id'];
 	$fac = $_POST['AA'];

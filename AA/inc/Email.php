@@ -9,7 +9,7 @@ $fac = $_GET['f'];
 
 switch ($fac) {
     case "Master":
-        $email = "freddyyeddy@gmail.com";
+        $email = "samuel.bordelon@bp.com";
         break;
     case "FS1":
         $email = "freddyyeddy@gmail.com";
