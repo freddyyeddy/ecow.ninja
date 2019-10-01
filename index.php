@@ -626,7 +626,7 @@ if( count($resil) > 0){
 	foreach ($resil as $row){
 
 echo <<<Table
-<li><span><a href="$row[link]">Permit #</a>: $row[description]</span></li>
+<li><span><a href="$row[link]" target="_blank">Permit #</a>: $row[description]</span></li>
 Table;
 }
 }else{

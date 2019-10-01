@@ -1,5 +1,5 @@
 <?php
-include("var.php");
+include("../../inc/var.php");
 $vote = 0;
 
 

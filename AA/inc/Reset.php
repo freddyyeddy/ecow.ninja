@@ -1,5 +1,5 @@
 <?php
-include("var.php");
+include("../../inc/var.php");
 $magic = $_GET['mg'];
 $fac = $_GET['f'];
 $ses = $_GET['s'];

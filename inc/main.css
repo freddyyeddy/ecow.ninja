@@ -14,6 +14,24 @@ element {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+
+
+
+.flag{
+width: 100%;
+background-image: linear-gradient(#B5B5B5B5, #B5B5B5B5);
+background-position: 50% 50%;
+background-repeat: no-repeat;
+background-size: 0% 100%;
+transition: background-size .5s, color .5s;
+margin-top: .5em;
+}
+.flag:hover {
+background-size: 100% 100%;
+}
+
+
 /* Styling the Paradigm table */
 
 
@@ -22,9 +40,9 @@ element {
 		border-spacing: 0;
     color: #666;
     font-size: 12px;
-		min-width: 70vw;
-
-    margin: 20px;
+		width: 93%;
+		margin-left: auto;
+		margin-right: auto;
     border: #ccc 1px solid;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -84,8 +102,11 @@ text-align: center;
 	}
 /* End Paradign Table Styles */
 /* Voting Arrows and Animation */
+.mixdif{
+	mix-blend-mode: difference;
+}
 .arrow{
-max-width: 10em;
+max-width: 3em;
 fill: none;
 transition: 1s;
 }
