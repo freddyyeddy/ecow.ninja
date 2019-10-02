@@ -17,9 +17,11 @@ echo "<!DOCTYPE html>";
 <style>
 .lds-grid {
   display: inline-block;
-  position: relative;
-	margin-left: 50%;
-transform: translateX(-50%);
+	margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 26.5em;
   height: 26.5em;
 }
