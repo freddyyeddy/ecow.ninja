@@ -25,10 +25,10 @@ $ses = $s;
 db_query("UPDATE `aas` SET `Magic`= '$magich', `session` = '$ses' WHERE `Facility` = '$fac'");
 switch ($fac) {
     case "Master":
-        $email = "freddyyeddy@gmail.com";
+        $email = "akopsch2mcmcexecutionlead@bp.com";
         break;
     case "FS1":
-        $email = "freddyyeddy@gmail.com";
+        $email = "ruben.crane@bp.com";
         break;
 
     default:
