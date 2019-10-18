@@ -12,7 +12,7 @@ switch ($fac) {
         $email = "akopsch2mcmcexecutionlead@bp.com";
         break;
     case "FS1":
-        $email = "freddyyeddy@gmail.com";
+        $email = "ruben.crane@bp.com";
         break;
 
     default:
