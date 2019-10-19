@@ -394,6 +394,7 @@ $(document).on('submit','#peerreview',function(){});
 	}};
 
 				</script>
+				 <title>AA Ninja/title>
 </head>
 
 <body>
