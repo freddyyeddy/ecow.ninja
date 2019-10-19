@@ -7,44 +7,59 @@
   <meta name="googlebot" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Generate Maximo Multi Where Query</title>
+  <title>Quaility Of Life Tools</title>
 
 
-<script type="text/javascript">
-var maxlnk = "https://americaswmprd.bpweb.bp.com/maximo/ui/?event=loadapp&value=wotrack&additionalevent=sqlwhere&additionaleventvalue=";
-
-function populateSecondTextBox() {
-  var str = "(";
-  var arr = document.getElementById('txtFirst').value.split("\n").filter(function(e) {
-    return e
-  });
-
-  var arrayLength = arr.length;
-  for (var i = 0; i < arrayLength; i++) {
-    if (i < arr.length - 1) {
-
-      str += "(wonum = '" + arr[i].toUpperCase().trim() + "') or ";
-    } else {
-      str += "(wonum = '" + arr[i].toUpperCase().trim() + "'))";
+  <script type="text/javascript">
+  var maxlnk = "https://americaswmro.bpweb.bp.com/maximo/ui/?event=loadapp&value=wotrack&additionalevent=sqlwhere&additionaleventvalue=";
+  var arr = "https://goo.bpglobal.com/sites/alaska1/anomalymanagementsystem/Lists/Anomaly%20Records/AllItems.aspx?FilterField1=Anomaly_x0020_Number&FilterValue1=8_";
+  function populateSecondTextBox() {
+    var str = "(";
+    var arr = document.getElementById('txtFirst').value.split("\n").filter(function(e) {
+      return e
+    });
+    var arrayLength = arr.length;
+    for (var i = 0; i < arrayLength; i++) {
+      if (i < arr.length - 1) {
+        str += "(wonum = '" + arr[i].toUpperCase().trim() + "') or ";
+      } else {
+        str += "(wonum = '" + arr[i].toUpperCase().trim() + "'))";
+      }
     }
+    // document.getElementById('txtSecond').innerHTML = str;
+    document.getElementById('Multiple').href = maxlnk + str + "&forcereload=true";
   }
-  // document.getElementById('txtSecond').innerHTML = str;
-  document.getElementById('Multiple').href = maxlnk + str + "&forcereload=true";
-}
+  function parent(){
+    var number = document.getElementById("k").value;
+    var lnk = maxlnk.slice(0, -30) + "useqbe&additionaleventvalue=parent=" + number.toUpperCase().trim() + "&forcereload=true";
+    window.open(lnk , '_blank');
+  }
 
-function parent(){
-  var number = document.getElementById("k").value;
-  var lnk = maxlnk.slice(0, -30) + "useqbe&additionaleventvalue=parent=" + number.toUpperCase().trim() + "&forcereload=true";
+    function Ancestor(){
+    var number = document.getElementById("k").value;
+    var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number.toUpperCase().trim() + "')&forcereload=true";
+    window.open(lnk , '_blank');
+  }
+    function sapopen(){
+          var number = document.getElementById("SAP").value;
+          var lnk = "https://flpnwc-qtx1x2fpma.dispatcher.us3.hana.ondemand.com/sites/internalbp?hc_login#upstreamManageMaintenanceOrder-Display&/OrderHeadSet=" + number.toUpperCase().trim();
+          window.open(lnk , '_blank');     
+    }
 
+        function sapfind(){
+          var number = document.getElementById("SAPfind").value;
+          var lnk = " http://bblookup.bpweb.bp.com/v2/AKA/WM/WORKORDER?Q_1154252719=" + number.toUpperCase().trim();
+          window.open(lnk , '_blank');     
+    }
+    
+    
+function arsearch(){
+  var number = document.getElementById("ar").value;
+  var lnk = arr + number;
   window.open(lnk , '_blank');
 }
-  
-  function Ancestor(){
-  var number = document.getElementById("k").value;
-  var lnk = maxlnk + "where wonum in (select wonum from woancestor where ancestor = '" + number.toUpperCase() + "')&forcereload=true";
 
-  window.open(lnk , '_blank');
-}
+
 
 </script>
 
@@ -53,24 +68,61 @@ function parent(){
 
 <body>
 <h3>
-Some Handy Maximo Tools
+Some Handy Tools:
 </h3>
-<p>
+  
+  <p>
+     <form id="SAPWO" onsubmit="return false">
+  Open SAP "Mainenance Order"
+  <input id="SAP" type="text" ></input>
+
+  <button type="button" onclick="sapopen()">Open Item</button>
+    <button type="submit" onclick="sapopen()" style="display: none;" ></button>
+  </form>
+ 
+<br/>
+<br/>
+<br/>
+       <form id="sapf" onsubmit="return false">
+ Look For a SAP maintance order for Maximo WOrk Order Number
+  <input id="SAPfind" type="text" ></input>
+
+  <button type="button" onclick="sapfind()">Find Maint. Order Number</button>
+    <button type="submit" onclick="sapfind()" style="display: none;" ></button>
+  </form>
+
+<br/>
+<br/>
+<br/>
+
+  <form id="Arsearch" onsubmit="return false">
+  Search for an AR
+  <input id="ar" type="text" ></input>
+  <!--   <br><button type="button" onclick="parent()" >Child Parent</button> -->
+  <button type="button" onclick="arsearch()">Find AR</button>
+    <button type="submit" onclick="arsearch()" style="display: none;" ></button>
+  </form>
+
+<br/>
+<br/>
+<br/>
+
+
 <form id="parentk" onsubmit="return false">
-  Show all of The Children
+Show All Children of a Maximo WO
 <input id="k" type="text" ></input>
 <!--   <br><button type="button" onclick="parent()" >Child Parent</button> -->
-<button type="button" onclick="Ancestor()" >Find Parent</button>
+<button type="button" onclick="Ancestor()" >Find Children</button>
   <button type="submit" onclick="Ancestor()" style="display: none;" ></button>
 </form>
 </p>
-<p>
+<!-- <p>
 If you run a report and dont email it (just click run with the immidiate box checked) then add "__format=pdf" to the end of the url of the new tab that opened you will see a pdf of the workorder you opened
 (Maximos BIRT report tool doesnt support explorer-11 go figure)
 </p>
-
+-->
 <h2>
-You Can Either Paste Or enter Your WO Numbers Here &darr; (Put Each One On a New Line Like Example)
+&darr; This Allows you to Pull up Multiple Maximo WOrk Ordres at Once  (Put Each One On a New Line Like Example)
 </h2>
   <p>
   <textarea placeholder="TK797041 TK797163 TK737311 TK799822 TK799825"rows="10" cols="10" id="txtFirst" onkeyup="populateSecondTextBox();" /></textarea>

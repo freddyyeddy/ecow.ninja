@@ -260,9 +260,11 @@ while (elements[0]) elements[0].parentNode.removeChild(elements[0])
 // add("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #");
 
 // Retrieve
+
 if (localStorage.getItem("links") !== null) {
   //...JSON.stringify(obj) "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #"
 	// var jsonStringify = '[{Link : 'Link', id : 'randomid', Description : 'description'}]';
+
 
 	var jsonObj = JSON.parse(localStorage.getItem("links"));
 
