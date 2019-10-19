@@ -1,5 +1,5 @@
 <?php
-require('var.php');
+require('../../inc/var.php');
 // var_dump($_GET);
 
  $query =  "SELECT * FROM `hazmit` WHERE `review` >= 2 and `bad` >= 2";

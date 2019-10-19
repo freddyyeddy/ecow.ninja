@@ -32,12 +32,20 @@ require("inc/var.php");
         }
     };
 })(jQuery);
-function sidebar(){
-$(".sidebar").toggleClass("open transition");
+function sidebar(el){
+$(el).next("[class^=sidebar]").toggleClass("open transition");
+// console.log(el);
 }
-function remove(i) {
-	localStorage.removeItem(i);
-	document.getElementById(i).outerHTML = "";
+function remove(id) {
+	// localStorage.removeItem(i);
+	var retcon = JSON.parse(localStorage.getItem('links')).filter(function( obj, i, n) {
+    return obj.id != id;
+});
+// console.log(JSON.parse(localStorage.getItem('links')));
+// console.log(retcon);
+// console.log(id);
+localStorage.setItem("links", JSON.stringify(retcon));
+	document.getElementById(id).outerHTML = "";
 }
 function add(l,d){
 
@@ -47,12 +55,53 @@ function add(l,d){
 	$("#add").find("#submit-hidden").click();
 }else{
 	var array = new Uint32Array(1);
-	var lnkds = [l,d];
-window.crypto.getRandomValues(array);
+	// var lnkds = [l,d];
+	try {
+  window.crypto.getRandomValues(array);
+}
+catch(err) {
+  window.msCrypto.getRandomValues(array);
+}
+// window.crypto.getRandomValues(array);
 document.getElementById("add").reset();
-console.log(array);
+// console.log(array);
 // console.log(JSON.stringify(lnkds));
-	localStorage.setItem(array[0],JSON.stringify(lnkds));
+if (localStorage.getItem("links") !== null) {
+	var jsonObj = JSON.parse(localStorage.getItem('links'));
+	var newobj = {
+	    "Link" : l,    //your artist variable
+	    "id" : array[0],   //your title variable
+	    "Description" : d   //your title variable
+	};
+	jsonObj.push( newobj );
+	localStorage.setItem('links',JSON.stringify(jsonObj));
+	// var input = decodeURIComponent("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-CGF%23309592/templateAsNew");
+	//
+	// var arr = input.split("#")[2].substring(0,6);
+
+	      var m = decodeURIComponent(l);
+	      if (m != null)
+	      {
+	          var permit= "#" + m.split("#")[2].substring(0,6);;
+					}else{
+					var permit="Permit# Link";
+					}
+
+
+	$('#Examples ul').prepend(
+		$('<li>').attr("id", array[0]).append(
+				$('<a>').attr({'href':l,'target':"_blank" }).append(
+						$('<span>').attr('class', 'tab').append(permit)),
+				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array[0], 'onclick': "remove('"+array[0]+"');"}).append("Remove"))
+					)
+	)
+}else{
+	var newobj = [{
+	    "Link" : l,    //your artist variable
+	    "id" : array[0],   //your title variable
+	    "Description" : d   //your title variable
+	}];
+	localStorage.setItem('links',JSON.stringify(newobj));
 
 	var re1='.*?';	// Non-greedy match on filler
 	      var re2='(#{1}(?:[A-F0-9]){6})(?![0-9A-F])';	// HTML Color 1
@@ -68,12 +117,13 @@ console.log(array);
 
 
 	$('#Examples ul').prepend(
-		$('<li>').attr("id", array).append(
+		$('<li>').attr("id", array[0]).append(
 				$('<a>').attr({'href':l,'target':"_blank" }).append(
 						$('<span>').attr('class', 'tab').append(permit)),
-				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array, 'onclick': "remove('"+array+"');"}).append("Remove"))
+				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array[0], 'onclick': "remove('"+array[0]+"');"}).append("Remove"))
 					)
 	)
+}
 }
 }
 
@@ -107,8 +157,10 @@ console.log(array);
 		function submitF(e) {
 		e.preventDefault();
 			var form_data = $('#peerreview').serializeArray();
-			if(form_data.length < $("#rev tbody tr").length){
+			if(form_data.length < $("#rev tbody tr:not(.rvw)").length){
 				alert("Please Take The Time To Review All Mitigations")
+				// console.log(form_data.length);
+					// console.log($("#rev tbody tr:not(.rvw)").length);
 				return false;
 			}
 
@@ -208,40 +260,47 @@ while (elements[0]) elements[0].parentNode.removeChild(elements[0])
 // add("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #");
 
 // Retrieve
-for (var i = 0; i < localStorage.length; i++){
-	
+
+if (localStorage.getItem("links") !== null) {
+  //...JSON.stringify(obj) "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #"
+	// var jsonStringify = '[{Link : 'Link', id : 'randomid', Description : 'description'}]';
+
+
+	var jsonObj = JSON.parse(localStorage.getItem("links"));
+
+	for(var i = 0; i < jsonObj.length; i++)
+	{
+
+					var m = decodeURIComponent(jsonObj[i]['Link']);
+					if (m != null)
+					{
+							var permit= "#" + m.split("#")[2].substring(0,6);;
+						}else{
+						var permit="Permit# Link";
+						}
+
+	$('#Examples ul').prepend(
+		$('<li>').attr("id",jsonObj[i]['id']).append(
+				$('<a>').attr({'href':jsonObj[i]['Link'], 'target':"_blank"}).append(
+						$('<span>').attr('class', 'tab').append(permit)),
+				$('<span>').append("--->" + jsonObj[i]['Description']).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':jsonObj[i]['id'], 'onclick': "remove('"+jsonObj[i]['id']+"');"}).append("Remove"))
+
+	)
+
+	)
+	}
+}
+// for (var i = 0; i < localStorage.length; i++){
 // 	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
 // 	    // console.log(json);
 // 	}).catch(err => {
 // 	    console.log(err);
 // 	});
-
-
-var lnkds = JSON.parse(localStorage.getItem(localStorage.key(i))|| null);
-
-var re1='.*?';	// Non-greedy match on filler
-      var re2='(#{1}(?:[A-F0-9]){6})(?![0-9A-F])';	// HTML Color 1
-
-      var p = new RegExp(re1+re2,["i"]);
-      var m = p.exec(lnkds[0]);
-      if (m != null)
-      {
-          var permit=m[1];
-				}else{
-				var permit="Permit # Link";
-				}
-
-$('#Examples ul').prepend(
-	$('<li>').attr("id",localStorage.key(i)).append(
-			$('<a>').attr({'href':lnkds[0], 'target':"_blank"}).append(
-					$('<span>').attr('class', 'tab').append(permit)),
-			$('<span>').append("--->" + lnkds[1]).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':localStorage.key(i), 'onclick': "remove('"+localStorage.key(i)+"');"}).append("Remove"))
-
-)
-
-)
-
-};
+//
+//
+// var lnkds = JSON.parse(localStorage.getItem(localStorage.key(i))|| null);
+//
+// };
 
 // 		Copy Text To Clipboard
 		function copyTextToClipboard(text) {
@@ -355,10 +414,11 @@ var separr = value.split(",");
             { "data": "crafts" },
             { "data": "review" },
             { "data": "bad" },
+            { "data": "facilitys" },
         ],
 					"columnDefs": [
             {
-                "targets": [ 4,5 ],
+                "targets": [ 4,5,8 ],
                 "visible": false,
 // 							'searchable'    : false,
 
@@ -400,7 +460,7 @@ var separr = value.split(",");
 					filter_type: "multi_select",
 				text_data_delimiter: ",",
 				case_insensitive: "true",
-        filter_default_label: "Select any Tags",
+        filter_default_label: "Tags",
 				select_type: "select2",
 				filter_reset_button_text: false,
 										dropdownAutoWidth: false,
@@ -410,7 +470,7 @@ var separr = value.split(",");
 			{
             column_number : 5,
     				filter_container_id: 'Craft',
-            filter_default_label: "Select Craft or Crafts",
+            filter_default_label: "Crafts",
 				text_data_delimiter: ",",
 				case_insensitive: "true",
 					filter_type: "multi_select",
@@ -420,6 +480,19 @@ var separr = value.split(",");
 						width: 'resolve',
 
 				},
+				{
+							column_number : 8,
+							filter_container_id: 'facflag',
+							filter_default_label: "Facilitys",
+					text_data_delimiter: ",",
+					case_insensitive: "true",
+						filter_type: "multi_select",
+					select_type: "select2",
+					filter_reset_button_text: false,
+											dropdownAutoWidth: false,
+							width: 'resolve',
+
+					},
 		]
 							);
 // End Get Table and Generate Filters
@@ -440,7 +513,7 @@ var separr = value.split(",");
         $this.removeClass('highlighted');
     }, 1000);
 			copyTextToClipboard($this.html());
-   $.notify("Copied The "+ $th);
+   $.notify("Copied The "+ $th , "success");
 
 
 });
@@ -516,14 +589,20 @@ Poop;
 
 
 	<div class="wrapper">
-	<div class="grid" style="margin-left: 1em;">
-	<div class="col-1-4">
-		<button class="show" onclick="sidebar()">Examples</button>
+	<div>
+		<style>
+		  [id^=yadcf-filter-wrapper--]{ width: 25vw;
+			}
+		</style>
+		<table>
+			<tr>
+	<td style="border-left: none;" >
+		<button class="showex" onclick="sidebar(this)">Favorites</button>
 		<nav class="sidebar transition">
 				<span id=Examples>
 					<ul>
 					<li>
-						<form id="add">
+						<form id="add" onkeypress="return event.keyCode != 13;">
 
 						<input required pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="nwlink" name="nwlink" placeholder="Paste eCOW Link">
 						<input required type="text" id="nwdesc" placeholder="Description Goes Here">
@@ -534,10 +613,40 @@ Poop;
 					</ul>
 				</span>
 			</nav>
-		</div>
+		</td>
+	<td  style="width: 20%; border-left: none;" id="facflag"></td>
+	<td style="width: 20%; border-left: none;" id="Craft"></td>
+	<td style="width: 20%; border-left: none;" id="Tags"></td>
+	<td style="border-left: none; padding-left: .3em; position: relative;">
+	<button class="showpar" onclick="sidebar(this)">Paradigm</button>
+	<nav class="sidebarpara transition">
+	<ul>
+		<?php
+$query123222 = "SELECT * FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`) ORDER BY `score` DESC  LIMIT 3";
+$resil = db_select($query123222);
+if( count($resil) > 0){
+	foreach ($resil as $row){
 
-	<div class="col-1-3" id="Craft"></div>
-	<div class="col-1-3" id="Tags"></div>
+echo <<<Table
+<li><span><a href="$row[link]" target="_blank">Permit #</a>: $row[description]</span></li>
+Table;
+}
+}else{
+	$query123222 = "SELECT * FROM `favorites` ORDER BY `score` DESC  LIMIT 3";
+	$resil = db_select($query123222);
+	foreach ($resil as $row){
+echo <<<Table
+<li><span><a href="$row[link]">Link</a> $row[description]</span></li>
+Table;
+
+}
+}
+		 ?>
+	</ul>
+	</nav>
+	</td>
+</tr>
+</table>
 	</div>
 
 	<div class="searchbox sbx-custom">
@@ -583,11 +692,15 @@ Poop;
 // 	$reviewtbl =  var_dump($rows);
 	// 	generating table for peer review
 
-$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
+$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Hazard</th><th>Mitigation</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
 
 foreach ($rows as $row){
+	if($row['reviewtxt'] == null){
 	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
-
+}else{
+	$reviewtbl .= "<tr><td style='border-bottom: none;'>" . $row['source'] . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['hazard']) . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left; border-bottom: none;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
+	$reviewtbl .= "<tr class='rvw'><td style='border-top-style: dashed; border-bottom-style: double;' Colspan='4'>$row[reviewtxt]</td></tr>";
+}
 }
 
 	$reviewtbl .= "</form></tbody></table>";

@@ -1,5 +1,5 @@
 <?php
-require('var.php');
+require('../../inc/var.php');
 
 
 
