@@ -136,9 +136,9 @@ var magic = "mg=$magichash2&";
 var magic2 = "mg=$magic2&";
 var session = "s=$ses2&";
 var fac = "f=$fac";
-xhttp2.open("GET", "inc/Email.php"+"?"+magic2+fac, true);
+xhttp2.open("GET", "inc/Email.php"+"?"+magic+fac, true);
 xhttp2.send();
-xhttp.open("GET", "inc/Reset.php"+"?"+magic+session+fac, true);
+xhttp.open("GET", "inc/Reset.php"+"?"+magic2+session+fac, true);
 xhttp.send();
 
 reset;
@@ -187,7 +187,7 @@ reset;
 local_reset_test;
 			// End EOT Local Reset Bodies
 
-		if(password_verify($magic, $magichash)){
+		if(password_verify($magichash, $magic)){
 			// setting session variable to pass without showing session to validate
 $_SESSION['ses'] = $session;
 			// Link Good and Hash Match is Good now getting page data from php page and testing if session matches
