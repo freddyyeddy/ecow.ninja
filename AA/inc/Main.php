@@ -18,8 +18,8 @@ $ses2 = md5(uniqid(rand(), true));
 // start email reset
 function resetthings($m, $mh, $s, $f){
 
-$magic = $m;
-$magich = $mh;
+$magic = $mh;
+$magich = $m;
 $fac = $f;
 $ses = $s;
 db_query("UPDATE `aas` SET `Magic`= '$magich', `session` = '$ses' WHERE `Facility` = '$fac'");
@@ -94,10 +94,9 @@ $mail->Body    = <<<EmailHTML
                                 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                                   <tbody>
                                     <tr>
-                                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;">
+                                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center;">
                                         <!-- <a href="https://ecow.ninja/AA/AA.php?mg=$magic&f=$fac" target="_blank" style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">Magic Link</a> -->
-Outlooks Safe Link System breaks the magic link. You need to Copy the url and paste it into the url.
-The URL is : https://ecow.ninja/AA/AA.php?mg=$magic&f=$fac
+https://ecow.ninja/AA/AA.php?mg=$magic&f=$fac
                                       </td>
                                     </tr>
                                   </tbody>
