@@ -7,7 +7,7 @@ function db_connect() {
     // Try and connect to the database, if a connection has not been established yet
     if(!isset($connection)) {
       // $connection = mysqli_connect('localhost',"ecow","E4jyS54VdU55CT4d","ninja");
-        $connection = mysqli_connect('127.0.0.1',"lzxksnxr_site","pqt9rI3wo}A*","lzxksnxr_ninjaa");
+        $connection = mysqli_connect('localhost',"lzxksnxr_site","pqt9rI3wo}A*","lzxksnxr_ninjaa");
       mysqli_set_charset( $connection, 'utf8');
     }
 
