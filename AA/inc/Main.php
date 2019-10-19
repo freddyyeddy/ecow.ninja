@@ -121,7 +121,7 @@ https://ecow.ninja/AA/AA.php?mg=$magic&f=$fac
                 <tr>
                   <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">This is for AAninja interface access</span>
-                    <br>Questions Or Need Help <a href="mailto:freddyyeddy@pm.me?subject=AAninja Question Or Help” target=”_blank”" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Freddyyeddy@pm.me</a>.
+                    <br>Questions Or Need Help <a href="mailto:freddyyeddy@pm.me?subject=AAninja Question Or Help" target="_blank" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Freddyyeddy@pm.me</a>.
                   </td>
                 </tr>
               </table>
