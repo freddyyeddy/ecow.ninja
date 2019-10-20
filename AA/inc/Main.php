@@ -187,10 +187,12 @@ if (strpos($row['aa'], $fac) !== false) {
   $manyunits = $row['score']/$max;
   $maxpercentage = 47;
   $percentage = ($maxpercentage * $manyunits)+53;
-
+$permitzddfaf = preg_split('[#]', urldecode($row[link]));
+$permitzddfaf =  preg_split('[\?]',  $permitzddfaft[2]);
+$permitzddfaf =  "#" . $permitzddfaf[0];
   $paradigm .= <<<Table
 <tr style="background-size: 100% $percentage%" id="$row[id]">
-  <td class="plink"><a target="_blank" href="$row[link]">Permit Link</a></td>
+  <td class="plink"><a target="_blank" href="$row[link]">$permitzddfaf</a></td>
   <td><div class="mixdif">$row[description]</div></td>
   <td class="pscore">
 <div class="mixdif" style="font-size: 3em;" id="score_$row[id]">
