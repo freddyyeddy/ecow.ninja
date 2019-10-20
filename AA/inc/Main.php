@@ -188,7 +188,7 @@ if (strpos($row['aa'], $fac) !== false) {
   $maxpercentage = 47;
   $percentage = ($maxpercentage * $manyunits)+53;
 $permitzddfaf = preg_split('[#]', urldecode($row[link]));
-$permitzddfaf =  preg_split('[\?]',  $permitzddfaft[2]);
+$permitzddfaf =  preg_split('[\?]',  $permitzddfaf[2]);
 $permitzddfaf =  "#" . $permitzddfaf[0];
   $paradigm .= <<<Table
 <tr style="background-size: 100% $percentage%" id="$row[id]">
