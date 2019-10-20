@@ -630,7 +630,7 @@ $permitzddfaf = preg_split('[#]', urldecode($row[link]));
 $permitzddfaf =  preg_split('[\?]',  $permitzddfaf[2]);
 $permitzddfaf =  "#" . $permitzddfaf[0];
 echo <<<Table
-<li><span><a href="$row[link]" target="_blank">$permitzddfaf</a>: $row[description]</span></li>
+<li><span><a href="$row[link]" target="_blank" style="font-family: Arial,sans-serif;">$permitzddfaf</a>: $row[description]</span></li>
 Table;
 }
 }else{
@@ -641,7 +641,7 @@ $permitzddfaf =  "#" . $permitzddfaf[0];
 	$resil = db_select($query123222);
 	foreach ($resil as $row){
 echo <<<Table
-<li><span><a href="$row[link]">$permitzddfaf</a>: $row[description]</span></li>
+<li><span><a href="$row[link]" style="font-family: Arial,sans-serif;">$permitzddfaf</a>: $row[description]</span></li>
 Table;
 
 }
