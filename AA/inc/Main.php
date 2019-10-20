@@ -892,8 +892,9 @@ echo <<<Back_End_Interface
 </tr>
 </table>
 </form>
-</div>
 $paradigm
+
+</div>
 
 
   </div>
