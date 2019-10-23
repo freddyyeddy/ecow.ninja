@@ -885,7 +885,7 @@ echo <<<Back_End_Interface
 </tr>
 <tr>
 <td colspan="2">
-<textarea style="border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; width: 100%; height: 8em;" required placeholder="Type What Makes This a Paradigm Here \n-Submit As Many As You Want\n -Can Not Re-Use Permits\n -Every Paradigms Reset\n -The Top 3 Paradim Are On Ecow.Ninja" id="paradescuioopp" name="description" minlength="50" maxlength="280">
+<textarea style="border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; width: 100%; height: 8em;" required placeholder="Type What Makes This a Paradigm Here \n-Submit As Many As You Want\n -Can Not Re-Use Permits\n -Paradigms Reset Each Month\n -The Top 3 Paradim Are On Ecow.Ninja" id="paradescuioopp" name="description" minlength="50" maxlength="280">
 </textArea>
 </td>
 <input id="submit-hidden" type="submit" style="display: none">
