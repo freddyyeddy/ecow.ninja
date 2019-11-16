@@ -1,4 +1,7 @@
 <?php
+// including external libraries and classes used sitewide
+require 'PushBullet.class.php';
+// end External file included
 function db_connect() {
 
     // Define connection as a static variable, to avoid connecting more than once
