@@ -373,13 +373,13 @@ var separr = value.split(",");
 
 		var input1 = document.querySelector('input[name=tags]'),
     tagify1 = new Tagify(input1, {
-        whitelist : $.unique(tgs).sort(),
+        whitelist : $.unique(tgs.map(a => a.charAt(0).toUpperCase() + a.slice(1).toLowerCase())).sort(),
         blacklist : ["fuck", "shit"],
 			delimiters          : ", ",
     });
 		var input2 = document.querySelector('input[name=crafts]'),
     tagify2 = new Tagify(input2, {
-        whitelist : $.unique(crft).sort(),
+        whitelist : $.unique(crft.map(a => a.charAt(0).toUpperCase() + a.slice(1).toLowerCase())).sort(),
         blacklist : ["fuck", "shit"],
 			  delimiters          : ", ",
     });
