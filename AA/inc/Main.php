@@ -156,7 +156,15 @@ if(isset($_GET['s']) and isset($_SESSION['ses']) and isset($_GET['f'])){
 
 
 if($_GET['s'] == $_SESSION['ses']){
-
+// Sending a Pushbulled notifaction that login sucseeded
+	try {
+$p = new PushBullet('o.kHJHbBgZ9INKRwb38Z5vT1nx5BX3kozN');
+$p->pushNote(NULL, $fac . " is Using AAninja", 'They Sucssfully Logged In');
+} catch (PushBulletException $e) {
+  // Exception handling
+//   die($e->getMessage());
+}
+// End Push Notifacation	
   $query102 =  "SELECT * FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`)";
   $query105 = "SELECT MAX(`score`) as max FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`)";
   $max = db_select($query105);
