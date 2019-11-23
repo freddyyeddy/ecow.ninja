@@ -706,7 +706,7 @@ Table;
 // 	$reviewtbl =  var_dump($rows);
 	// 	generating table for peer review
 
-$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Hazard</th><th>Mitigation</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
+$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center; width: 100%; margin: auto;'><thead><tr><th width='10%'>Source</th><th>Hazard</th><th>Mitigation</th><th style='width: 15em;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
 
 foreach ($rows as $row){
 	if($row['reviewtxt'] == null){
