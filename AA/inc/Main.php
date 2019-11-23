@@ -684,14 +684,13 @@ $('.modal2').toggleClass('is-visible');
 
 		$('.nrgsrc').select2({
 			placeholder: 'Select an Energy Source',
+			escapeMarkup: function (text) { return text; },
+			dropdownParent: $('.icoselect'),
 		  minimumResultsForSearch: -1,
 			dropdownAutoWidth : true,
 			width: "resolve",
-
-
-
-
 		});
+		
 		remaing_char($('#haztxt'),$('#haztxt_feedback'),500);
 		remaing_char($('#mittxt'),$('#mittxt_feedback'),395);
 
@@ -767,10 +766,8 @@ if(!isset($nomodal)){
 
 // 	$reviewtbl =  var_dump($rows);
 // 	generating table for peer review
-
-$reviewtbl = "<form  id='peerreview'><table border=1 frame=void rules=rows  style='text-align: center;'><thead><tr><th width='10%'>Source</th><th>Mitigation</th><th>Hazard</th><th style='min-width: 183px;'>Good or Bad?</th></tr></thead><tbody id='rev'>";
-
-foreach ($rows2 as $row){
+$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center; width: 100%; margin: auto;'><thead><tr><th width='10%'>Source</th><th>Hazard</th><th>Mitigation</th><th style='width: 15em;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
+foreach ($rows as $row){
 	if($row['reviewtxt'] == null){
 	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
 }else{
@@ -778,8 +775,7 @@ foreach ($rows2 as $row){
 	$reviewtbl .= "<tr class='rvw'><td style='border-top-style: dashed; border-bottom-style: double;' Colspan='4'>$row[reviewtxt]</td></tr>";
 }
 }
-
-$reviewtbl .= "</tbody></table></form>";
+	$reviewtbl .= "</form></tbody></table>";
 // 	end table generating
 
 // 	Inject Modal HTML
