@@ -572,6 +572,8 @@ Poop;
 
 		$('.nrgsrc').select2({
 			placeholder: 'Select an Energy Source',
+			escapeMarkup: function (text) { return text; },
+			dropdownParent: $('.nrgsrc'),
 		  minimumResultsForSearch: -1,
 			dropdownAutoWidth : true,
 			width: "resolve",
