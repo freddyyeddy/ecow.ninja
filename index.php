@@ -357,145 +357,152 @@ if (localStorage.getItem("links") !== null) {
 
 // 		Making Table  and Filter Drop Downs From Ajax Call
 
-					oTable = $('#table').DataTable({
-					initComplete: function () {
-						$("#table_filter").detach().appendTo('#search');
-						var tgs = new Array();
+oTable = $('#table').DataTable({
+initComplete: function () {
+  $("#table_filter").detach().appendTo('#search');
+  var tgs = new Array();
 $.each(oTable.column( 4 ).data().toArray(), function( index, value ) {
 var separr = value.split(",");
-  tgs = $.merge( tgs, separr );
+tgs = $.merge( tgs, separr );
 });
-						var crft = new Array();
+  var crft = new Array();
 $.each(oTable.column( 5 ).data().toArray(), function( index, value ) {
 var separr = value.split(",");
-  crft = $.merge( crft, separr );
+crft = $.merge( crft, separr );
 });
 
-		var input1 = document.querySelector('input[name=tags]'),
-    tagify1 = new Tagify(input1, {
-        whitelist : $.unique(tgs).sort(),
-        blacklist : ["fuck", "shit"],
-			delimiters          : ", ",
-    });
-		var input2 = document.querySelector('input[name=crafts]'),
-    tagify2 = new Tagify(input2, {
-        whitelist : $.unique(crft).sort(),
-        blacklist : ["fuck", "shit"],
-			  delimiters          : ", ",
-    });
+var input1 = document.querySelector('input[name=tags]'),
+tagify1 = new Tagify(input1, {
+whitelist : $.unique(tgs).sort(),
+blacklist : ["fuck", "shit"],
+delimiters          : ", ",
+});
+var input2 = document.querySelector('input[name=crafts]'),
+tagify2 = new Tagify(input2, {
+whitelist : $.unique(crft).sort(),
+blacklist : ["fuck", "shit"],
+delimiters          : ", ",
+});
 
-					for(var i=0; i< tgs.length;i++)
+for(var i=0; i< tgs.length;i++)
 {
 //creates option tag
-  jQuery('<option/>', {
-        value: tgs[i],
-        html: tgs[i]
-        }).appendTo('#tagsadd'); //appends to select if parent div has id dropdown
+jQuery('<option/>', {
+value: tgs[i],
+html: tgs[i]
+}).appendTo('#tagsadd'); //appends to select if parent div has id dropdown
 }
 
-        },
-
-        paging:   false,
-        info:     false,
-
-
-						 ajax: {
-        url: "inc/get.php",
-        dataSrc: '',
-							 type: "POST",
-    },
-
-      columns: [
-            { "data": "source" },
-            { "data": "hazard" },
-            { "data": "mitigation" },
- 						{ "data": "id" },
-            { "data": "tags" },
-            { "data": "crafts" },
-            { "data": "review" },
-            { "data": "bad" },
-            { "data": "facilitys" },
-        ],
-					"columnDefs": [
-            {
-                "targets": [ 4,5,8 ],
-                "visible": false,
-// 							'searchable'    : false,
-
-
-            },
-            {
-                "targets": [ 3,6,7 ],
-                "visible": false,
-													'searchable'    : false,
-
-            }
-
-
-        ],
-						language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search...",
-							zeroRecords: "Looks Like There Are No Hazards Like What Your Looking For Add a Hazard <button id='addhaz' type='button'>Add hazards</button>"
-
-    },
-						bInfo: false,
-
-
-
-
-    });
 
 
 // 		Making Filters and Searches For Table
 
-		yadcf.init(oTable, [
+yadcf.init(oTable, [
 
 // 			{column_number : 1},
 // 			{column_number : 2},
 // 			{column_number : 3},
-			{
-            column_number : 4,
-    				filter_container_id: 'Tags',
-					filter_type: "multi_select",
-				text_data_delimiter: ",",
-				case_insensitive: "true",
-        filter_default_label: "Tags",
-				select_type: "select2",
-				filter_reset_button_text: false,
-										dropdownAutoWidth: false,
-						width: 'resolve',
+{
+  column_number : 4,
+  filter_container_id: 'Tags',
+filter_type: "multi_select",
+text_data_delimiter: ",",
+case_insensitive: "true",
+filter_default_label: "Tags",
+select_type: "select2",
+filter_reset_button_text: false,
+          dropdownAutoWidth: false,
+  width: 'resolve',
 
-				},
-			{
-            column_number : 5,
-    				filter_container_id: 'Craft',
-            filter_default_label: "Crafts",
-				text_data_delimiter: ",",
-				case_insensitive: "true",
-					filter_type: "multi_select",
-				select_type: "select2",
-				filter_reset_button_text: false,
-										dropdownAutoWidth: false,
-						width: 'resolve',
+},
+{
+  column_number : 5,
+  filter_container_id: 'Craft',
+  filter_default_label: "Crafts",
+text_data_delimiter: ",",
+case_insensitive: "true",
+filter_type: "multi_select",
+select_type: "select2",
+filter_reset_button_text: false,
+          dropdownAutoWidth: false,
+  width: 'resolve',
 
-				},
-				{
-							column_number : 8,
-							filter_container_id: 'facflag',
-							filter_default_label: "Facilitys",
-					text_data_delimiter: ",",
-					case_insensitive: "true",
-						filter_type: "multi_select",
-					select_type: "select2",
-					filter_reset_button_text: false,
-											dropdownAutoWidth: false,
-							width: 'resolve',
+},
+{
+    column_number : 8,
+    filter_container_id: 'facflag',
+    filter_default_label: "Facilitys",
+text_data_delimiter: ",",
+case_insensitive: "true",
+  filter_type: "multi_select",
+select_type: "select2",
+filter_reset_button_text: false,
+            dropdownAutoWidth: false,
+    width: 'resolve',
 
-					},
-		]
-							);
+},
+]
+    );
 // End Get Table and Generate Filters
+
+
+
+
+},
+
+paging:   false,
+info:     false,
+
+
+   ajax: {
+url: "inc/get.php",
+dataSrc: '',
+     type: "POST",
+},
+
+columns: [
+  { "data": "source" },
+  { "data": "hazard" },
+  { "data": "mitigation" },
+  { "data": "id" },
+  { "data": "tags" },
+  { "data": "crafts" },
+  { "data": "review" },
+  { "data": "bad" },
+  { "data": "facilitys" },
+],
+"columnDefs": [
+  {
+      "targets": [ 4,5,8 ],
+      "visible": false,
+// 							'searchable'    : false,
+
+
+  },
+  {
+      "targets": [ 3,6,7 ],
+      "visible": false,
+                'searchable'    : false,
+
+  }
+
+
+],
+  language: {
+search: "_INPUT_",
+searchPlaceholder: "Search...",
+    zeroRecords: "Looks Like There Are No Hazards Like What Your Looking For Add a Hazard <button id='addhaz' type='button'>Add hazards</button>"
+
+},
+  bInfo: false,
+
+
+
+
+});
+
+
+
 
 
 
