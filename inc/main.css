@@ -167,7 +167,7 @@ transition: 1s;
 	        animation: bounce-out-bck .5s both;
 }
 
--webkit-keyframes bounce-out-bck {
+@-webkit-keyframes bounce-out-bck {
   0% {
     -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -803,7 +803,7 @@ input.labelauty+label>span.labelauty-checked-image {
 /* end radio/checkbox styles */
 
 .notifyjs-note-base {
-	background-color: 99D5C9;
+	background-color: #99D5C9;
 }
 
 /* modal Popup stuff */
@@ -1245,7 +1245,7 @@ table.dataTable thead .sorting_asc {
 }
 
 table.dataTable thead .sorting_desc {
-	background-image: url(/images/sort_desc.png");
+	background-image: url("/images/sort_desc.png");
 }
 
 table.dataTable thead .sorting_asc_disabled {
