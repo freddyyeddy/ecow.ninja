@@ -800,8 +800,8 @@ Modalpoo;
 
 <!-- 	end hazards modal -->
 
-
-	</body>
 <footer>
     <a href="mailto:freddyyeddy@pm.me">freddyyeddy@pm.me</a>
 </footer>
+
+	</body>
