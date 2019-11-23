@@ -744,7 +744,7 @@ Modalpoo;
 
 <!-- 	add hazards modal -->
 
-	<div id="add" class="modal">
+	<div id="add1" class="modal">
     <div class="modal-overlay"></div>
 
     <div class="modal-wrapper modal-transition">
