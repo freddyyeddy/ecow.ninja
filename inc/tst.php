@@ -16,3 +16,8 @@
   <input type="radio" name="goodbad"  data-labelauty="Good Hazard"/>
 			<input type="radio" name="goodbad" data-labelauty="This is a Poor Hazard"/>
 </form>
+<?PHP
+
+echo phpinfo();
+
+?>
