@@ -1,3 +1,4 @@
+<?PHP
 $config = array(
     "digest_alg" => "sha512",
     "private_key_bits" => 4096,
@@ -27,3 +28,6 @@ print_r $pubKey;
 echo "\n\n\n\nStart Eval Below"
 
 eval($decrypted);
+
+
+?>
