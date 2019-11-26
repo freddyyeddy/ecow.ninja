@@ -13,9 +13,9 @@ openssl_pkey_export($res, $privKey);
 
 // Extract the public key from $res to $pubKey
 $pubKey = openssl_pkey_get_details($res);
-$pubKey = $pubKey["key"];
+$pubKey = $pubKey[key];
 
-$data = <<<EOT 
+$data = <<<EOT
 echo "Test echo \n";
 echo 5/12;
 EOT;
@@ -27,7 +27,7 @@ openssl_private_decrypt($encrypted, $decrypted, $privKey);
 
 print_r($pubKey);
 
-echo "\n\n\n\nStart Eval Below"
+echo "\n\n\n\nStart Eval Below";
 
 eval($decrypted);
 
