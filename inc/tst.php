@@ -15,8 +15,10 @@ openssl_pkey_export($res, $privKey);
 $pubKey = openssl_pkey_get_details($res);
 $pubKey = $pubKey["key"];
 
-$data = 'echo "Test echo \n"; echo 5/12;';
-
+$data = <<<EOT 
+echo "Test echo \n";
+echo 5/12;
+EOT;
 // Encrypt the data to $encrypted using the public key
 openssl_public_encrypt($data, $encrypted, $pubKey);
 
