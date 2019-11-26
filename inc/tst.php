@@ -23,7 +23,7 @@ openssl_public_encrypt($data, $encrypted, $pubKey);
 // Decrypt the data using the private key and store the results in $decrypted
 openssl_private_decrypt($encrypted, $decrypted, $privKey);
 
-print_r $pubKey;
+print_r($pubKey);
 
 echo "\n\n\n\nStart Eval Below"
 
