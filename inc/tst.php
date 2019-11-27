@@ -27,9 +27,18 @@ openssl_private_decrypt($encrypted, $decrypted, $privKey);
 
 print_r($pubKey);
 
-echo "\n\n\n\nStart Eval Below";
+echo "
+
+
+Start Eval Below";
 
 eval($decrypted);
 
+$output = shell_exec('git -help');
+echo "
 
+
+
+
+<pre>$output</pre>";
 ?>
