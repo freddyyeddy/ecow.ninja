@@ -1,0 +1,17 @@
+.arrow{
+max-height: 4em;
+max-width: 4em;
+margin-bottom: -2px;
+margin-top: -2px;
+}
+.arrow:hover{
+  stroke-dasharray: 600;
+  stroke-dashoffset: 1000;
+  animation: dash .5s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1;
+  }
+}
