@@ -60,8 +60,8 @@ file_put_contents($dir ."/shinobi.scrt",$pubKey);
 file_put_contents($dir ."/caltrops.tabi",$privKey);
 
 //Reading Files To Verify All Is Working And Writing To Secret Variables File
-$pubKey = readfile("shinobi.scrt");
-$privKey = readfile("caltrops.tabi");
+$pubKey = file_get_contents("shinobi.scrt");
+$privKey = file_get_contents("caltrops.tabi");
 //Making Some Data To Encode
 $data ='This is a Test $variables;';
 echo $data . "<br><br>";
@@ -70,7 +70,7 @@ openssl_public_encrypt($data, $encrypted, $pubKey);
 //Puting encrypted Data Into Private variable storage
 file_put_contents(getcwd() ."/ninja.kunia",$encrypted);
 //Reading private variable file
-$privKey = readfile("ninja.kunia");
+$privKey = file_get_contents("ninja.kunia");
 //decrypting variable file with private key and showing results
 openssl_private_decrypt($encrypted, $decrypted, $privKey);
 echo "<br><br>Decrypted Text is<br> $decrypted"
