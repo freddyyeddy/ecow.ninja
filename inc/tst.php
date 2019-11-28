@@ -73,5 +73,5 @@ file_put_contents(getcwd() ."/ninja.kunia",$encrypted);
 $privKey = file_get_contents("caltrops.tabi");
 //decrypting variable file with private key and showing results
 openssl_private_decrypt($encrypted, $decrypted, $privKey);
-echo "<br><br>Decrypted Text is<br> $decrypted"
+echo "<br><br>Decrypted floogText is:<br> $decrypted"
 ?>
