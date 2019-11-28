@@ -6,21 +6,21 @@
 //The Only Way To De-Crypt is with the Private Key Which Is only On the Server
 ///This Can Be Used To Generate a KeyPair For Private Key Encryption Of Secret Veriables
 //Seting Up Variables For Key Type
-$config = array(
-    "digest_alg" => "sha512",
-    "private_key_bits" => 4096,
-    "private_key_type" => OPENSSL_KEYTYPE_RSA,
-);
+//$config = array(
+//    "digest_alg" => "sha512",
+//    "private_key_bits" => 4096,
+//    "private_key_type" => OPENSSL_KEYTYPE_RSA,
+//);
 
 // Create the private and public key
-$res = openssl_pkey_new($config);
+//$res = openssl_pkey_new($config);
 
 // Extract the private key from $res to $privKey
-openssl_pkey_export($res, $privKey);
+//openssl_pkey_export($res, $privKey);
 
 // Extract the public key from $res to $pubKey
-$pubKey = openssl_pkey_get_details($res);
-$pubKey = $pubKey['key'];
+//$pubKey = openssl_pkey_get_details($res);
+//$pubKey = $pubKey['key'];
 //
 // $data = <<<EOT
 // echo "Test echo \n";
@@ -48,29 +48,30 @@ $pubKey = $pubKey['key'];
 
 //Name Hidane
 //another naem shinobi
-$dir = getcwd();
+//$dir = getcwd();
 //Making sure the files exist and can be accessed
-shell_exec('touch $dir/shinobi.scrt && chmod 777 $dir/shinobi.scrt');
-shell_exec('touch $dir/caltrops.tabi && chmod 777 $dir/caltrops.tabi');
-shell_exec('touch $dir/ninja.kunai && chmod 777 $dir/ninja.kunia');
+//shell_exec('touch $dir/shinobi.scrt && chmod 777 $dir/shinobi.scrt');
+//shell_exec('touch $dir/caltrops.tabi && chmod 777 $dir/caltrops.tabi');
+//shell_exec('touch $dir/ninja.kunai && chmod 777 $dir/ninja.kunia');
 //putting public and private keys into cheekily named files
 //Public Key File
-file_put_contents($dir ."/shinobi.scrt",$pubKey);
+//file_put_contents($dir ."/shinobi.scrt",$pubKey);
 //Private Key File
-file_put_contents($dir ."/caltrops.tabi",$privKey);
+//file_put_contents($dir ."/caltrops.tabi",$privKey);
 
 //Reading Files To Verify All Is Working And Writing To Secret Variables File
 $pubKey = file_get_contents("shinobi.scrt");
-$privKey = file_get_contents("caltrops.tabi");
+//$privKey = file_get_contents("caltrops.tabi");
 //Making Some Data To Encode
-$data ='This is a Test $variables;';
-echo $data . "<br><br>";
+//$data ='This is a Test $variables;';
+//echo $data . "<br><br>";
 //Encrypting the Data
-openssl_public_encrypt($data, $encrypted, $pubKey);
+//openssl_public_encrypt($data, $encrypted, $pubKey);
 //Puting encrypted Data Into Private variable storage
-file_put_contents(getcwd() ."/ninja.kunai",$encrypted);
+//file_put_contents(getcwd() ."/ninja.kunai",$encrypted);
 //Reading private variable file
 $privKey = file_get_contents("caltrops.tabi");
+$encrypted = file_get_contents("ninja.kunai");
 //decrypting variable file with private key and showing results
 openssl_private_decrypt($encrypted, $decrypted, $privKey);
 echo "<br><br>Decrypted floogText is:<br> $decrypted"
