@@ -64,7 +64,7 @@ $pubKey = file_get_contents("shinobi.scrt");
 $privKey = file_get_contents("caltrops.tabi");
 //Making Some Data To Encode
 $data ='This is a Test $variables;';
-echo $data . "<br><br>";
+echo $data . "<br> <br>";
 //Encrypting the Data
 openssl_public_encrypt($data, $encrypted, $pubKey);
 //Puting encrypted Data Into Private variable storage
