@@ -39,10 +39,10 @@ $pubKey = $pubKey['key'];
 //
 // eval($decrypted);
 
-$data = <<<'EOT'
-echo "Test echo \n";
-echo 5/12;
-EOT;
+// $data = <<<'EOT'
+// echo "Test echo \n";
+// echo 5/12;
+// EOT;
 //This will Make A Key Pair and Put them Into The Files We Want.
 //Uncomment Below To generate the Keyfiles
 
@@ -73,5 +73,5 @@ file_put_contents(getcwd() ."/ninja.kunia",$encrypted);
 $privKey = readfile("ninja.kunia");
 //decrypting variable file with private key and showing results
 openssl_private_decrypt($encrypted, $decrypted, $privKey);
-echo "<br><br>Encrypted Text <br> $encrypted"
+echo "<br><br>Decrypted Text is<br> $decrypted"
 ?>
