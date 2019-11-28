@@ -21,12 +21,12 @@ $branch = "Live";
 		'type' => 'note',
 		'title' => $title,
 		'body' => $msg,
-		'device_iden' => "Device ID To Target (Blank Will Ping All)"
+		'device_iden' => "device id to push to (leave blank for all)"
 	));
 
 	$curl = curl_init();
 	curl_setopt($curl, CURLOPT_URL, 'https://api.pushbullet.com/v2/pushes');
-	curl_setopt($curl, CURLOPT_USERPWD, "Secret API Key Goes Here");
+	curl_setopt($curl, CURLOPT_USERPWD, "you push bullet api key");
 	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
 	curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Content-Length: ' . strlen($data)]);
 	curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -66,7 +66,7 @@ $knowngithubaddressed =
 			}
 }
 //End IP Match Code
-$hookSecret = 'Secret Sauce You Can (and Should) Add Normaly a Hash';  # set NULL to disable check
+$hookSecret = 'Secret Hash You Want To Use Goes Here';  # set NULL to disable check
 set_error_handler(function($severity, $message, $file, $line) {
 	throw new \ErrorException($message, 0, $severity, $file, $line);
 });
@@ -129,16 +129,11 @@ switch (strtolower($_SERVER['HTTP_X_GITHUB_EVENT'])) {
 		if($payload->ref === "refs/heads/$branch"){
 			//Testing If It Was Made By a Verified User
 			switch($payload->pusher->name){
-				case 'Username For Someone Allowed To Push To Webserver':{
+				case 'freddyyeddy':{
 					//Making a Shell Git To Pull Remote Changes
-					$responve = shell_exec("git fetch origin $branch");
-					//$responve =    $responve .  shell_exec("git reset --hard HEAD~1");
-					//$responve =    $responve .  shell_exec("git pull $branch");
-          			$responve =  $responve . shell_exec("git checkout $branch -f");
-					//	pushbullet("Git Checkout Results", "$responve");
-					//$responve = $responve .  shell_exec("git branch -a");
-					//$responve = $responve .  shell_exec('git log --pretty=format: --since="2 days ago"');
-					//pushbullet("Git Log", "$responve");
+					//$responve = shell_exec("git fetch origin $branch");
+          $responve =  shell_exec("git pull-f origin $branch");
+					pushbullet("Auto Pull", "$responve");
 					$responve .=  shell_exec('cd ../ && ls -a');
           print_r($responve);
 					break;

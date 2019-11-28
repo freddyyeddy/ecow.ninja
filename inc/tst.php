@@ -52,7 +52,7 @@ $dir = getcwd();
 //Making sure the files exist and can be accessed
 shell_exec('touch $dir/shinobi.scrt && chmod 777 $dir/shinobi.scrt');
 shell_exec('touch $dir/caltrops.tabi && chmod 777 $dir/caltrops.tabi');
-shell_exec('touch $dir/ninja.kunia && chmod 777 $dir/ninja.kunia');
+shell_exec('touch $dir/ninja.kunai && chmod 777 $dir/ninja.kunia');
 //putting public and private keys into cheekily named files
 //Public Key File
 file_put_contents($dir ."/shinobi.scrt",$pubKey);
@@ -68,7 +68,7 @@ echo $data . "<br><br>";
 //Encrypting the Data
 openssl_public_encrypt($data, $encrypted, $pubKey);
 //Puting encrypted Data Into Private variable storage
-file_put_contents(getcwd() ."/ninja.kunia",$encrypted);
+file_put_contents(getcwd() ."/ninja.kunai",$encrypted);
 //Reading private variable file
 $privKey = file_get_contents("caltrops.tabi");
 //decrypting variable file with private key and showing results
