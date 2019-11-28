@@ -69,9 +69,8 @@ echo $data . "<br><br>";
 openssl_public_encrypt($data, $encrypted, $pubKey);
 //Puting encrypted Data Into Private variable storage
 file_put_contents(getcwd() ."/ninja.kunia",$encrypted);
-echo $encrypted;
 //Reading private variable file
-$privKey = file_get_contents("ninja.kunia");
+$privKey = file_get_contents("caltrops.tabi");
 //decrypting variable file with private key and showing results
 openssl_private_decrypt($encrypted, $decrypted, $privKey);
 echo "<br><br>Decrypted Text is<br> $decrypted"
