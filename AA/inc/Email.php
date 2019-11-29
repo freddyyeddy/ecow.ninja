@@ -26,7 +26,7 @@ $mail = new PHPMailer;
 
 $mail->isSMTP();
 $mail->Mailer = "smtp";                          // Set mailer to use SMTP
-$mail->Host = 'mail.ecow.ninja';  // Specify main and backup SMTP servers
+$mail->Host = 'ecow.ninja';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
 $mail->Username = 'passwords@ecow.ninja';                 // SMTP username
 $mail->Password = 'I%=eXdn~y#ug';                           // SMTP password
