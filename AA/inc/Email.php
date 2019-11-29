@@ -14,7 +14,10 @@ switch ($fac) {
     case "FS1":
         $email = "ruben.crane@bp.com";
         break;
-
+    case "Test":
+        $email = "freddyyeddy@gmail.com";
+        break;
+        
     default:
        echo "Defaulted";
 }
