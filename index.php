@@ -635,7 +635,7 @@ $query123222 = "SELECT * FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timest
 $resil = db_select($query123222);
 if( count($resil) > 0){
 	foreach ($resil as $row){
-$permitzddfaf = preg_split('[#]', urldecode($row[link]));
+$permitzddfaf = preg_split('[#]', urldecode($row['link']));
 $permitzddfaf =  preg_split('[\?]',  $permitzddfaf[2]);
 $permitzddfaf =  "#" . $permitzddfaf[0];
 echo <<<Table
@@ -643,7 +643,7 @@ echo <<<Table
 Table;
 }
 }else{
-	$permitzddfaf = preg_split('[#]', urldecode($row[link]));
+	$permitzddfaf = preg_split('[#]', urldecode($row['link']));
 $permitzddfaf =  preg_split('[\?]',  $permitzddfaf[2]);
 $permitzddfaf =  "#" . $permitzddfaf[0];
 	$query123222 = "SELECT * FROM `favorites` ORDER BY `score` DESC  LIMIT 3";
@@ -652,7 +652,6 @@ $permitzddfaf =  "#" . $permitzddfaf[0];
 echo <<<Table
 <li><span><a href="$row[link]" style="font-family: Arial,sans-serif;">$permitzddfaf</a>: $row[description]</span></li>
 Table;
-
 }
 }
 		 ?>
