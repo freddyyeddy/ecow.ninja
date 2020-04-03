@@ -41,7 +41,7 @@ if(isset($_GET['s']) and isset($_SESSION['ses']) and isset($_GET['f'])){
 
 if($_GET['s'] == $_SESSION['ses']){
 // Sending a Pushbulled notifaction that login sucseeded
-pushbullet("$fac Logged in", "$fac is Using AAninja")
+pushbullet("$fac Logged in", "$fac is Using AAninja");
 
 // End Push Notifacation
   $query102 =  "SELECT * FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`)";
