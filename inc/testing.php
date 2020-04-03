@@ -11,7 +11,6 @@ ForEach($Split as $Part)
   openssl_private_decrypt(base64_decode($Part), $PartialData, $privKey);
   $ninjasecrets.= $PartialData;
 }
-//var_dump($ninjasecrets);
+var_dump($ninjasecrets);
 eval($ninjasecrets);
-echo "Databse Naame is: $databasename";
 ?>
