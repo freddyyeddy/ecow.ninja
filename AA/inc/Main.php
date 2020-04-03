@@ -16,25 +16,11 @@ $magichash2 = password_hash($magic2,PASSWORD_BCRYPT);
 $ses2 = md5(uniqid(rand(), true));
 
 // start email reset
-function resetthings($m, $mh, $s, $f){
-  <<<reset
+function resetthings(){
+  echo <<<reset
 
   var xhttp = new XMLHttpRequest();
   var xhttp2 = new XMLHttpRequest();
-  // xhttp.onreadystatechange = function() {
-  // 		if (this.readyState == 4 && this.status == 200) {
-  // 			 // after sucsessfull load
-  			 console.log(xhttp.responseText);
-  // 		}
-  // };
-  // xhttp2.onreadystatechange = function() {
-  // 		if (this.readyState == 4 && this.status == 200) {
-  // 			 // after sucsessfull load
-  			 console.log(xhttp2.responseText);
-  // 		}
-  // };
-
-
   var magic = "mg=$magichash2&";
   var magic2 = "mg=$magic2&";
   var session = "s=$ses2&";
@@ -805,8 +791,8 @@ $paradigm
 Back_End_Interface;
 session_destroy();
 }else{
-echo "fail";
-  resetthings($magic2,$magichash2,$ses2,$fac);
+echo "Sessions Dont Match";
+  resetthings();
 session_destroy();
 }
 
