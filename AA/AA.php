@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../inc/var.php");
+required("../inc/var.php");
 echo "<!DOCTYPE html>";
 // Making a unique id for storing into localstorage then going to use an ajax request post to actually check magic link and password
 // if i dont detect a match in database from localstorage id then i will auto invalidate and send a new magic link with the new uid stored

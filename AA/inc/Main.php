@@ -1,6 +1,15 @@
 <?php
 session_start();
 //include("../../inc/var.php");
+//This Function Used a Quick and Dirty cURL call to make the push
+function pushbullet($title, $msg){
+
+ $data = json_encode(array(
+   'type' => 'note',
+   'title' => $title,
+   'body' => $msg,
+   'device_iden' => $pushbulletdeviceid
+ ));
 // use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;
 // require_once('phpmail/PHPMailer.php');
