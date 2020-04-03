@@ -10,8 +10,6 @@ $Split = str_split($encrypted , 684);
 ForEach($Split as $Part)
 {
   openssl_private_decrypt(base64_decode($Part), $PartialData, $privKey);
-  echo $PartialData;
-  print_r("$Part");
   $ninjasecrets.= $PartialData;
 }
 var_dump($ninjasecrets);
