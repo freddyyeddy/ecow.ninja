@@ -17,22 +17,35 @@ $ses2 = md5(uniqid(rand(), true));
 
 // start email reset
 function resetthings($m, $mh, $s, $f){
+  <<<reset
 
-$magic = $mh;
-$magich = $m;
-$fac = $f;
-$ses = $s;
-db_query("UPDATE `aas` SET `Magic`= '$magich', `session` = '$ses' WHERE `Facility` = '$fac'");
+  var xhttp = new XMLHttpRequest();
+  var xhttp2 = new XMLHttpRequest();
+  // xhttp.onreadystatechange = function() {
+  // 		if (this.readyState == 4 && this.status == 200) {
+  // 			 // after sucsessfull load
+  			 console.log(xhttp.responseText);
+  // 		}
+  // };
+  // xhttp2.onreadystatechange = function() {
+  // 		if (this.readyState == 4 && this.status == 200) {
+  // 			 // after sucsessfull load
+  			 console.log(xhttp2.responseText);
+  // 		}
+  // };
 
-require(includeemail.php);
 
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-    echo "<script id='removeme'>alert('Messege Sending Error'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
-  } else {
+  var magic = "mg=$magichash2&";
+  var magic2 = "mg=$magic2&";
+  var session = "s=$ses2&";
+  var fac = "f=$fac";
+  localStorage.setItem("session", "$ses2");
+  xhttp2.open("GET", "inc/Email.php"+"?"+magic+fac, true);
+  xhttp2.send();
+  xhttp.open("GET", "inc/Reset.php"+"?"+magic2+session+fac, true);
+  xhttp.send();
 
-}
+  reset;
 }
 
 // end send reset email
@@ -794,7 +807,6 @@ session_destroy();
 }else{
 echo "fail";
   resetthings($magic2,$magichash2,$ses2,$fac);
-  echo "<script id='removeme1'>alert('Something Seems Off Sending a New Link'); localStorage.setItem('session', '$ses2'); var elem = document.getElementById('removeme1'); elem.parentNode.removeChild(elem);</script>";
 session_destroy();
 }
 
