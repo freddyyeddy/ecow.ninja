@@ -163,8 +163,8 @@ reset;
 		// console.log("Running Test");
 		console.log("Expected Magic: $magic");
 		console.log("Expected Session: $session");
-		console.log($session";
-		console.log(ocalStorage.getItem("session"));
+		console.log($session);
+		console.log(localStorage.getItem("session"));
 		console.log("Currently Set as: " + localStorage.getItem("session"));
 		sessioncheck.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
