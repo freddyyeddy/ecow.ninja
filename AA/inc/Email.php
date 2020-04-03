@@ -51,13 +51,13 @@ $mail->isHTML(true);
 $mail->Subject = 'AAninja Magic Link';
 $mail->Body = $mailbody;
 
-// if(!$mail->send()) {
-//     echo "Message could not be sent";
-//     echo 'Mailer Error: ' . $mail->ErrorInfo;
-// } else {
-//     echo 'Message has been sent';
-//
-// }
+if(!$mail->send()) {
+    echo "Message could not be sent";
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+
+}
 
 //Notes on the plan from here for implementing magic link style security
 // sql query for if older than if older than
