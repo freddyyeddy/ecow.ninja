@@ -5,7 +5,6 @@ include("../../inc/var.php");
 require_once('phpmail/PHPMailer.php');
 require_once('phpmail/Exception.php');
 require_once('phpmail/SMTP.php');
-require_once('includeemail.php');
 $magic = $_GET['mg'];
 $fac = $_GET['f'];
 // Selecting Email For Message Based of Facility
@@ -23,6 +22,7 @@ switch ($fac) {
     default:
        echo "Defaulted";
 }
+require_once('includeemail.php');
 // Begin Main Email code
 $mail = new PHPMailer;
 
