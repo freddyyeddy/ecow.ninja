@@ -201,7 +201,6 @@ $_SESSION['ses'] = $session;
 		echo <<<hash_fail
 <script id='removeme2'>
 		// I dont recognize this browser
-		localStorage.setItem("session", "$ses2");
 		alert("I Detect Mischief...
 hash_fail;
 echo '\n';
