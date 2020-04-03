@@ -141,7 +141,7 @@ xhttp2.open("GET", "inc/Email.php"+"?"+magic+fac, true);
 xhttp2.send();
 xhttp.open("GET", "inc/Reset.php"+"?"+magic2+session+fac, true);
 xhttp.send();
-
+Console.log(magic);
 reset;
 // end send reset email
 
