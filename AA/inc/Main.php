@@ -29,9 +29,13 @@ $reset = <<<reset
   xhttp2.send();
   xhttp.open("GET", "inc/Reset.php"+"?"+magic2+session+fac, true);
   xhttp.send();
+  // console.log("Running Test");
+  console.log("Expected Magic: $magic");
+  console.log("Expected Session: $session");
+  console.log("Currently Set as: " + localStorage.getItem("session"));
 reset;
 
-  echo "<script id='removeme3'> alert('Looks Like You Havent Visited From this Browser Yet Lets Fix that Session Fail');" . $reset . " var elem = document.getElementById('removeme3'); elem.parentNode.removeChild(elem);</script>";
+  echo "<script id='removeme3'> alert('Looks Like You Havent Visited From this Browser Yet Lets Fix that Sending Email');" . $reset . " var elem = document.getElementById('removeme3'); elem.parentNode.removeChild(elem);</script>";
 }
 
 // end send reset email
