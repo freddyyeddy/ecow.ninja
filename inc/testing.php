@@ -13,5 +13,5 @@ ForEach($Split as $Part)
 }
 //var_dump($ninjasecrets);
 eval($ninjasecrets);
-echo "Databse Naame is:"$databasename;
+echo "Databse Naame is: $databasename";
 ?>
