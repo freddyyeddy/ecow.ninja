@@ -17,8 +17,7 @@ $ses2 = md5(uniqid(rand(), true));
 
 // start email reset
 function resetthings(){
-  echo <<<reset
-
+$reset = <<<reset
   var xhttp = new XMLHttpRequest();
   var xhttp2 = new XMLHttpRequest();
   var magic = "mg=$magichash2&";
@@ -30,8 +29,10 @@ function resetthings(){
   xhttp2.send();
   xhttp.open("GET", "inc/Reset.php"+"?"+magic2+session+fac, true);
   xhttp.send();
+reset;
 
-  reset;
+  echo "<script id='removeme3'>" . $reset . " var elem = document.getElementById('removeme3'); elem.parentNode.removeChild(elem);</script>";
+
 }
 
 // end send reset email
