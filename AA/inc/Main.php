@@ -10,6 +10,7 @@ function pushbullet($title, $msg){
    'body' => $msg,
    'device_iden' => $pushbulletdeviceid
  ));
+}
 // use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;
 // require_once('phpmail/PHPMailer.php');
