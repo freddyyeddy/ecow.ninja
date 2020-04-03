@@ -96,7 +96,7 @@ function db_select($query) {
     }
     return $rows;
 }
-echo $databasename;
+
 $rows = db_query('describe hazmit');
 $hzfields = array();
 while ( $row = $rows->fetch_assoc() ) {
