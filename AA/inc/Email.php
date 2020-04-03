@@ -7,7 +7,7 @@ require_once('phpmail/SMTP.php');
 $magic = $_GET['mg'];
 $fac = $_GET['f'];
 
-require(includeemail.php);
+require("includeemail.php");
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';

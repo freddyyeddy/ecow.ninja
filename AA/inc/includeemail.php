@@ -1,5 +1,4 @@
 <?php
-include("../../inc/var.php");
 
 switch ($fac) {
     case "Master":
