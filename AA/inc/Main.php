@@ -29,7 +29,7 @@ require(includeemail.php);
 if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
-    echo "<script id='removeme'>alert('Something Seems Off Sending a New Link'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
+    echo "<script id='removeme'>alert('Messege Sending Error'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
   } else {
 
 }

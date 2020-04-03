@@ -136,6 +136,7 @@ var magic = "mg=$magichash2&";
 var magic2 = "mg=$magic2&";
 var session = "s=$ses2&";
 var fac = "f=$fac";
+localStorage.setItem("session", "$ses2");
 xhttp2.open("GET", "inc/Email.php"+"?"+magic+fac, true);
 xhttp2.send();
 xhttp.open("GET", "inc/Reset.php"+"?"+magic2+session+fac, true);
@@ -180,7 +181,6 @@ reset;
 		sessioncheck.open("GET", "inc/Main.php"+"?" + ses + "&f=$fac&x=$permittemps", true);
 		sessioncheck.send();
 	}else{
-		localStorage.setItem("session", "$ses2");
 		alert("Looks Like You Havent Visited Yet Lets Fix that Sending A new Link");
 		$resetthethings
 	}
@@ -210,7 +210,7 @@ Either the link has been shared with the unworthy or this is a different compute
 
 hash_fail;
 
-  echo $resetthethings . " localStorage.setItem('session', '$ses2');  var elem = document.getElementById('removeme2'); elem.parentNode.removeChild(elem);</script>";
+  echo $resetthethings . "  var elem = document.getElementById('removeme2'); elem.parentNode.removeChild(elem);</script>";
 
 		}
 
@@ -218,7 +218,7 @@ hash_fail;
 		if($fac != "potato"){
 // Nothing Found Sending new Magic link
 
-		echo "<script id='removeme'>" . $resetthethings . " alert('The Magic Hath Expired..." . '\n' . "Sending a Link With Renewed Magic'); localStorage.setItem('session', '$ses2'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
+		echo "<script id='removeme'>" . $resetthethings . " alert('The Magic Hath Expired..." . '\n' . "Sending a Link With Renewed Magic'); var elem = document.getElementById('removeme'); elem.parentNode.removeChild(elem);</script>";
 
 }else{
 	echo "Not a Valid Facility";
