@@ -179,7 +179,7 @@ reset;
 
 
 
-		if (localStorage.getItem("session") == $session) {
+		if (localStorage.getItem("session") == "$session") {
 			var ses = "s=" + localStorage.getItem("session");
 		sessioncheck.open("GET", "inc/Main.php"+"?" + ses + "&f=$fac&x=$permittemps", true);
 		sessioncheck.send();
