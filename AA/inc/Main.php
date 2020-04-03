@@ -33,6 +33,7 @@ $reset = <<<reset
   console.log("Expected Magic: $magic");
   console.log("Expected Session: $session");
   console.log("Currently Set as: " + localStorage.getItem("session"));
+  console.log("Browser Signature Fails Check agianst PHP session");
 reset;
 
   echo "<script id='removeme3'> alert('Looks Like You Havent Visited From this Browser Yet Lets Fix that Sending Email');" . $reset . " var elem = document.getElementById('removeme3'); elem.parentNode.removeChild(elem);</script>";

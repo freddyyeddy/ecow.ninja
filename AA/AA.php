@@ -183,12 +183,15 @@ reset;
 			var ses = "s=" + localStorage.getItem("session");
 		sessioncheck.open("GET", "inc/Main.php"+"?" + ses + "&f=$fac&x=$permittemps", true);
 		sessioncheck.send();
+		console.log("Access Granted");
 	}else{
 		alert("Looks Like You Havent Visited From this Browser Yet Lets Fix that");
+		console.log("Browser Signature Doesnt Match");
 		$resetthethings
 	}
 	}else{
 		alert("Looks Like You Havent Visited Yet Lets Fix that Sending A new Link");
+		console.log("Browsers New To Me");
 		$resetthethings
 	}
 local_reset_test;
