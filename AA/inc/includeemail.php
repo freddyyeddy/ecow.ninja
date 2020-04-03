@@ -1,4 +1,9 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require_once('phpmail/PHPMailer.php');
+require_once('phpmail/Exception.php');
+require_once('phpmail/SMTP.php');
 
 switch ($fac) {
     case "Master":
