@@ -118,18 +118,18 @@ $resetthethings = <<<reset
 
 var xhttp = new XMLHttpRequest();
 var xhttp2 = new XMLHttpRequest();
-// xhttp.onreadystatechange = function() {
-// 		if (this.readyState == 4 && this.status == 200) {
-// 			 // after sucsessfull load
+ xhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+			 // after sucsessfull load
 			 console.log(xhttp.responseText);
-// 		}
-// };
-// xhttp2.onreadystatechange = function() {
-// 		if (this.readyState == 4 && this.status == 200) {
-// 			 // after sucsessfull load
+ 		}
+ };
+ xhttp2.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			 // after sucsessfull load
 			 console.log(xhttp2.responseText);
-// 		}
-// };
+		  		}
+				};
 
 
 var magic = "mg=$magichash2&";
