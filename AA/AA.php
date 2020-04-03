@@ -161,7 +161,8 @@ reset;
 		if (localStorage.getItem("session") != null) {
 		var sessioncheck = new XMLHttpRequest();
 		// console.log("Running Test");
-		console.log("Expected: $session");
+		console.log("Expected Magic: $magic");
+		console.log("Expected Session: $session");
 		console.log("Currently Set as: " + localStorage.getItem("session"));
 		sessioncheck.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
