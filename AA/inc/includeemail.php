@@ -1,51 +1,5 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-require_once('phpmail/PHPMailer.php');
-require_once('phpmail/Exception.php');
-require_once('phpmail/SMTP.php');
-
-switch ($fac) {
-    case "Master":
-        $email = $MasterEmail;
-        break;
-    case "FS1":
-        $email = $FS1Email;
-        break;
-    case "Test":
-        $email = $TestEmail;
-        break;
-
-    default:
-       echo "Defaulted";
-}
-
-$mail = new PHPMailer;
-
-$mail->isSMTP();
-$mail->Mailer = "smtp";                          // Set mailer to use SMTP
-$mail->Host = $mailHost;  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = $mailUsername;                 // SMTP username
-$mail->Password = $mailPassword;                           // SMTP password
-$mail->SMTPSecure = 'ssl';
-$mail->Port = 465;                      // Enable encryption, 'ssl' also accepted
-
-$mail->From = $mailFrom;
-$mail->FromName = 'Ecow Ninja';
-$mail->addAddress($email);     // Add a recipient
-// $mail->addAddress('ellen@example.com');               // Name is optional
-// $mail->addReplyTo('info@example.com', 'Information');
-// $mail->addCC('cc@example.com');
-// $mail->addBCC('bcc@example.com');
-
-$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-$mail->isHTML(true);
-
-$mail->Subject = 'AAninja Magic Link';
-$mail->Body    = <<<EmailHTML
+$mailbody = <<<EmailHTML
 <!doctype html>
 <html>
   <head>
