@@ -179,8 +179,13 @@ reset;
 
 
 		var ses = "s=" + localStorage.getItem("session");
+		if (localStorage.getItem("session") === $session) {
 		sessioncheck.open("GET", "inc/Main.php"+"?" + ses + "&f=$fac&x=$permittemps", true);
 		sessioncheck.send();
+	}else{
+		alert("Looks Like You Havent Visited From this Browser Yet Lets Fix that");
+		$resetthethings
+	}
 	}else{
 		alert("Looks Like You Havent Visited Yet Lets Fix that Sending A new Link");
 		$resetthethings
