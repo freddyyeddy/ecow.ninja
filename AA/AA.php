@@ -149,7 +149,7 @@ reset;
 
 		$session = $rows[0]["session"];
 		$permittemps = $rows[0]["Examples"];
-		$_SESSION['sess'] = $session;
+		$_SESSION['ses'] = $session;
 		$magichash = $rows[0]["Magic"];
 		// var_dump(password_verify($magic, $magichash));
 		// echo "\n" . $session .  "\n" . $magichash;
