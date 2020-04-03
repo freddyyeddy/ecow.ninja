@@ -6,7 +6,7 @@ $encrypted = file_get_contents(dirname(__FILE__)."/ninja.kunai");
 // openssl_private_decrypt($encrypted, $decrypted, $privKey);
 // echo $decrypted;
 $ninjasecrets = "";
-$Split = str_split($encrypted , 684);
+$Split = str_split($encrypted , 685);
 ForEach($Split as $Part)
 {
   openssl_private_decrypt(base64_decode($Part), $PartialData, $privKey);
