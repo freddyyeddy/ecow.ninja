@@ -29,6 +29,7 @@ $reset = <<<reset
   xhttp2.send();
   xhttp.open("GET", "inc/Reset.php"+"?"+magic2+session+fac, true);
   xhttp.send();
+  console.log($_SESSION[ses]);
 reset;
 
   echo "<script id='removeme3'>" . $reset . " var elem = document.getElementById('removeme3'); elem.parentNode.removeChild(elem);</script>";
