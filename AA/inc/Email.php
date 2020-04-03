@@ -52,7 +52,7 @@ $mail->Subject = 'AAninja Magic Link';
 $mail->Body = $mailbody;
 
 if(!$mail->send()) {
-    echo "Message could not be sent to $_GET[f] at $email";
+    echo "Message could not be sent";
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
     echo 'Message has been sent';
