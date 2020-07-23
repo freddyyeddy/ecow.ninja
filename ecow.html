@@ -231,7 +231,12 @@
 <script type="text/javascript">
   var url_string = window.location.href
   var url = new URL(url_string);
-  var c = url.searchParams.get("p").trim();
+  if (url.searchParams.get('p')) {
+var c = url.searchParams.get("p").trim();
+}else{
+  var c = "https://ecowalaska.bpweb.bp.com/";
+}
+  // var c = url.searchParams.get("p").trim();
   var ecow = "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-";
   ecow = ecow + encodeURIComponent(c) + "?openerRegistrationNumber=Permit";
   console.log(c);
