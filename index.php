@@ -2,7 +2,7 @@
 <style>
   .countDown_cont {
     font-family: Lato, Arial, Gadget, sans-serif;
-    font-size: 13px;
+    font-size:  13px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
