@@ -1,815 +1,514 @@
-<?php
-require("inc/var.php");
-?>
-<!DOCTYPE html>
-<head>
-	<title>Ninja!!</title>
-<!-- test   <link rel="stylesheet" type="text/css" href="main.css"> -->
-	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<link rel="stylesheet" href="inc/main.css">
-	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	<script src="inc/js/dataplg.js"></script>
-	<script src="inc/js/tagify.js"></script>
-<script src="inc/js/select2.js"></script>
-	<script src="inc/js/notify.js"></script>
-	  	<script src="inc/js/radio.js"></script>
 
-<script>
-(function($){
+<style>
+  .countDown_cont {
+    font-family: Lato, Arial, Gadget, sans-serif;
+    font-size: 13px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #333;
+  }
 
-    var _old = $.unique;
+  .countDown_interval_cont {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    width: auto;
+  }
 
-    $.unique = function(arr){
+  .countDown_interval_cont:nth-child(n+1):not(:last-child) {
+    margin-right: 1em;
+  }
 
-        // do the default behavior only if we got an array of elements
-        if (!!arr[0].nodeType){
-            return _old.apply(this,arguments);
-        } else {
-            // reduce the array to contain no dupes via grep/inArray
-            return $.grep(arr,function(v,k){
-                return $.inArray(v,arr) === k;
-            });
+  .countDown_interval_basic_cont {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .countDown_interval_basic_cont_description {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: .3em;
+    margin-top: 0.3em;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0.1em 0.1em 0.1em #000000;
+  }
+
+  .countDown_digit_cont {
+    -webkit-perspective: 3.2em;
+    perspective: 3.2em;
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.2);
+    width: 1em;
+    height: 1.6em;
+    position: relative;
+    line-height: 1.6em;
+    font-size: 5em;
+    font-weight: bold;
+    border-radius: 0.08em;
+  }
+
+  .countDown_digit_cont:nth-child(n+1):not(:last-child) {
+    margin-right: 0.05em;
+  }
+
+  .countDown_digit_last_placeholder,
+  .countDown_digit_new_placeholder {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .countDown_digit_last_placeholder {
+    bottom: 0;
+    background: white;
+    border-radius: 0 0 0.08em 0.08em;
+  }
+
+  .countDown_digit_last_placeholder_inner {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    bottom: 50%;
+    position: absolute;
+  }
+
+  .countDown_digit_new_placeholder {
+    top: 0;
+    background: #f7f7f7;
+    border-radius: 0.08em 0.08em 0 0;
+  }
+
+  .countDown_digit_last_rotate,
+  .countDown_digit_new_rotate {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    border-radius: 0.08em 0.08em 0 0;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+  }
+
+  .countDown_digit_last_rotate:after,
+  .countDown_digit_new_rotate:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom: 0.01em solid rgba(0, 0, 0, 0.1);
+  }
+
+  .countDown_digit_last_rotate {
+    -webkit-animation-name: countDown_flip_1;
+    animation-name: countDown_flip_1;
+    background: #f7f7f7;
+  }
+
+  .countDown_digit_new_rotate {
+    -webkit-animation-name: countDown_flip_2;
+    animation-name: countDown_flip_2;
+    background: white;
+  }
+
+  .countDown_digit_new_rotated {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+    width: 100%;
+    height: 100%;
+  }
+
+  .countDown_digit_new_rotated_inner {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    bottom: 50%;
+    position: absolute;
+  }
+
+  @-webkit-keyframes countDown_flip_1 {
+    0% {
+      -webkit-transform: rotateX(0deg);
+      transform: rotateX(0deg);
+      z-index: 1;
+    }
+
+    100% {
+      -webkit-transform: rotateX(-180deg);
+      transform: rotateX(-180deg);
+      z-index: 0;
+    }
+  }
+
+  @keyframes countDown_flip_1 {
+    0% {
+      -webkit-transform: rotateX(0deg);
+      transform: rotateX(0deg);
+      z-index: 1;
+    }
+
+    100% {
+      -webkit-transform: rotateX(-180deg);
+      transform: rotateX(-180deg);
+      z-index: 0;
+    }
+  }
+
+  @-webkit-keyframes countDown_flip_2 {
+    0% {
+      -webkit-transform: rotateX(0deg);
+      transform: rotateX(0deg);
+      z-index: 0;
+    }
+
+    100% {
+      -webkit-transform: rotateX(-180deg);
+      transform: rotateX(-180deg);
+      z-index: 1;
+    }
+  }
+
+  @keyframes countDown_flip_2 {
+    0% {
+      -webkit-transform: rotateX(0deg);
+      transform: rotateX(0deg);
+      z-index: 0;
+    }
+
+    100% {
+      -webkit-transform: rotateX(-180deg);
+      transform: rotateX(-180deg);
+      z-index: 1;
+    }
+  }
+</style>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+<script type="text/javascript">
+  var url_string = window.location.href
+  var url = new URL(url_string);
+  if (url.searchParams.get('p')) {
+var c = url.searchParams.get("p").trim();
+}else{
+  var c = "https://ecowalaska.bpweb.bp.com/";
+}
+  // var c = url.searchParams.get("p").trim();
+  var ecow = "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-";
+  ecow = ecow + encodeURIComponent(c) + "?openerRegistrationNumber=Permit";
+  console.log(c);
+  // window.location = ecow + encodeURIComponent(c) + "?openerRegistrationNumber=Permit";
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+    return typeof obj;
+  } : function(obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+  };
+
+  function Countdown(opt) {
+    "use strict";
+    var options = {
+        cont: null,
+        endDate: {
+          year: 0,
+          month: 0,
+          day: 0,
+          hour: 0,
+          minute: 0,
+          second: 0
+        },
+        endCallback: null,
+        outputFormat: 'year|week|day|hour|minute|second',
+        outputTranslation: {
+          year: 'Roky',
+          week: 'Týdny',
+          day: 'Dny',
+          hour: 'Hodin',
+          minute: 'Minut',
+          second: 'Vteřin'
         }
+      },
+      lastTick = null,
+      intervalsBySize = ['year', 'week', 'day', 'hour', 'minute', 'second'],
+      TIMESTAMP_SECOND = 1000,
+      TIMESTAMP_MINUTE = 60 * TIMESTAMP_SECOND,
+      TIMESTAMP_HOUR = 60 * TIMESTAMP_MINUTE,
+      TIMESTAMP_DAY = 24 * TIMESTAMP_HOUR,
+      TIMESTAMP_WEEK = 7 * TIMESTAMP_DAY,
+      TIMESTAMP_YEAR = 365 * TIMESTAMP_DAY,
+      elementClassPrefix = 'countDown_',
+      interval = null,
+      digitConts = {};
+    loadOptions(options, opt);
+
+    function getDate(date) {
+      if ((typeof date === 'undefined' ? 'undefined' : _typeof(date)) === 'object') {
+        if (date instanceof Date) {
+          return date;
+        } else {
+          var expectedValues = {
+            day: 0,
+            month: 0,
+            year: 0,
+            hour: 0,
+            minute: 0,
+            second: 0
+          };
+          for (var i in expectedValues) {
+            if (expectedValues.hasOwnProperty(i) && date.hasOwnProperty(i)) {
+              expectedValues[i] = date[i];
+            }
+          }
+          return new Date(expectedValues.year, expectedValues.month > 0 ? expectedValues.month - 1 : expectedValues.month, expectedValues.day, expectedValues.hour, expectedValues.minute, expectedValues.second);
+        }
+      } else if (typeof date === 'number' || typeof date === 'string') {
+        return new Date(date);
+      } else {
+        return new Date();
+      }
+    }
+
+    function prepareTimeByOutputFormat(dateObj) {
+      var usedIntervals = undefined,
+        output = {},
+        timeDiff = undefined;
+      usedIntervals = intervalsBySize.filter(function(item) {
+        return options.outputFormat.split('|').indexOf(item) !== -1;
+      });
+      timeDiff = dateObj.getTime() - Date.now();
+      usedIntervals.forEach(function(item) {
+        var value = undefined;
+        if (timeDiff > 0) {
+          switch (item) {
+            case 'year':
+              value = Math.trunc(timeDiff / TIMESTAMP_YEAR);
+              timeDiff -= value * TIMESTAMP_YEAR;
+              break;
+            case 'week':
+              value = Math.trunc(timeDiff / TIMESTAMP_WEEK);
+              timeDiff -= value * TIMESTAMP_WEEK;
+              break;
+            case 'day':
+              value = Math.trunc(timeDiff / TIMESTAMP_DAY);
+              timeDiff -= value * TIMESTAMP_DAY;
+              break;
+            case 'hour':
+              value = Math.trunc(timeDiff / TIMESTAMP_HOUR);
+              timeDiff -= value * TIMESTAMP_HOUR;
+              break;
+            case 'minute':
+              value = Math.trunc(timeDiff / TIMESTAMP_MINUTE);
+              timeDiff -= value * TIMESTAMP_MINUTE;
+              break;
+            case 'second':
+              value = Math.trunc(timeDiff / TIMESTAMP_SECOND);
+              timeDiff -= value * TIMESTAMP_SECOND;
+              break;
+          }
+        } else {
+          value = '00';
+        }
+        output[item] = (('' + value).length < 2 ? '0' + value : '' + value).split('');
+      });
+      return output;
+    }
+
+    function fixCompatibility() {
+      Math.trunc = Math.trunc || function(x) {
+        if (isNaN(x)) {
+          return NaN;
+        }
+        if (x > 0) {
+          return Math.floor(x);
+        }
+        return Math.ceil(x);
+      };
+    }
+
+    function writeData(data) {
+      var code = '<div class="' + elementClassPrefix + 'cont">',
+        intervalName = undefined;
+      for (intervalName in data) {
+        if (data.hasOwnProperty(intervalName)) {
+          var element = '<div class="' + elementClassPrefix + '_interval_basic_cont">\n                                       <div class="' + getIntervalContCommonClassName() + ' ' + getIntervalContClassName(intervalName) + '">',
+            intervalDescription = '<div class="' + elementClassPrefix + 'interval_basic_cont_description">\n                                                   ' + options.outputTranslation[intervalName] + '\n                                               </div>';
+          data[intervalName].forEach(function(digit, index) {
+            element += '<div class="' + getDigitContCommonClassName() + ' ' + getDigitContClassName(index) + '">\n                                        ' + getDigitElementString(digit, 0) + '\n                                    </div>';
+          });
+          code += element + '</div>' + intervalDescription + '</div>';
+        }
+      }
+      options.cont.innerHTML = code + '</div>';
+      lastTick = data;
+    }
+
+    function getDigitElementString(newDigit, lastDigit) {
+      return '<div class="' + elementClassPrefix + 'digit_last_placeholder">\n                        <div class="' + elementClassPrefix + 'digit_last_placeholder_inner">\n                            ' + lastDigit + '\n                        </div>\n                    </div>\n                    <div class="' + elementClassPrefix + 'digit_new_placeholder">' + newDigit + '</div>\n                    <div class="' + elementClassPrefix + 'digit_last_rotate">' + lastDigit + '</div>\n                    <div class="' + elementClassPrefix + 'digit_new_rotate">\n                        <div class="' + elementClassPrefix + 'digit_new_rotated">\n                            <div class="' + elementClassPrefix + 'digit_new_rotated_inner">\n                                ' + newDigit + '\n                            </div>\n                        </div>\n                    </div>';
+    }
+
+    function updateView(data) {
+      var _loop = function _loop(intervalName) {
+        if (data.hasOwnProperty(intervalName)) {
+          data[intervalName].forEach(function(digit, index) {
+            if (lastTick !== null && lastTick[intervalName][index] !== data[intervalName][index]) {
+              getDigitCont(intervalName, index).innerHTML = getDigitElementString(data[intervalName][index], lastTick[intervalName][index]);
+            }
+          });
+        }
+      };
+      for (var intervalName in data) {
+        _loop(intervalName);
+      }
+      lastTick = data;
+    }
+
+    function getDigitCont(intervalName, index) {
+      if (!digitConts[intervalName + '_' + index]) {
+        digitConts[intervalName + '_' + index] = document.querySelector('.' + getIntervalContClassName(intervalName) + ' .' + getDigitContClassName(index));
+      }
+      return digitConts[intervalName + '_' + index];
+    }
+
+    function getIntervalContClassName(intervalName) {
+      return elementClassPrefix + 'interval_cont_' + intervalName;
+    }
+
+    function getIntervalContCommonClassName() {
+      return elementClassPrefix + 'interval_cont';
+    }
+
+    function getDigitContClassName(index) {
+      return elementClassPrefix + 'digit_cont_' + index;
+    }
+
+    function getDigitContCommonClassName() {
+      return elementClassPrefix + 'digit_cont';
+    }
+
+    function loadOptions(_options, _opt) {
+      for (var i in _options) {
+        if (_options.hasOwnProperty(i) && _opt.hasOwnProperty(i)) {
+          if (_options[i] !== null && _typeof(_options[i]) === 'object' && _typeof(_opt[i]) === 'object') {
+            loadOptions(_options[i], _opt[i]);
+          } else {
+            _options[i] = _opt[i];
+          }
+        }
+      }
+    }
+
+    function start() {
+      var endDate = undefined,
+        endDateData = undefined;
+      fixCompatibility();
+      endDate = getDate(options.endDate);
+      endDateData = prepareTimeByOutputFormat(endDate);
+      writeData(endDateData);
+      lastTick = endDateData;
+      if (endDate.getTime() <= Date.now()) {
+        if (typeof options.endCallback === 'function') {
+          options.endCallback();
+        }
+      } else {
+        interval = setInterval(function() {
+          updateView(prepareTimeByOutputFormat(endDate));
+        }, TIMESTAMP_SECOND);
+      }
+    }
+
+    function stop() {
+      if (interval !== null) {
+        clearInterval(interval);
+      }
+    }
+    return {
+      start: start,
+      stop: stop
     };
-})(jQuery);
-function sidebar(el){
-$(el).next("[class^=sidebar]").toggleClass("open transition");
-// console.log(el);
-}
-function remove(id) {
-	// localStorage.removeItem(i);
-	var retcon = JSON.parse(localStorage.getItem('links')).filter(function( obj, i, n) {
-    return obj.id != id;
-});
-// console.log(JSON.parse(localStorage.getItem('links')));
-// console.log(retcon);
-// console.log(id);
-localStorage.setItem("links", JSON.stringify(retcon));
-	document.getElementById(id).outerHTML = "";
-}
-function add(l,d){
-
-	if (!$("#add")[0].checkValidity()) {
-	// If the form is invalid, submit it. The form won't actually submit;
-	// this will just cause the browser to display the native HTML5 error messages.
-	$("#add").find("#submit-hidden").click();
-}else{
-	var array = new Uint32Array(1);
-	// var lnkds = [l,d];
-	try {
-  window.crypto.getRandomValues(array);
-}
-catch(err) {
-  window.msCrypto.getRandomValues(array);
-}
-// window.crypto.getRandomValues(array);
-document.getElementById("add").reset();
-// console.log(array);
-// console.log(JSON.stringify(lnkds));
-if (localStorage.getItem("links") !== null) {
-	var jsonObj = JSON.parse(localStorage.getItem('links'));
-	var newobj = {
-	    "Link" : l,    //your artist variable
-	    "id" : array[0],   //your title variable
-	    "Description" : d   //your title variable
-	};
-	jsonObj.push( newobj );
-	localStorage.setItem('links',JSON.stringify(jsonObj));
-	// var input = decodeURIComponent("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-CGF%23309592/templateAsNew");
-	//
-	// var arr = input.split("#")[2].substring(0,6);
-
-	      var m = decodeURIComponent(l);
-	      if (m != null)
-	      {
-	          var permit= "#" + m.split("#")[2].substring(0,6);;
-					}else{
-					var permit="Permit# Link";
-					}
-
-
-	$('#Examples ul').prepend(
-		$('<li>').attr("id", array[0]).append(
-				$('<a>').attr({'href':l,'target':"_blank" }).append(
-						$('<span>').attr('class', 'tab').append(permit)),
-				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array[0], 'onclick': "remove('"+array[0]+"');"}).append("Remove"))
-					)
-	)
-}else{
-	var newobj = [{
-	    "Link" : l,    //your artist variable
-	    "id" : array[0],   //your title variable
-	    "Description" : d   //your title variable
-	}];
-	localStorage.setItem('links',JSON.stringify(newobj));
-
-	var re1='.*?';	// Non-greedy match on filler
-	      var re2='(#{1}(?:[A-F0-9]){6})(?![0-9A-F])';	// HTML Color 1
-
-	      var p = new RegExp(re1+re2,["i"]);
-	      var m = p.exec(l);
-	      if (m != null)
-	      {
-	          var permit=m[1];
-					}else{
-					var permit="Permit# Link";
-					}
-
-
-	$('#Examples ul').prepend(
-		$('<li>').attr("id", array[0]).append(
-				$('<a>').attr({'href':l,'target':"_blank" }).append(
-						$('<span>').attr('class', 'tab').append(permit)),
-				$('<span>').append("--->" + d).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':array[0], 'onclick': "remove('"+array[0]+"');"}).append("Remove"))
-					)
-	)
-}
-}
-}
-
-
-// 	function for remaing characters in textarea
-	function remaing_char(box,out,max){
-
-    out.html(max + ' characters remaining');
-
-    box.keyup(function() {
-        var text_length = box.val().length;
-        var text_remaining = max - text_length;
-
-        out.html(text_remaining + ' characters remaining');
-    });
-// 		$('#haztxt_feedback').html(max + ' characters remaining');
-
-//     $('#haztxt').keyup(function() {
-//         var text_length = $('#haztxt').val().length;
-//         var text_remaining = max - text_length;
-
-//         $('#haztxt_feedback').html(text_remaining + ' characters remaining');
-//     });
-	}
-
-
-
-
-
-	// // 		Peer Review Submit Via Ajax
-		function submitF(e) {
-		e.preventDefault();
-			var form_data = $('#peerreview').serializeArray();
-			if(form_data.length < $("#rev tbody tr:not(.rvw)").length){
-				alert("Please Take The Time To Review All Mitigations")
-				// console.log(form_data.length);
-					// console.log($("#rev tbody tr:not(.rvw)").length);
-				return false;
-			}
-
-    $.ajax({
-        url:'inc/review.php',
-        type:'post',
-        data:$('#peerreview').serialize(),
-        success:function(data){
-//             alert($('#peerreview').serialize());
-// 					alert(data);
-					$('#rev').toggleClass('is-visible');
-        },
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				$('#rev').toggleClass('is-visible');
-			},
-
-    });
-			 return false;
-
-	};
-// 	end peer review ajax
-// 	Add Hazards
-
-			function submitG(e) {
-
-		e.preventDefault();
-
-// 				Varifiying input
-				var form = $('#adding');
-
-			var form_data = form.serializeArray();
-
-				if(form_data[1].value === "" || form_data[2].value === "" ||form_data[3].value === ""||form_data[4].value === ""){
-					alert("We Need all Fields Filled Out");
-					return false;
-				}else{
-
-
-					 $.ajax({
-        url:'inc/add.php',
-        type:'post',
-        data:$('#adding').serialize(),
-        success:function(data){
-//             alert($('#peerreview').serialize());
-// 					$('#add').toggleClass('is-visible');
-					$(".modal-close").click()
-					document.getElementById("adding").reset();
-					var elements = document.getElementsByTagName('tag')
-while (elements[0]) elements[0].parentNode.removeChild(elements[0])
-					$('#adsrc').val([]).trigger('change');
-					console.log(data);
-        },
-			error: function(XMLHttpRequest, textStatus, errorThrown, responseText) {
-// 				$('#add').toggleClass('is-visible');
-				alert('Sorry Something Went Wrong');
-				console.log(XMLHttpRequest, textStatus, errorThrown, responseText);
-			},
-
-    });
-			 return false;
-
-
-
-				}
-
-
-
-				// 				if(! $myForm[0].checkValidity()) {
-//   // If the form is invalid, submit it. The form won't actually submit;
-//   // this will just cause the browser to display the native HTML5 error messages.
-//   $myForm.find(':submit').click();
-// }
-
-
-// 			if(form_data.length < $("#add tbody tr").length){
-// 				alert("Please Take The Time To Review All Mitigations")
-// 				return false;
-// 			}
-
-//
-
-	};
-
-	// 	end add hazards
-
-
-
-
-
-		var oTable;
-
-  $(document).ready(function() {
-
-
-// 		Functions
-
-// add("https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #");
-
-// Retrieve
-
-if (localStorage.getItem("links") !== null) {
-  //...JSON.stringify(obj) "https://ecowalaska.bpweb.bp.com/permitvision/editor/#/certificate/BP05-K-GPB-GC2#298773?selectedTab=actions&wizardStep=","New Test Permit #"
-	// var jsonStringify = '[{Link : 'Link', id : 'randomid', Description : 'description'}]';
-
-
-	var jsonObj = JSON.parse(localStorage.getItem("links"));
-
-	for(var i = 0; i < jsonObj.length; i++)
-	{
-
-					var m = decodeURIComponent(jsonObj[i]['Link']);
-					if (m != null)
-					{
-							var permit= "#" + m.split("#")[2].substring(0,6);;
-						}else{
-						var permit="Permit# Link";
-						}
-
-	$('#Examples ul').prepend(
-		$('<li>').attr("id",jsonObj[i]['id']).append(
-				$('<a>').attr({'href':jsonObj[i]['Link'], 'target':"_blank"}).append(
-						$('<span>').attr('class', 'tab').append(permit)),
-				$('<span>').append("--->" + jsonObj[i]['Description']).append($('<button>').attr({'id':'rmv' ,'name':'remove','value':jsonObj[i]['id'], 'onclick': "remove('"+jsonObj[i]['id']+"');"}).append("Remove"))
-
-	)
-
-	)
-	}
-}
-// for (var i = 0; i < localStorage.length; i++){
-// 	Promise.resolve(JSON.parse('{"key":"value"}')).then(json => {
-// 	    // console.log(json);
-// 	}).catch(err => {
-// 	    console.log(err);
-// 	});
-//
-//
-// var lnkds = JSON.parse(localStorage.getItem(localStorage.key(i))|| null);
-//
-// };
-
-// 		Copy Text To Clipboard
-		function copyTextToClipboard(text) {
-  var textArea = document.createElement("textarea");
-
-  // Place in top-left corner of screen regardless of scroll position.
-  textArea.style.position = 'fixed';
-  textArea.style.top = 0;
-  textArea.style.left = 0;
-
-  // Ensure it has a small width and height. Setting to 1px / 1em
-  // doesn't work as this gives a negative w/h on some browsers.
-  textArea.style.width = '2em';
-  textArea.style.height = '2em';
-
-  // We don't need padding, reducing the size if it does flash render.
-  textArea.style.padding = 0;
-
-  // Clean up any borders.
-  textArea.style.border = 'none';
-  textArea.style.outline = 'none';
-  textArea.style.boxShadow = 'none';
-
-  // Avoid flash of white box if rendered for any reason.
-  textArea.style.background = 'transparent';
-
-
-  textArea.value = text;
-
-  document.body.appendChild(textArea);
-
-  textArea.select();
-
-  try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copying text command was ' + msg);
-  } catch (err) {
-    console.log('Oops, unable to copy');
   }
-
-  document.body.removeChild(textArea);
-}
-// 		end Text Copying
-
-// 		Do Stuff
-
-// 		beautify radio buttons
-		$(":radio").labelauty({
-			minimum_width: "170px",
+  window.onload = function() {
 
 
-													});
-
-// 		Making Table  and Filter Drop Downs From Ajax Call
-
-oTable = $('#table').DataTable({
-initComplete: function () {
-  $("#table_filter").detach().appendTo('#search');
-  var tgs = new Array();
-$.each(oTable.column( 4 ).data().toArray(), function( index, value ) {
-var separr = value.split(",");
-tgs = $.merge( tgs, separr );
-});
-  var crft = new Array();
-$.each(oTable.column( 5 ).data().toArray(), function( index, value ) {
-var separr = value.split(",");
-crft = $.merge( crft, separr );
-});
-
-var input1 = document.querySelector('input[name=tags]'),
-tagify1 = new Tagify(input1, {
-whitelist : $.unique(tgs).sort(),
-blacklist : ["fuck", "shit"],
-delimiters          : ", ",
-});
-var input2 = document.querySelector('input[name=crafts]'),
-tagify2 = new Tagify(input2, {
-whitelist : $.unique(crft).sort(),
-blacklist : ["fuck", "shit"],
-delimiters          : ", ",
-});
-
-for(var i=0; i< tgs.length;i++)
-{
-//creates option tag
-jQuery('<option/>', {
-value: tgs[i],
-html: tgs[i]
-}).appendTo('#tagsadd'); //appends to select if parent div has id dropdown
-}
-
-
-
-// 		Making Filters and Searches For Table
-
-yadcf.init(oTable, [
-
-// 			{column_number : 1},
-// 			{column_number : 2},
-// 			{column_number : 3},
-{
-  column_number : 4,
-  filter_container_id: 'Tags',
-filter_type: "multi_select",
-text_data_delimiter: ",",
-case_insensitive: "true",
-filter_default_label: "Tags",
-select_type: "select2",
-filter_reset_button_text: false,
-          dropdownAutoWidth: false,
-  width: 'resolve',
-
-},
-{
-  column_number : 5,
-  filter_container_id: 'Craft',
-  filter_default_label: "Crafts",
-text_data_delimiter: ",",
-case_insensitive: "true",
-filter_type: "multi_select",
-select_type: "select2",
-filter_reset_button_text: false,
-          dropdownAutoWidth: false,
-  width: 'resolve',
-
-},
-{
-    column_number : 8,
-    filter_container_id: 'facflag',
-    filter_default_label: "Facilitys",
-text_data_delimiter: ",",
-case_insensitive: "true",
-  filter_type: "multi_select",
-select_type: "select2",
-filter_reset_button_text: false,
-            dropdownAutoWidth: false,
-    width: 'resolve',
-
-},
-]
-    );
-// End Get Table and Generate Filters
-
-
-
-
-},
-
-paging:   false,
-info:     false,
-
-
-   ajax: {
-url: "inc/get.php",
-dataSrc: '',
-     type: "POST",
-},
-
-columns: [
-  { "data": "source" },
-  { "data": "hazard" },
-  { "data": "mitigation" },
-  { "data": "id" },
-  { "data": "tags" },
-  { "data": "crafts" },
-  { "data": "review" },
-  { "data": "bad" },
-  { "data": "facilitys" },
-],
-"columnDefs": [
-  {
-      "targets": [ 4,5,8 ],
-      "visible": false,
-// 							'searchable'    : false,
-
-
-  },
-  {
-      "targets": [ 3,6,7 ],
-      "visible": false,
-                'searchable'    : false,
-
+    var cd = new Countdown({
+      cont: document.querySelector('.flipclit'),
+      endDate: {
+        year: 2020,
+        month: 8,
+        day: 01,
+        hour: 0,
+        minute: 0,
+        second: 0,
+      },
+      outputTranslation: {
+        year: 'Years',
+        week: 'Weeks',
+        day: 'Days',
+        hour: 'Hours',
+        minute: 'Minutes',
+        second: 'Seconds',
+      },
+      endCallback: null,
+      outputFormat: 'day|hour|minute|second',
+    });
+    cd.start();
   }
-
-
-],
-  language: {
-search: "_INPUT_",
-searchPlaceholder: "Search...",
-    zeroRecords: "Looks Like There Are No Hazards Like What Your Looking For Add a Hazard <button id='addhaz' type='button'>Add hazards</button>"
-
-},
-  bInfo: false,
-
-
-
-
-});
-
-
-
-
-
-
-
-// 		Copy Text To Clipboard when Clicked and Alert with a popup
-
-			 $(document).on('click', '#table tbody td:not(:first-child)',function(){
-				 var $this = $(this);
-				     var selectedCellIndex = this.cellIndex;
-    var correspondingHeader = $("table thead tr th")[selectedCellIndex];
-    var $th = $(correspondingHeader).text();
-				 $this.addClass('highlighted');
-    // set a timeout that will revert back class after 5 seconds:
-    window.setTimeout(function() {
-        $this.removeClass('highlighted');
-    }, 1000);
-			copyTextToClipboard($this.html());
-   $.notify("Copied The "+ $th , "success");
-
-
-});
-		//       Highlights clicked row
-      $('#table').on('click', 'tbody tr', function(event) {
-        var ths = $(this);
-    $(this).addClass('highlight').siblings().removeClass('highlight');
-        setTimeout(function() {
-       ths.removeClass('highlight', 2000, 'linear');
-   }, 2222);
-});
-		<?php
-		$query = "SELECT * FROM `hazmit` WHERE `review` < 2  ORDER BY RAND() LIMIT 3";
-	$rows = db_select($query);
-if($rows === false) {
-    $error = db_error();
-
-    // Handle error - inform administrator, log to file, show error page, etc.
-}
-
-if(!empty($rows)){
-	// 		Inject Modal JS
-		echo <<<Poop
-				$('#rev').toggleClass('is-visible');
-
-Poop;
-// 		End Modal JS
-}else{
-	$nomodal = 1;
-}
-
-
-
-
-
-		?>
-				$(document).on('click',"#addhaz", function(){
-// 					console.log('clicked');
-			$('.modal').toggleClass('is-visible');
-
-		});
-						$(document).on('click',".modal-close", function(){
-			$('.modal').toggleClass('is-visible');
-
-		});
-		document.getElementById("table").deleteTFoot();
-
-
-
-		$('.nrgsrc').select2({
-			placeholder: 'Select an Energy Source',
-			escapeMarkup: function (text) { return text; },
-			dropdownParent: $('.icoselect'),
-		  minimumResultsForSearch: -1,
-			dropdownAutoWidth : true,
-			width: "resolve",
-
-
-
-
-		});
-		remaing_char($('#haztxt'),$('#haztxt_feedback'),500);
-		remaing_char($('#mittxt'),$('#mittxt_feedback'),395);
-
-
-
-});
-
-
 </script>
-			<style>
-		  [id^=yadcf-filter-wrapper--]{ width: 25vw;
-			}
-		</style>
-</head>
-<body>
-	  <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="768" height="800" viewBox="0 0 768 800"><defs><g id="icon-close"><path class="path1" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path></g></defs></svg>
-
-
-
-	<div class="wrapper">
-	<div>
-		<table>
-			<tr>
-	<td style="border-left: none;" >
-		<button class="showex" onclick="sidebar(this)">Favorites</button>
-		<nav class="sidebar transition">
-				<div id=Examples>
-					<ul>
-					<li>
-						<form id="add" onkeypress="return event.keyCode != 13;">
-
-						<input required pattern="https://ecowalaska\.bpweb\.bp\.com\/permitvision/(.+)" type="url" id="nwlink" name="nwlink" placeholder="Paste eCOW Link">
-						<input required type="text" id="nwdesc" placeholder="Description Goes Here">
-						<button type='button' onclick="add(document.getElementById('nwlink').value,document.getElementById('nwdesc').value)">Add</button>
-	  <input id="submit-hidden" type="submit" style="display: none" />
-						</form>
-					</li>
-					</ul>
-				</div>
-			</nav>
-		</td>
-	<td  style="width: 20%; border-left: none;" id="facflag"></td>
-	<td style="width: 20%; border-left: none;" id="Craft"></td>
-	<td style="width: 20%; border-left: none;" id="Tags"></td>
-	<td style="border-left: none; padding-left: .3em; position: relative;">
-	<button class="showpar" onclick="sidebar(this)">Paradigm</button>
-	<nav class="sidebarpara transition">
-	<ul>
-		<?php
-$query123222 = "SELECT * FROM `favorites` WHERE MONTH(CURDATE()) = MONTH(`timestamp`) ORDER BY `score` DESC  LIMIT 3";
-$resil = db_select($query123222);
-if( count($resil) > 0){
-	foreach ($resil as $row){
-$permitzddfaf = preg_split('[#]', urldecode($row['link']));
-$permitzddfaf =  preg_split('[\?]',  $permitzddfaf[2]);
-$permitzddfaf =  "#" . $permitzddfaf[0];
-echo <<<Table
-<li><span><a href="$row[link]" target="_blank" style="font-family: Arial,sans-serif;">$permitzddfaf</a>: $row[description]</span></li>
-Table;
-}
-}else{
-	$permitzddfaf = preg_split('[#]', urldecode($row['link']));
-$permitzddfaf =  preg_split('[\?]',  $permitzddfaf[2]);
-$permitzddfaf =  "#" . $permitzddfaf[0];
-	$query123222 = "SELECT * FROM `favorites` ORDER BY `score` DESC  LIMIT 3";
-	$resil = db_select($query123222);
-	foreach ($resil as $row){
-echo <<<Table
-<li><span><a href="$row[link]" style="font-family: Arial,sans-serif;">$permitzddfaf</a>: $row[description]</span></li>
-Table;
-}
-}
-		 ?>
-	</ul>
-	</nav>
-	</td>
-</tr>
-</table>
-	</div>
-
-	<div class="searchbox sbx-custom">
-
-
-	<div id="search">
+<div style="text-align: center; margin: 0 auto; width: 90vw;">
+  <div style="position: relative; height: 7em;">
+<div class="flipclit" style="    position: absolute;
+    left: 50%;
+    margin-left: -31%;"></div>
 </div>
-	</div>
-	<table id="table" class="stripe">
-		<thead>
-			<tr>
-				<th style="min-width: 8em;">Source</th>
-				<th>Hazard</th>
-				<th>Mitigation</th>
-
-				<th>id</th>
-				<th>tags</th>
-				<th>crafts</th>
-				<th>review</th>
-				<th>bad</th>
-			</tr>
-		</thead>
-				<tbody>
-		</tbody>
-		 <tfoot>
-            <tr>
-				<th>Source</th>
-							<th>Hazard</th>
-				<th>Mitigation</th>
-
-							<th>id</th>
-				<th>tags</th>
-				<th>crafts</th>
-				<th>review</th>
-				<th>bad</th>
-            </tr>
-        </tfoot>
-	</table>
+<div>
+<h1><a class="permitlink" href="">Permit Link</a>.</h1>
+<div style="font-size: 1.5em;">
+Sorry for the inconvenience. This site will be taken down if I do not get feedback that it is still in use and useful. This began as a tool to streamline the use of eVision across the field. I began adding more and more quality of life additions to it as the time went on I am more than happy to keep the tool up and add any improvements upon request. eCOW-Ninja is a central hazard and mitigation database with built in peer review. Before my exit from the slope and the Hillcorp hand off. I finished implementation of a Area Authority dashboard/back-end within the tool. My goal was to streamline and make the digital permitting process easier for everyone involved. I am no longer employed on slope and have no need to keep working on and paying for the upkeep of this tool. But if you use it and want it kept up or any additions/changes let me know. I will do my best to accommodate as my schedule allows. Its been nice working with you all.
+<div style="    text-align: left;">
+<br>-SB
+<br><a href="mailto:freddyyeddy@pm.me">freddyyeddy@pm.me</a>
 </div>
-	<?php
-	if(!isset($nomodal)){
-
-// 	$reviewtbl =  var_dump($rows);
-	// 	generating table for peer review
-
-$reviewtbl = "<table border=1 frame=void rules=rows  style='text-align: center; width: 100%; margin: auto;'><thead><tr><th width='10%'>Source</th><th>Hazard</th><th>Mitigation</th><th style='width: 15em;'>Good or Bad?</th></tr></thead><tbody id='rev'> <form id='peerreview'>";
-
-foreach ($rows as $row){
-	if($row['reviewtxt'] == null){
-	$reviewtbl .= "<tr><td>" . $row['source'] . "</td><td>" . STRIPSLASHES($row['hazard']) . "</td><td>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
-}else{
-	$reviewtbl .= "<tr><td style='border-bottom: none;'>" . $row['source'] . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['hazard']) . "</td><td style='border-bottom: none;'>" . STRIPSLASHES($row['mitigation']) . "</td><td     style='text-align: left; border-bottom: none;'><input class='radio' type='radio' name='" . $row['id'] . "' value='true' data-labelauty='Good Hazard'/><input class='radio' type='radio' name='" . $row['id'] . "' value='false' data-labelauty='This is a Poor Hazard'/></td></tr>";
-	$reviewtbl .= "<tr class='rvw'><td style='border-top-style: dashed; border-bottom-style: double;' Colspan='4'>$row[reviewtxt]</td></tr>";
-}
-}
-
-	$reviewtbl .= "</form></tbody></table>";
-// 	end table generating
-
-// 	Inject Modal HTML
-// 	Modal x button
-// 	         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
-
-	echo <<<Modalpoo
-		<div id="rev" class="modal">
-    <div class="modal-overlay modal-toggle"></div>
-    <div class="modal-wrapper modal-transition">
-      <div class="modal-header">
-        <h2 class="modal-heading">Peer Review Required</h2>
-      </div>
-
-      <div class="modal-body">
-        <div class="modal-content">
-          <p>
-					To Use This Tool You Are Required To Participare in The Peer Review Prossess. Please Select good or poor for each hazard then submit.
-
-					</p>
-					$reviewtbl
-        </div>
-				<div align="center">
-				<input class='button myButton' type='submit' value='Submit' onclick='submitF(event);' id='submit'  name='submit'>
-				</div>
-      </div>
-    </div>
-  </div>
-Modalpoo;
-// 	End Modal HTML Inject
-	}
-	?>
-
-<!-- 	add hazards modal -->
-
-	<div id="add1" class="modal">
-    <div class="modal-overlay"></div>
-
-    <div class="modal-wrapper modal-transition">
-      <div class="modal-header">
-					         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
-
-        <h2 class="modal-heading">Add Hazards and Mitigations</h2>
-      </div>
-
-      <div class="modal-body">
-        <div class="modal-content">
-          <p>
-					Remeber To make sure who what and how
-
-					</p>
-					<form id="adding">
-
-								<div class="icoselect">
-									<select name="source" id="adsrc" class='nrgsrc' style="width:100%;">
-  <option  value="Pressure &#xe801;">Pressure &#xe801;</option>
-  <option value="Mechanical &#xe800;">Mechanical &#xe800;</option>
-  <option value="Body Mechanics &#xe80d;">Body Mechanics &#xe80d;</option>
-  <option value="Toxic Substances &#xe807;">Toxic Substances &#xe807;</option>
-  <option value="Thermal &#xe803;">Thermal &#xe803;</option>
-  <option value="Hazardus Prossess Materials &#xe806;">Hazardus Prossess Materials &#xe806;</option>
-  <option value="SIMOPS &#xE804;">SIMOPS &#xE804;</option>
-  <option value="Weather &#xE805;">Weather &#xE805;</option>
-  <option value="Noise &#xe808;">Noise &#xe808;</option>
-  <option  value="Human Factor &#xe809;">Human Factor &#xe809;</option>
-  <option  value="Gravity &#xe80c;">Gravity &#xe80c;</option>
-  <option  value="Radiation  &#xe802;">Radiation  &#xe802;</option>
-  <option value="Biological &#xE80A;">Biological &#xE80A;</option>
-  <option value="Electrical &#59403;">Electrical &#59403;</option>
-<!--   <option value="HF">Human Factor</option> -->
-
-</select>
-								</div>
-								<div><textarea required rows="7" name="hazard" style="width:100%" placeholder="What Is The Hazard and How Can It Hurt You (other than your feelings)" id="haztxt" maxlength="500"></textarea><div id="haztxt_feedback"></div></div>
-								<div><textarea required rows="7" name="mitigation" style="width:100%" placeholder="Who Will Be Accountable For Mitigations and how Will they Act on them" id="mittxt"  cols="30" maxlength="395"></textarea><div id="mittxt_feedback"></div></div>
-								<div><input id="tgs" required name='tags' placeholder='Write tags eg: ladder, gas, excavation ect.'></div>
-								<div><input id="crft" required name='crafts' placeholder='What Crafts Are This Aplicable to?' ></div>
-
-
-					</form>
-        </div>
-				<div style="text-align: center;">
-<!-- 					onclick='submitF(event);' -->
-				<input class='button myButton' type='submit' value='Submit' onclick='submitG(event);' id='submithaz'  name='submit'>
-				</div>
-      </div>
-    </div>
-  </div>
-
-<!-- 	end hazards modal -->
-
-<footer>
-    <a href="mailto:freddyyeddy@pm.me">freddyyeddy@pm.me</a>
-</footer>
-
-	</body>
+</div>
+</div>
+</div>
